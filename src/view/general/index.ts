@@ -1,6 +1,6 @@
 import test from "./test.tmpl"
 import parent from "./parent.tmpl"
-import TemplateBuilder from '../templateBuilder/templateBuilder'
+import TemplateBuilder from "~src/utils/templateBuilder/templateBuilder";
 
 const root = document.querySelector('#general')
 

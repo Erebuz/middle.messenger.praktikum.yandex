@@ -21,7 +21,6 @@ class TemplateBuilder{
 
     private _replace_key_to_string(key: string, replace_text: string) {
         const keyReg = new RegExp('\{\{' + '[ ]*'  + key + '[ ]*' + '}}')
-
         this._result_template = this._result_template.replace(keyReg, replace_text)
     }
 
