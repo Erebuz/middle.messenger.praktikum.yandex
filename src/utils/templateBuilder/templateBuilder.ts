@@ -2,7 +2,8 @@ class TemplateBuilder {
   private readonly _template: string
   private _result_template: string
   private _keys: string[] = []
-  private _keysData: { [key: string]: null | string | TemplateBuilder } = {}
+  private _keysData: { [key: string]: undefined | string | TemplateBuilder } =
+    {}
 
   constructor(template: string) {
     this._template = template
@@ -15,7 +16,7 @@ class TemplateBuilder {
       key = key.slice(2, -2).trim()
 
       this._keys.push(key)
-      this._keysData[key] = null
+      this._keysData[key] = undefined
     }
   }
 
@@ -24,7 +25,7 @@ class TemplateBuilder {
     this._result_template = this._result_template.replace(keyReg, replace_text)
   }
 
-  public set(key: string, value: string | TemplateBuilder) {
+  public setKey(key: string, value: string | TemplateBuilder) {
     if (!this._keys.includes(key))
       throw new TypeError(`"${key}" not exist in [${this._keys}]`)
 
@@ -43,9 +44,10 @@ class TemplateBuilder {
     keys.forEach((key) => {
       const key_data = this._keysData[key]
 
-      if (key_data instanceof TemplateBuilder) {
+      if (key_data === undefined) {
+        this._replace_key_to_string(key, '')
+      } else if (key_data instanceof TemplateBuilder) {
         const childTemplate = key_data.render()
-
         this._replace_key_to_string(key, childTemplate)
       } else {
         this._replace_key_to_string(key, key_data)

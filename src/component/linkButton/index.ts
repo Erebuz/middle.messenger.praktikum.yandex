@@ -9,9 +9,9 @@ export default function create(
 ) {
   const linkTemplate = new TemplateBuilder(template)
 
-  linkTemplate.set('text', linkText)
-  linkTemplate.set('classes', linkClasses)
-  linkTemplate.set('href', href)
+  linkTemplate.setKey('text', linkText)
+  linkTemplate.setKey('classes', linkClasses)
+  linkTemplate.setKey('href', href)
 
   return linkTemplate
 }

@@ -3,5 +3,4 @@ import create from '~src/component/linkButton'
 
 const linkA = create('General link', '/general.html')
 
-const root = document.querySelector('#root')
-root.insertAdjacentHTML('beforeend', linkA.render())
+document.querySelector('#root').insertAdjacentHTML('beforeend', linkA.render())
