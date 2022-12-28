@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "parcel src/view/index/index.html",
-    "build": "parcel build src/view/index/index.html",
+    "dev": "parcel src/index.ts",
+    "build": "parcel build src/index.ts",
     "start": "node server.js"
   },
   "engines": {

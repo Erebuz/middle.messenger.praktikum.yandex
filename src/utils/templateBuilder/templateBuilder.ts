@@ -1,4 +1,4 @@
-class TemplateBuilder {
+export class TemplateBuilder {
   private readonly _template: string
   private _result_template: string
   private _keys: string[] = []
@@ -57,5 +57,3 @@ class TemplateBuilder {
     return this._result_template
   }
 }
-
-export default TemplateBuilder
