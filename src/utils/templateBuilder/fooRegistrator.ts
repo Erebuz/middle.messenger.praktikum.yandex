@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    foo: any
+  }
+}
+
 let count = 0
 
 /***
@@ -7,16 +13,19 @@ let count = 0
  * @param foo Объект функции
  */
 export function registrationFunction(moduleName: string, foo: object) {
-  console.log(foo)
-  if (!window[moduleName]) window[moduleName] = {}
+  if (!window.foo) {
+    window.foo = {}
+  }
+  if (!window.foo[moduleName]) {
+    window.foo[moduleName] = {}
+  }
 
-  const moduleSpace = window[moduleName]
+  const moduleSpace = window.foo[moduleName]
 
   moduleSpace['foo_' + count] = foo
-  const resultName = `window.${moduleName}.foo_${count}()`
+  const resultName = `window.foo.${moduleName}.foo_${count}()`
 
   count += 1
 
-  console.log(resultName)
   return resultName
 }

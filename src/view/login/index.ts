@@ -1,18 +1,23 @@
 import '~src/static/style.scss'
 import './index.scss'
-import { create } from '~src/component/bodyTemplate'
-import { create as createButton } from '~src/component/components/button'
-import { registrationFunction } from '~src/utils/templateBuilder'
-import { rerenderClips } from '~src/component/components/clips'
+import BodyComponent from '~src/component/bodyTemplate'
+import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
-const button = createButton('Test', registrationFunction('main', test))
+export default class LoginPage extends ComponentClass {
+  public bodyComponent = new BodyComponent()
 
-const pageComponent = create(button, '<div id="main">window.fn.value</div>')
+  constructor() {
+    super([])
 
-const root = document.querySelector('#root')
+    this.template = this.bodyComponent.template
+  }
 
-root.insertAdjacentHTML('beforeend', pageComponent.render())
-
-function test() {
-  rerenderClips()
+  public render() {
+    const root = document.querySelector('#root')
+    root.insertAdjacentHTML('beforeend', this.template.render())
+    return ''
+  }
 }
+
+window.thisPage = new LoginPage()
+window.thisPage.render()

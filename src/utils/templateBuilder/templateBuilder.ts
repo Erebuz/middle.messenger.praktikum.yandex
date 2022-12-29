@@ -8,21 +8,17 @@ export class TemplateBuilder {
   constructor(template: string) {
     this._template = template
 
-    const regExp = /\{\{[^}]+}}/g
+    const key_reg_exp = /\{\{[^}]+}}/g
+    const key_arr = template.match(key_reg_exp) || []
 
-    const arr = template.match(regExp) || []
-
-    for (let key of arr) {
+    for (let key of key_arr) {
       key = key.slice(2, -2).trim()
 
       this._keys.push(key)
       this._keysData[key] = undefined
     }
-  }
 
-  private _replace_key_to_string(key: string, replace_text: string) {
-    const keyReg = new RegExp('{{' + '[ ]*' + key + '[ ]*' + '}}')
-    this._result_template = this._result_template.replace(keyReg, replace_text)
+    this.render_result_template()
   }
 
   public setKey(key: string, value: string | TemplateBuilder) {
@@ -37,9 +33,15 @@ export class TemplateBuilder {
   }
 
   public render() {
-    const keys = this._keys
+    this.render_result_template()
 
+    return this._result_template
+  }
+
+  private render_result_template() {
     this._result_template = this._template
+
+    const keys = this._keys
 
     keys.forEach((key) => {
       const key_data = this._keysData[key]
@@ -53,7 +55,10 @@ export class TemplateBuilder {
         this._replace_key_to_string(key, key_data)
       }
     })
+  }
 
-    return this._result_template
+  private _replace_key_to_string(key: string, replace_text: string) {
+    const keyReg = new RegExp('{{' + '[ ]*' + key + '[ ]*' + '}}')
+    this._result_template = this._result_template.replace(keyReg, replace_text)
   }
 }

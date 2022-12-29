@@ -4,3 +4,6 @@ dist
 .idea
 
 package-lock.json
+
+**/*.js
+**/*.map

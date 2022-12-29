@@ -1,23 +1,43 @@
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import template from './index.tmpl'
 import './index.scss'
-import { create as createClips } from '~src/component/components/clips'
+import ClipComponent from '~src/component/components/clips'
+import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
-export function create(
-  aside: string | TemplateBuilder,
-  main: string | TemplateBuilder,
-  hideAside: boolean = false
-) {
-  const templateBuilder = new TemplateBuilder(template)
+const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
 
-  templateBuilder.setKey('aside', aside)
-  templateBuilder.setKey('main', main)
+const asideTemplate = `<aside id="aside" class="left-page" style="{{ asideStyle }}">{{ aside }}</aside>`
+const mainTemplate = `<main id="main" class="right-page">{{ main }}</main>`
 
-  templateBuilder.setKey('clips', createClips())
+export default class BodyComponent extends ComponentClass {
+  constructor() {
+    super(['aside', 'main'])
 
-  if (hideAside) {
-    templateBuilder.setKey('asideStyle', 'background: inherit')
+    this.childs.clip_component = new ClipComponent()
+    this.childs.aside = this._templateCreaters.aside()
+    this.childs.main = this._templateCreaters.main()
+
+    this.template = new TemplateBuilder(generalTemplate)
+
+    this.template.setKey('aside', this.childs.aside)
+    this.template.setKey('main', this.childs.main)
+    this.template.setKey('clips', this.childs.clip_component.render())
   }
 
-  return templateBuilder
+  protected _templateCreaters = {
+    aside: (hideAside: boolean = false) => {
+      const template = new TemplateBuilder(asideTemplate)
+
+      if (hideAside) {
+        template.setKey('asideStyle', 'background: inherit')
+      }
+
+      return template
+    },
+    main: (text = '') => {
+      const template = new TemplateBuilder(mainTemplate)
+
+      template.setKey('main', text)
+      return template
+    },
+  }
 }
