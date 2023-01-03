@@ -4,4 +4,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__code {
+    margin-bottom: 40px;
+    font-size: 2em;
+  }
+
+  &__img {
+    width: 40vw;
+  }
+
+  &__text {
+    margin: 20px 0;
+    font-size: 1.2em;
+  }
+
+  &__link {
+    margin-top: 42px;
+    text-decoration: none;
+  }
 }

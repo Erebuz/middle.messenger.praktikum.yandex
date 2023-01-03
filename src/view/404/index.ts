@@ -11,7 +11,8 @@ export default class Page extends ComponentClass {
     this.template = new ErrorComponent(
       '404',
       'Page not found',
-      '404.jpg'
+      '404.jpg',
+      'background-color: #0F1513'
     )
   }
 
