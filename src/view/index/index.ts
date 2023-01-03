@@ -1,4 +1,4 @@
-import '~src/view/index/index.html'
+import '~src/static/style.scss'
 
 const template = `
 <ul>

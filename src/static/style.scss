@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-weight: normal;
+  font-style: normal;
+  src: local('Bodoni Moda'),
+    url('~src/assets/BodoniModa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-weight: normal;
+  font-style: italic;
+  src: local('Bodoni Moda'),
+  url('~src/assets/BodoniModa-italic.ttf') format('truetype');
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -7,6 +23,7 @@ body {
 
 * {
   color: white;
+  font-family: 'Bodoni Moda', serif;
 }
 
 #root {

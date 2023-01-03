@@ -1,13 +1,18 @@
 import '~src/static/style.scss'
 import './index.scss'
+
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import ErrorComponent from '~src/component/error'
 
 export default class Page extends ComponentClass {
   constructor() {
     super()
 
-    this.template = new TemplateBuilder('404')
+    this.template = new ErrorComponent(
+      '404',
+      'Page not found',
+      '404.jpg'
+    )
   }
 
   public render() {

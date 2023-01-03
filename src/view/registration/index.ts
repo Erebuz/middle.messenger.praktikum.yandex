@@ -1,6 +1,6 @@
 import '~src/static/style.scss'
 import './index.scss'
-import BodyComponent from '~src/component/bodyTemplate'
+import BodyComponent from '~src/component/body'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
@@ -13,8 +13,8 @@ export default class Page extends ComponentClass {
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideText', 'Правила регистрации')
-    main.setKey('main', 'Регистрация')
+    aside.setKey('asideText', 'Registration rules')
+    main.setKey('main', 'Registration form')
 
     this.template = this.childs.bodyComponent
   }

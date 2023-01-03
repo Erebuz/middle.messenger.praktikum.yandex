@@ -1,13 +1,17 @@
 import '~src/static/style.scss'
 import './index.scss'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import ErrorComponent from '~src/component/error'
 
 export default class Page extends ComponentClass {
   constructor() {
     super()
 
-    this.template = new TemplateBuilder('500')
+    this.template = new ErrorComponent(
+        '500',
+        'Internal error',
+        '500.jpg'
+    )
   }
 
   public render() {
