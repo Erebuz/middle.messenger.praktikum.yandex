@@ -2,13 +2,12 @@ import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 export class ComponentClass {
   public id_list: string[]
-  public template: TemplateBuilder
-  public childs: { [key: string]: string | TemplateBuilder | ComponentClass } =
-    {}
+  public template: TemplateBuilder | ComponentClass
+  public childs: { [key: string]: TemplateBuilder | ComponentClass } = {}
 
   protected _templateCreaters: { [key: string]: (...args) => TemplateBuilder }
 
-  constructor(list: string[]) {
+  constructor(list: string[] = []) {
     this.id_list = list
   }
 

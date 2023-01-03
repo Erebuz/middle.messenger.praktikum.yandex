@@ -8,13 +8,13 @@ export default class Page extends ComponentClass {
   constructor() {
     super()
 
-    this.childs.bodyComponent = new BodyComponent(false)
+    this.childs.bodyComponent = new BodyComponent()
 
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideText', 'Описание проекта')
-    main.setKey('main', 'Login')
+    aside.setKey('asideText', 'Правила регистрации')
+    main.setKey('main', 'Регистрация')
 
     this.template = this.childs.bodyComponent
   }

@@ -5,15 +5,15 @@ import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
 const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
 
-const asideTemplate = `<aside id="aside" class="left-page" style="{{ asideStyle }}">{{ aside }}</aside>`
+const asideTemplate = `<aside id="aside" class="left-page" style="{{ asideStyle }}">{{ asideText }}</aside>`
 const mainTemplate = `<main id="main" class="right-page">{{ main }}</main>`
 
 export default class BodyComponent extends ComponentClass {
-  constructor() {
+  constructor(showAside: boolean = true) {
     super(['aside', 'main'])
 
-    this.childs.clip_component = new ClipComponent()
-    this.childs.aside = this._templateCreaters.aside()
+    this.childs.clip_component = new ClipComponent(!showAside)
+    this.childs.aside = this._templateCreaters.aside(!showAside)
     this.childs.main = this._templateCreaters.main()
 
     this.template = new TemplateBuilder(generalTemplate)

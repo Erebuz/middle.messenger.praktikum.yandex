@@ -1,6 +1,5 @@
 import '~src/static/style.scss'
 import './index.scss'
-import BodyComponent from '~src/component/bodyTemplate'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
@@ -8,15 +7,7 @@ export default class Page extends ComponentClass {
   constructor() {
     super()
 
-    this.childs.bodyComponent = new BodyComponent(false)
-
-    const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
-    const main = this.childs.bodyComponent.childs.main as TemplateBuilder
-
-    aside.setKey('asideText', 'Описание проекта')
-    main.setKey('main', 'Login')
-
-    this.template = this.childs.bodyComponent
+    this.template = new TemplateBuilder('500')
   }
 
   public render() {

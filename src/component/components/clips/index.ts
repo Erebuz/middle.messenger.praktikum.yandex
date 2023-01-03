@@ -16,10 +16,10 @@ export default class ClipComponent extends ComponentClass {
   public id_list = (<T extends string[]>(...o: T) => o)('clips')
   public template = new TemplateBuilder('{{ body }}')
 
-  constructor() {
+  constructor(showBackClip: boolean) {
     super(['clips'])
 
-    this.template.setKey('body', this._templateCreaters.clips())
+    this.template.setKey('body', this._templateCreaters.clips(!showBackClip))
   }
 
   protected _templateCreaters = {
