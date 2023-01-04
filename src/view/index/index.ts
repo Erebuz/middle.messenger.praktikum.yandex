@@ -1,4 +1,4 @@
-import '~src/static/style.scss'
+import '~src/assets/style.scss'
 
 const template = `
 <ul>

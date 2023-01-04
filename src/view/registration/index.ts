@@ -1,4 +1,4 @@
-import '~src/static/style.scss'
+import '~src/assets/style.scss'
 import './index.scss'
 import BodyComponent from '~src/component/body'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'

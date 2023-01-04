@@ -1,5 +1,5 @@
-import '~src/static/style.scss'
-import './index.scss'
+import '~src/assets/style.scss'
+import img404 from '~src/assets/404.jpg'
 
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import ErrorComponent from '~src/component/error'
@@ -11,8 +11,8 @@ export default class Page extends ComponentClass {
     this.template = new ErrorComponent(
       '404',
       'Page not found',
-      '404.jpg',
-      'background-color: #0F1513'
+      img404,
+      'background-color: #121715'
     )
   }
 

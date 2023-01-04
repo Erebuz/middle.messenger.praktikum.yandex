@@ -9,11 +9,11 @@ const asideTemplate = `<aside id="aside" class="left-page" style="{{ asideStyle 
 const mainTemplate = `<main id="main" class="right-page">{{ main }}</main>`
 
 export default class BodyComponent extends ComponentClass {
-  constructor(showAside: boolean = true) {
+  constructor(showAsideBackground: boolean = true) {
     super(['aside', 'main'])
 
-    this.childs.clip_component = new ClipComponent(!showAside)
-    this.childs.aside = this._templateCreaters.aside(!showAside)
+    this.childs.clip_component = new ClipComponent(!showAsideBackground)
+    this.childs.aside = this._templateCreaters.aside(!showAsideBackground)
     this.childs.main = this._templateCreaters.main()
 
     this.template = new TemplateBuilder(generalTemplate)
@@ -24,10 +24,10 @@ export default class BodyComponent extends ComponentClass {
   }
 
   protected _templateCreaters = {
-    aside: (hideAside: boolean = false) => {
+    aside: (hideAsideBackground: boolean = false) => {
       const template = new TemplateBuilder(asideTemplate)
 
-      if (hideAside) {
+      if (hideAsideBackground) {
         template.setKey('asideStyle', 'background: inherit')
       }
 

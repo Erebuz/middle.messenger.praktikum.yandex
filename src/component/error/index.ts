@@ -8,12 +8,12 @@ export default class ErrorComponent extends ComponentClass {
   constructor(
     code: string,
     text: string,
-    image_path: string,
+    image: string,
     errorStyle?: string
   ) {
     super()
 
-    this.template = this._templateCreaters.errorCode(code, text, image_path, errorStyle)
+    this.template = this._templateCreaters.errorCode(code, text, image, errorStyle)
   }
 
   protected _templateCreaters = {
