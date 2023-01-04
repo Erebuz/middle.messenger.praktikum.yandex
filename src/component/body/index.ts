@@ -5,7 +5,7 @@ import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
 const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
 
-const asideTemplate = `<aside id="aside" class="left-page" style="{{ asideStyle }}">{{ asideText }}</aside>`
+const asideTemplate = `<aside id="aside" class="left-page {{ asideClass }}">{{ asideText }}</aside>`
 const mainTemplate = `<main id="main" class="right-page">{{ main }}</main>`
 
 export default class BodyComponent extends ComponentClass {
@@ -28,7 +28,7 @@ export default class BodyComponent extends ComponentClass {
       const template = new TemplateBuilder(asideTemplate)
 
       if (hideAsideBackground) {
-        template.setKey('asideStyle', 'background: inherit')
+        template.setKey('asideClass', 'left-page__close')
       }
 
       return template

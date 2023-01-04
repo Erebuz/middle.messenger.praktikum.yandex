@@ -2,32 +2,36 @@ import { TemplateBuilder } from '~src/utils/templateBuilder'
 import './index.scss'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
-const generalTemplate =
-  '<button id="button" class="{{ classes }}" onclick="{{ onclick }}">{{ text }}</button>'
+import buttonTemplate from './index.tmpl'
+
+export interface ButtonOptionsInterface {
+  label?: string
+  buttonType?: 'submit' | 'button'
+  classes?: string
+  onclick?: string
+}
 
 export default class ButtonComponent extends ComponentClass {
-  public id_list = (<T extends string[]>(...o: T) => o)('button')
-  public template = new TemplateBuilder('{{ body }}')
+  constructor(options: ButtonOptionsInterface) {
+    super(['button'])
 
-  constructor(title: string, classes?: string, onclick?: string) {
-    super([])
-
-    this.template.setKey(
-      'body',
-      this._templateCreaters.button(title, classes, onclick)
-    )
+    this.template = this._templateCreaters.button(options)
   }
 
   protected _templateCreaters = {
-    button: (title: string, classes?: string, onclick?: string) => {
-      const template = new TemplateBuilder(generalTemplate)
+    button: (options: ButtonOptionsInterface) => {
+      const template = new TemplateBuilder(buttonTemplate)
 
-      template.setKey('text', title)
-      if (classes) {
-        template.setKey('classes', classes)
+      template.setKey('text', options.label)
+
+      template.setKey('classes', options.classes)
+
+      if (options.onclick) {
+        template.setKey('onclick', options.onclick)
       }
-      if (onclick) {
-        template.setKey('onclick', onclick)
+
+      if (options.buttonType) {
+        template.setKey('buttonType', options.buttonType)
       }
 
       return template

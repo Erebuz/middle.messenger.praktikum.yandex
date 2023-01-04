@@ -9,6 +9,12 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   padding: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: black;
 }
 
 .left-page {
@@ -16,6 +22,11 @@
 
   border-right: 2px solid #000000;
   border-radius: 20px 0 0 20px;
+
+  &__close {
+    background: inherit;
+    color: white;
+  }
 }
 
 .right-page {

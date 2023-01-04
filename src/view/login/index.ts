@@ -3,6 +3,7 @@ import './index.scss'
 import BodyComponent from '~src/component/body'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
+import LoginComponent from "~src/component/login";
 
 export default class Page extends ComponentClass {
   constructor() {
@@ -14,7 +15,7 @@ export default class Page extends ComponentClass {
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
     aside.setKey('asideText', 'Project description')
-    main.setKey('main', 'Login')
+    main.setKey('main', new LoginComponent().render())
 
     this.template = this.childs.bodyComponent
   }

@@ -23,7 +23,7 @@ export function registrationFunction(moduleName: string, foo: object) {
   const moduleSpace = window.foo[moduleName]
 
   moduleSpace['foo_' + count] = foo
-  const resultName = `window.foo.${moduleName}.foo_${count}()`
+  const resultName = `window.foo.${moduleName}.foo_${count}`
 
   count += 1
 
