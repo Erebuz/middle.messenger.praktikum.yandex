@@ -3,6 +3,7 @@ import './index.scss'
 import BodyComponent from '~src/component/body'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
+import RegistrationComponent from "~src/component/registration";
 
 export default class Page extends ComponentClass {
   constructor() {
@@ -13,8 +14,8 @@ export default class Page extends ComponentClass {
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideText', 'Registration rules')
-    main.setKey('main', 'Registration form')
+    aside.setKey('asideBody', 'Registration rules')
+    main.setKey('mainBody', new RegistrationComponent().render())
 
     this.template = this.childs.bodyComponent
   }

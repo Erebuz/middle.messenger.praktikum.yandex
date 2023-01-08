@@ -1,7 +1,6 @@
 .text-field {
   display: flex;
   flex-direction: column;
-
   height: 100px;
 
   &__label {
@@ -29,6 +28,18 @@
 
   &.text-field_block {
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+
+    height: 40px;
+
+    background: #ABABAB;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+
+    .text-field__input {
+      border-bottom: none;
+    }
   }
 }

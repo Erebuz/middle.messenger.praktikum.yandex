@@ -12,7 +12,7 @@ import ButtonComponent from '~src/component/components/button'
 
 export default class LoginComponent extends ComponentClass {
   constructor() {
-    super([])
+    super()
 
     this.template = new TemplateBuilder(loginTemplate)
 
@@ -29,11 +29,14 @@ export default class LoginComponent extends ComponentClass {
       'inputFieldPassword',
       new TextFieldComponent({
         label: 'Password',
-        inputType: "password"
+        inputType: 'password',
       }).render()
     )
 
-    this.template.setKey('loginButton', new ButtonComponent({label: 'Login'}).render())
+    this.template.setKey(
+      'loginButton',
+      new ButtonComponent({ label: 'Login' }).render()
+    )
 
     this.template.setKey(
       'submitFoo',

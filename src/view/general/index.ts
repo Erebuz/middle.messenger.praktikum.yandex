@@ -13,8 +13,8 @@ export default class Page extends ComponentClass {
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideText', 'List of chats')
-    main.setKey('main', 'Chat')
+    aside.setKey('asideBody', 'List of chats')
+    main.setKey('mainBody', 'Chat')
 
     this.template = this.childs.bodyComponent
   }

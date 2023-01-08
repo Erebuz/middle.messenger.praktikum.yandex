@@ -5,8 +5,8 @@ import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 
 const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
 
-const asideTemplate = `<aside id="aside" class="left-page {{ asideClass }}">{{ asideText }}</aside>`
-const mainTemplate = `<main id="main" class="right-page">{{ main }}</main>`
+const asideTemplate = `<aside id="aside" class="left-page {{ asideClass }}">{{ asideBody }}</aside>`
+const mainTemplate = `<main id="main" class="right-page">{{ mainBody }}</main>`
 
 export default class BodyComponent extends ComponentClass {
   constructor(showAsideBackground: boolean = true) {
@@ -33,10 +33,10 @@ export default class BodyComponent extends ComponentClass {
 
       return template
     },
-    main: (text = '') => {
+    main: (textHtml = '') => {
       const template = new TemplateBuilder(mainTemplate)
 
-      template.setKey('main', text)
+      template.setKey('mainBody', textHtml)
       return template
     },
   }
