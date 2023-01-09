@@ -1,0 +1,55 @@
+.chat-preview {
+  margin-top: 30px;
+  height: 80px;
+  background: #ababab;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+
+  display: grid;
+  grid-template: 40px 40px / 80px 1fr 50px;
+  grid-template-areas:
+    'img name time'
+    'img message count';
+  grid-column-gap: 20px;
+  padding-right: 20px;
+  align-items: center;
+
+  &__img {
+    grid-area: img;
+    width: 80px;
+    height: 80px;
+
+    background: #605959;
+    border-radius: 10px;
+  }
+
+  &__name {
+    grid-area: name;
+    font-size: 1.2em;
+  }
+  &__message {
+    grid-area: message;
+    opacity: 0.6;
+  }
+  &__time {
+    grid-area: time;
+  }
+  &__count {
+    grid-area: count;
+  }
+
+  &__time,
+  &__count {
+    width: 50px;
+    height: 24px;
+
+    font-size: 0.8em;
+    font-weight: bold;
+    background: #d9d9d9;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

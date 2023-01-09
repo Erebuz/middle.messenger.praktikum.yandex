@@ -3,6 +3,8 @@ import './index.scss'
 import BodyComponent from '~src/component/body'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
+import GeneralAsideComponent from "~src/component/generalAside";
+import GeneralBodyComponent from "~src/component/generalBody";
 
 export default class Page extends ComponentClass {
   constructor() {
@@ -13,8 +15,8 @@ export default class Page extends ComponentClass {
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideBody', 'List of chats')
-    main.setKey('mainBody', 'Chat')
+    aside.setKey('asideBody', new GeneralAsideComponent().render())
+    main.setKey('mainBody', new GeneralBodyComponent().render())
 
     this.template = this.childs.bodyComponent
   }
