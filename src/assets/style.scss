@@ -3,7 +3,7 @@
   font-weight: normal;
   font-style: normal;
   src: local('Bodoni Moda'),
-    url('./BodoniModa.ttf') format('truetype');
+    url('BodoniModa.ttf') format('truetype');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-weight: normal;
   font-style: italic;
   src: local('Bodoni Moda'),
-  url('./BodoniModa-italic.ttf') format('truetype');
+  url('BodoniModa-italic.ttf') format('truetype');
 }
 
 body {
