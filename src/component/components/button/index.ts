@@ -27,7 +27,7 @@ export default class ButtonComponent extends ComponentClass {
       template.setKey('classes', options.classes)
 
       if (options.onclick) {
-        template.setKey('onclick', options.onclick)
+        template.setKey('onclick', 'onclick="' + options.onclick + '"')
       }
 
       if (options.buttonType) {

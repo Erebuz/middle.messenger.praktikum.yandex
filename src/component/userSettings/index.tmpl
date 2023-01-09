@@ -1,0 +1,21 @@
+<div class="user-settings">
+  <div class="user-settings__portrait-wrapper">
+    <div class="user-settings__portrait"></div>
+
+    <img class="user-settings__logout" src="{{ logoutImg }}" width="40px" height="40px" />
+  </div>
+
+  <form>
+    {{ dataFields }}
+
+    <div class="user-settings__button">{{ dataSaveBtn }}</div>
+  </form>
+
+  <form>
+    {{ passwordFields }}
+
+    <div class="user-settings__button">{{ passwordSaveBtn }}</div>
+  </form>
+
+  <div class="user-settings__flag"></div>
+</div>
