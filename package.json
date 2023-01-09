@@ -30,12 +30,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "express": "^4.18.2",
     "parcel": "^2.8.2",
-    "parcel-namer-html": "^1.0.0",
     "prettier": "2.8.1",
     "sass": "^1.57.1",
     "typescript": "^4.9.4"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }
