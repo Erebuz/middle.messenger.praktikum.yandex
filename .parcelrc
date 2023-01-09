@@ -3,5 +3,4 @@
    "transformers": {
      "*.tmpl": ["@parcel/transformer-inline-string"]
    },
-   "namers": [ "parcel-namer-html", "..." ]
 }

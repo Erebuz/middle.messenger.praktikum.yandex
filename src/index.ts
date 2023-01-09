@@ -1,4 +1,3 @@
-import "./view/index/index.html"
 import "./view/login/index.html"
 import './view/registration/index.html'
 import './view/general/index.html'
