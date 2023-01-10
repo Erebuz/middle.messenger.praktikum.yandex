@@ -8,11 +8,7 @@ export default class Page extends ComponentClass {
   constructor() {
     super()
 
-    this.template = new ErrorComponent(
-        '500',
-        'Internal error',
-        img500
-    )
+    this.template = new ErrorComponent('500', 'Internal error', img500)
   }
 
   public render() {

@@ -1,7 +1,7 @@
 import '~src/assets/style.scss'
 import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import UserSettingsComponent from "~src/component/userSettings";
+import UserSettingsComponent from '~src/component/userSettings'
 
 export default class Page extends ComponentClass {
   constructor() {
