@@ -1,3 +1,5 @@
+@import 'src/assets/variables';
+
 .user-settings {
   box-sizing: border-box;
 
@@ -5,8 +7,8 @@
   height: min-content;
   padding: 20px;
 
-  background: #d9d9d9;
-  border: 1px solid #000000;
+  background: $color-background-primary;
+  border: 1px solid $color-border;
   border-radius: 20px;
 
   display: flex;
@@ -49,7 +51,7 @@
     left: 20px;
     bottom: -30px;
 
-    background: #742323;
+    background: $color-settings-flag;
 
     &:before {
       content: '';
@@ -59,8 +61,8 @@
       left: 0;
 
       border: 30px solid transparent;
-      border-left: 30px solid #742323;
-      border-top: 30px solid #742323;
+      border-left: 30px solid $color-settings-flag;
+      border-top: 30px solid $color-settings-flag;
     }
 
     &:after {
@@ -71,8 +73,8 @@
       right: 0;
 
       border: 20px solid transparent;
-      border-top: 20px solid #742323;
-      border-right: 20px solid #742323;
+      border-top: 20px solid $color-settings-flag;
+      border-right: 20px solid $color-settings-flag;
     }
   }
 }

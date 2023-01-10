@@ -16,29 +16,44 @@ export default class UserSettingsComponent extends ComponentClass {
     this.template.setKey('logoutImg', logoutImg)
 
     const mail = new TextFieldComponent({
+      name: 'email',
       label: 'Mail',
       visualType: 'block',
     }).render()
+
     const username = new TextFieldComponent({
+      name: 'login',
       label: 'Username',
       visualType: 'block',
     }).render()
+
     const firstname = new TextFieldComponent({
+      name: 'first_name',
       label: 'Firstname',
       visualType: 'block',
     }).render()
+
     const lastname = new TextFieldComponent({
+      name: 'second_name',
       label: 'Lastname',
       visualType: 'block',
     }).render()
+
+    const display_name = new TextFieldComponent({
+      name: 'display_name',
+      label: 'Display name',
+      visualType: 'block',
+    }).render()
+
     const phone = new TextFieldComponent({
+      name: 'phone',
       label: 'Phone',
       visualType: 'block',
     }).render()
 
     this.template.setKey(
       'dataFields',
-      mail + username + firstname + lastname + phone
+      mail + username + firstname + lastname + display_name + phone
     )
 
     this.template.setKey(
@@ -46,18 +61,31 @@ export default class UserSettingsComponent extends ComponentClass {
       new ButtonComponent({ label: 'Save', buttonType: 'submit' }).render()
     )
 
-    const password = new TextFieldComponent({
-      label: 'Password',
-      inputType: 'password',
-      visualType: 'block',
-    }).render()
-    const confirm_password = new TextFieldComponent({
-      label: 'Confirm password',
+    const old_password = new TextFieldComponent({
+      name: 'oldPassword',
+      label: 'Current password',
       inputType: 'password',
       visualType: 'block',
     }).render()
 
-    this.template.setKey('passwordFields', password + confirm_password)
+    const new_password = new TextFieldComponent({
+      name: 'newPassword',
+      label: 'New password',
+      inputType: 'password',
+      visualType: 'block',
+    }).render()
+
+    const confirm_new_password = new TextFieldComponent({
+      name: 'confirmNewPassword',
+      label: 'Confirm new password',
+      inputType: 'password',
+      visualType: 'block',
+    }).render()
+
+    this.template.setKey(
+      'passwordFields',
+      old_password + new_password + confirm_new_password
+    )
 
     this.template.setKey(
       'passwordSaveBtn',

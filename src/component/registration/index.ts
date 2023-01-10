@@ -13,31 +13,38 @@ export default class RegistrationComponent extends ComponentClass {
     this.template = new TemplateBuilder(template)
 
     const mail = new TextFieldComponent({
+      name: 'email',
       label: 'Mail',
       visualType: 'block',
     }).render()
     const username = new TextFieldComponent({
+      name: 'login',
       label: 'Username',
       visualType: 'block',
     }).render()
     const firstname = new TextFieldComponent({
+      name: 'first_name',
       label: 'Firstname',
       visualType: 'block',
     }).render()
     const lastname = new TextFieldComponent({
+      name: 'second_name',
       label: 'Lastname',
       visualType: 'block',
     }).render()
     const phone = new TextFieldComponent({
+      name: 'phone',
       label: 'Phone',
       visualType: 'block',
     }).render()
     const password = new TextFieldComponent({
+      name: 'password',
       label: 'Password',
       inputType: 'password',
       visualType: 'block',
     }).render()
     const confirm_password = new TextFieldComponent({
+      name: 'confirm_password',
       label: 'Confirm password',
       inputType: 'password',
       visualType: 'block',
@@ -56,7 +63,7 @@ export default class RegistrationComponent extends ComponentClass {
 
     this.template.setKey(
       'buttons',
-      new ButtonComponent({ label: 'Registration' }).render()
+      new ButtonComponent({ label: 'Registration', buttonType: "submit" }).render()
     )
   }
 

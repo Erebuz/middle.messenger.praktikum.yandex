@@ -1,3 +1,5 @@
+@import "src/assets/variables";
+
 .text-field {
   display: flex;
   flex-direction: column;
@@ -9,7 +11,7 @@
   &__input {
     background-color: inherit;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $color-border;
 
     &:focus {
       outline: none;
@@ -17,7 +19,7 @@
   }
 
   &__error {
-    color: #c70101;
+    color: $color-text-error;
     display: none;
     font-size: 0.8em;
 
@@ -33,7 +35,7 @@
 
     height: 40px;
 
-    background: #ababab;
+    background: $color-background-secondary;
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 0 15px;

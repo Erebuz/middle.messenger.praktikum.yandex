@@ -1,11 +1,13 @@
+@import 'src/assets/variables';
+
 .button {
   width: 200px;
   height: 42px;
 
-  background: #605959;
-  border: 1px solid #000000;
+  background: $color-background-thirdly;
+  border: 1px solid $color-border;
   border-radius: 10px;
-  color: white;
+  color: $color-text-light;
 
   display: flex;
   justify-content: center;

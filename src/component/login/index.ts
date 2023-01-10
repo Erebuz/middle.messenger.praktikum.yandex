@@ -19,6 +19,7 @@ export default class LoginComponent extends ComponentClass {
     this.template.setKey(
       'inputFieldUsername',
       new TextFieldComponent({
+        name: 'login',
         label: 'Username',
         errorText: 'Error text',
         showError: true,
@@ -28,6 +29,7 @@ export default class LoginComponent extends ComponentClass {
     this.template.setKey(
       'inputFieldPassword',
       new TextFieldComponent({
+        name: 'password',
         label: 'Password',
         inputType: 'password',
       }).render()
@@ -35,7 +37,7 @@ export default class LoginComponent extends ComponentClass {
 
     this.template.setKey(
       'loginButton',
-      new ButtonComponent({ label: 'Login' }).render()
+      new ButtonComponent({ label: 'Login', buttonType: "submit" }).render()
     )
 
     this.template.setKey(

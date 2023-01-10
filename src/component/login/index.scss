@@ -1,8 +1,10 @@
+@import "src/assets/variables";
+
 .login-block {
   width: 300px;
 
-  background-color: #ababab;
-  border: 1px solid black;
+  background-color: $color-background-secondary;
+  border: 1px solid $color-border;
   border-radius: 10px;
 
   display: flex;

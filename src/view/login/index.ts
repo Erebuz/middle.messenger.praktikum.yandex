@@ -13,7 +13,7 @@ export default class Page extends ComponentClass {
     const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
     const main = this.childs.bodyComponent.childs.main as TemplateBuilder
 
-    aside.setKey('asideBody', 'Project description')
+    aside.setKey('asideBody', '<p>Project description</p>')
     main.setKey('mainBody', new LoginComponent().render())
 
     this.template = this.childs.bodyComponent

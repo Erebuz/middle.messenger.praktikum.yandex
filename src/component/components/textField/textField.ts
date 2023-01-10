@@ -4,6 +4,7 @@ import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
 interface TextFieldOptionsInterface {
+  name: string
   label?: string
   inputType?: 'text' | 'password'
   visualType?: 'field' | 'block'
@@ -22,7 +23,11 @@ export default class TextFieldComponent extends ComponentClass {
     input: (options: TextFieldOptionsInterface) => {
       const template = new TemplateBuilder(fieldTemplate)
 
-      template.setKey('label', options.label)
+      template.setKey('name', options.name)
+
+      if (options.label) {
+        template.setKey('label', options.label)
+      }
 
       if (options.inputType) {
         template.setKey('inputType', options.inputType)
@@ -34,7 +39,9 @@ export default class TextFieldComponent extends ComponentClass {
         template.setKey('fieldClass', 'text-field_block')
       }
 
-      template.setKey('errorText', options.errorText)
+      if (options.errorText) {
+        template.setKey('errorText', options.errorText)
+      }
 
       if (options.showError) {
         template.setKey('errorClass', 'text-field__error_show')
