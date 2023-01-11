@@ -1,0 +1,15 @@
+@import 'src/assets/variables';
+
+.button {
+  width: 200px;
+  height: 42px;
+
+  background: $color-background-thirdly;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  color: $color-text-light;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

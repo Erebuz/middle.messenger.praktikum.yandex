@@ -1,0 +1,80 @@
+@import 'src/assets/variables';
+
+.user-settings {
+  box-sizing: border-box;
+
+  width: 600px;
+  height: min-content;
+  padding: 20px;
+
+  background: $color-background-primary;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  &__portrait-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  &__portrait {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  &__logout {
+    position: absolute;
+
+    top: calc(50% - 12px);
+    right: 40px;
+  }
+
+  &__button {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__flag {
+    content: '';
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    left: 20px;
+    bottom: -30px;
+
+    background: $color-settings-flag;
+
+    &:before {
+      content: '';
+
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+
+      border: 30px solid transparent;
+      border-left: 30px solid $color-settings-flag;
+      border-top: 30px solid $color-settings-flag;
+    }
+
+    &:after {
+      content: '';
+
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+
+      border: 20px solid transparent;
+      border-top: 20px solid $color-settings-flag;
+      border-right: 20px solid $color-settings-flag;
+    }
+  }
+}

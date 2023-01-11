@@ -1,0 +1,27 @@
+@import 'src/assets/variables';
+
+.error {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: $color-text-light;
+
+  &__code {
+  }
+
+  &__img {
+  }
+
+  &__text {
+    margin: 20px 0;
+    font-size: 1.2em;
+  }
+
+  &__link {
+    margin-top: 42px;
+    text-decoration: none;
+  }
+}
