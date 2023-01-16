@@ -1,9 +1,9 @@
 import '~src/assets/style.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import UserSettingsComponent from '~src/component/userSettings'
 
-export default class Page extends ComponentClass {
+export default class Page extends Component {
   constructor() {
     super()
 

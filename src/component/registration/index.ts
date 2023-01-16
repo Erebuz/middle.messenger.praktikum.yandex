@@ -1,4 +1,4 @@
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 import template from './index.tmpl'
 import './index.scss'
@@ -6,7 +6,7 @@ import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 
-export default class RegistrationComponent extends ComponentClass {
+export default class RegistrationComponent extends Component {
   constructor() {
     super()
 
@@ -63,7 +63,10 @@ export default class RegistrationComponent extends ComponentClass {
 
     this.template.setKey(
       'buttons',
-      new ButtonComponent({ label: 'Registration', buttonType: "submit" }).render()
+      new ButtonComponent({
+        label: 'Registration',
+        buttonType: 'submit',
+      }).render()
     )
   }
 

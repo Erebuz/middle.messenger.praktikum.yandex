@@ -1,6 +1,6 @@
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 import buttonTemplate from './index.tmpl'
 
@@ -11,9 +11,9 @@ export interface ButtonOptionsInterface {
   onclick?: string
 }
 
-export default class ButtonComponent extends ComponentClass {
+export default class ButtonComponent extends Component {
   constructor(options: ButtonOptionsInterface) {
-    super(['button'])
+    super()
 
     this.template = this._templateCreaters.button(options)
   }

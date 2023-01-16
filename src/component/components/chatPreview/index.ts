@@ -1,6 +1,6 @@
 import template from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
 export interface ChatPreviewOptionsInterface {
@@ -11,7 +11,7 @@ export interface ChatPreviewOptionsInterface {
   count: number
 }
 
-export default class ChatPreviewComponent extends ComponentClass {
+export default class ChatPreviewComponent extends Component {
   constructor(options: ChatPreviewOptionsInterface) {
     super()
 

@@ -1,10 +1,10 @@
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
 import errorTemplate from './index.tmpl'
 import './index.scss'
 
-export default class ErrorComponent extends ComponentClass {
+export default class ErrorComponent extends Component {
   constructor(code: string, text: string, image: string, errorStyle?: string) {
     super()
 
@@ -21,7 +21,7 @@ export default class ErrorComponent extends ComponentClass {
       errorCode: string,
       errorText: string,
       errorImagePath: string,
-      errorStyle: string
+      errorStyle?: string
     ) => {
       const template = new TemplateBuilder(errorTemplate)
 

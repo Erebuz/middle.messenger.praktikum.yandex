@@ -1,11 +1,11 @@
 import template from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
 
-export default class GeneralAsideComponent extends ComponentClass {
+export default class GeneralAsideComponent extends Component {
   constructor() {
     super()
 

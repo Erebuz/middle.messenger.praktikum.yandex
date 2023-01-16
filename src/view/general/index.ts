@@ -1,11 +1,11 @@
 import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import GeneralAsideComponent from '~src/component/generalAside'
 import GeneralBodyComponent from '~src/component/generalBody'
 
-export default class Page extends ComponentClass {
+export default class Page extends Component {
   constructor() {
     super()
 

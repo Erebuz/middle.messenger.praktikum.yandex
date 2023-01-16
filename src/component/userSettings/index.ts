@@ -2,12 +2,12 @@ import template from './index.tmpl'
 import './index.scss'
 import logoutImg from '~src/assets/logout.svg'
 
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 
-export default class UserSettingsComponent extends ComponentClass {
+export default class UserSettingsComponent extends Component {
   constructor() {
     super()
 

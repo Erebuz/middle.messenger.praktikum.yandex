@@ -1,10 +1,10 @@
 import '~src/assets/style.scss'
 import img404 from '~src/assets/404.jpg'
 
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import ErrorComponent from '~src/component/error'
 
-export default class Page extends ComponentClass {
+export default class Page extends Component {
   constructor() {
     super()
 

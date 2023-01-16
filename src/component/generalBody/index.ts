@@ -1,10 +1,10 @@
 import template from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 
-export default class GeneralBodyComponent extends ComponentClass {
+export default class GeneralBodyComponent extends Component {
   constructor() {
     super()
 
@@ -12,7 +12,11 @@ export default class GeneralBodyComponent extends ComponentClass {
 
     this.template.setKey(
       'textField',
-      new TextFieldComponent({ label: 'Message', visualType: 'block' }).render()
+      new TextFieldComponent({
+        name: 'message',
+        label: 'Message',
+        visualType: 'block',
+      }).render()
     )
   }
 

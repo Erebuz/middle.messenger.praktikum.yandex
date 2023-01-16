@@ -1,14 +1,14 @@
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import './index.scss'
 import ClipComponent from '~src/component/components/clips'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
 
 const asideTemplate = `<aside id="aside" class="left-page {{ asideClass }}">{{ asideBody }}</aside>`
 const mainTemplate = `<main id="main" class="right-page">{{ mainBody }}</main>`
 
-export default class BodyComponent extends ComponentClass {
+export default class BodyComponent extends Component {
   constructor(showAsideBackground: boolean = true) {
     super(['aside', 'main'])
 

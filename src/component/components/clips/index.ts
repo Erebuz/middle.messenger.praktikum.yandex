@@ -1,7 +1,7 @@
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import './index.scss'
 import { range } from '~src/utils/mydash/range'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 const clipsTemplate = `<div id="clips" class="clips">{{ clipBlock }}</div>`
 
@@ -12,7 +12,7 @@ const clipTemplate = `<div class="clips__clip">
                         <div class="clips__arc_back" style="{{ backClipStyle }}"></div>
                       </div>`
 
-export default class ClipComponent extends ComponentClass {
+export default class ClipComponent extends Component {
   public id_list = (<T extends string[]>(...o: T) => o)('clips')
   public template = new TemplateBuilder('{{ body }}')
 

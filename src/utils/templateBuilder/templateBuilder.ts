@@ -1,11 +1,11 @@
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 export class TemplateBuilder {
   private readonly _template: string
   private _result_template: string
   private _keys: string[] = []
   private _keysData: {
-    [key: string]: undefined | string | TemplateBuilder | ComponentClass
+    [key: string]: undefined | string | TemplateBuilder | Component
   } = {}
 
   constructor(template: string) {
@@ -53,7 +53,7 @@ export class TemplateBuilder {
         this._replace_key_to_string(key, '')
       } else if (
         key_data instanceof TemplateBuilder ||
-        key_data instanceof ComponentClass
+        key_data instanceof Component
       ) {
         const childTemplate = key_data.render()
         this._replace_key_to_string(key, childTemplate)

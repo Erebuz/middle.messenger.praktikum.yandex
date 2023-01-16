@@ -1,6 +1,6 @@
 import fieldTemplate from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
 interface TextFieldOptionsInterface {
@@ -12,7 +12,7 @@ interface TextFieldOptionsInterface {
   showError?: boolean
 }
 
-export default class TextFieldComponent extends ComponentClass {
+export default class TextFieldComponent extends Component {
   constructor(options: TextFieldOptionsInterface) {
     super([])
 
