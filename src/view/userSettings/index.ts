@@ -1,20 +1,19 @@
 import '~src/assets/style.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
 import UserSettingsComponent from '~src/component/userSettings'
 
-export default class Page extends Component {
-  constructor() {
-    super()
-
-    this.template = new TemplateBuilder(new UserSettingsComponent().render())
-  }
-
+export default class UserSettingsPage extends Component {
   public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+    const template = new UserSettingsComponent()
+
+    return template.element
   }
 }
 
-new Page().render()
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
+
+render(new UserSettingsPage().element)

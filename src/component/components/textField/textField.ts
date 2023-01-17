@@ -1,7 +1,7 @@
 import fieldTemplate from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 interface TextFieldOptionsInterface {
   name: string
@@ -10,44 +10,38 @@ interface TextFieldOptionsInterface {
   visualType?: 'field' | 'block'
   errorText?: string
   showError?: boolean
+  pattern?: string
+  required?: boolean
 }
 
 export default class TextFieldComponent extends Component {
   constructor(options: TextFieldOptionsInterface) {
-    super([])
-
-    this.template = this._templateCreaters.input(options)
+    super(options)
   }
 
-  protected _templateCreaters = {
-    input: (options: TextFieldOptionsInterface) => {
-      const template = new TemplateBuilder(fieldTemplate)
+  protected render(): Element {
+    const template = new TemplateBuilder(fieldTemplate)
 
-      template.setKey('name', options.name)
+    template.setKey('name', this.props.name)
 
-      if (options.label) {
-        template.setKey('label', options.label)
-      }
+    template.setKey('label', this.props.label)
 
-      if (options.inputType) {
-        template.setKey('inputType', options.inputType)
-      } else {
-        template.setKey('inputType', 'text')
-      }
+    template.setKey('inputType', this.props.inputType || 'text')
 
-      if (options.visualType === 'block') {
-        template.setKey('fieldClass', 'text-field_block')
-      }
+    if (this.props.visualType === 'block') {
+      template.setKey('fieldClass', 'text-field_block')
+    }
 
-      if (options.errorText) {
-        template.setKey('errorText', options.errorText)
-      }
+    template.setKey('errorText', this.props.errorText)
 
-      if (options.showError) {
-        template.setKey('errorClass', 'text-field__error_show')
-      }
+    template.setKey('errorClass', 'text-field__error_show')
 
-      return template
-    },
+    template.setKey('pattern', this.props.pattern)
+
+    if (this.props.required) {
+      template.setKey('required', 'required')
+    }
+
+    return template.render()
   }
 }

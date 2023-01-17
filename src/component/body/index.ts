@@ -1,43 +1,31 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import template from './index.tmpl'
 import './index.scss'
-import ClipComponent from '~src/component/components/clips'
 import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
-const generalTemplate = `{{ aside }}{{ main}}{{ clips }}`
-
-const asideTemplate = `<aside id="aside" class="left-page {{ asideClass }}">{{ asideBody }}</aside>`
-const mainTemplate = `<main id="main" class="right-page">{{ mainBody }}</main>`
+export interface BodyOptionsInterface {
+  aside: Component | Element
+  main: Component
+  clips: Component
+  hideAside?: boolean
+}
 
 export default class BodyComponent extends Component {
-  constructor(showAsideBackground: boolean = true) {
-    super(['aside', 'main'])
-
-    this.childs.clip_component = new ClipComponent(!showAsideBackground)
-    this.childs.aside = this._templateCreaters.aside(!showAsideBackground)
-    this.childs.main = this._templateCreaters.main()
-
-    this.template = new TemplateBuilder(generalTemplate)
-
-    this.template.setKey('aside', this.childs.aside)
-    this.template.setKey('main', this.childs.main)
-    this.template.setKey('clips', this.childs.clip_component.render())
+  constructor(options: BodyOptionsInterface) {
+    super(options)
   }
 
-  protected _templateCreaters = {
-    aside: (hideAsideBackground: boolean = false) => {
-      const template = new TemplateBuilder(asideTemplate)
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
 
-      if (hideAsideBackground) {
-        template.setKey('asideClass', 'left-page__close')
-      }
+    body.setKey('aside', this.props.aside)
+    body.setKey('main', this.props.main)
+    body.setKey('clips', this.props.clips)
 
-      return template
-    },
-    main: (textHtml = '') => {
-      const template = new TemplateBuilder(mainTemplate)
+    if (this.props.hideAside) {
+      body.setKey('asideClass', 'left-page__close')
+    }
 
-      template.setKey('mainBody', textHtml)
-      return template
-    },
+    return body.render()
   }
 }

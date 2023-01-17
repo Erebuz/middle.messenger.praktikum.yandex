@@ -1,11 +1,11 @@
 @import 'src/assets/variables';
 
 .text-field {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
+  height: 90px;
 
-  &__label {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
   }
 
   &__input {
@@ -29,19 +29,26 @@
   }
 
   &.text-field_block {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    height: 50px;
+    position: relative;
 
-    height: 40px;
+    & > .text-field__wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
 
-    background: $color-background-secondary;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 0 15px;
+      background: $color-background-secondary;
+      border-radius: 10px;
+      padding: 0 15px;
 
-    .text-field__input {
-      border-bottom: none;
+      & .text-field__input {
+        border-bottom: none;
+      }
+    }
+
+    & > .text-field__error {
+      display: none;
     }
   }
 }

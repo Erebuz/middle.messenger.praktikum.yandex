@@ -1,29 +1,55 @@
 import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
+import ClipComponent from '~src/component/components/clips'
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
 import LoginComponent from '~src/component/login'
 
-export default class Page extends Component {
+import TextFieldComponent from '~src/component/components/textField/textField'
+import ButtonComponent from '~src/component/components/button'
+import { login } from "~src/controller/login";
+import { TemplateBuilder } from "~src/utils/templateBuilder/templateBuilder";
+
+export default class LoginPage extends Component {
   constructor() {
-    super()
-
-    this.childs.bodyComponent = new BodyComponent(false)
-
-    const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
-    const main = this.childs.bodyComponent.childs.main as TemplateBuilder
-
-    aside.setKey('asideBody', '<p>Project description</p>')
-    main.setKey('mainBody', new LoginComponent().render())
-
-    this.template = this.childs.bodyComponent
+    super({})
   }
 
-  public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+  protected render(): Element {
+    const aside = new TemplateBuilder('<p>Project description</p>')
+
+    const clips = new ClipComponent({ hideBackClip: false })
+
+    const usernameField = new TextFieldComponent({
+      name: 'username',
+      label: 'Username',
+      inputType: 'text',
+    })
+
+    const main = new LoginComponent({
+      inputFieldUsername: usernameField,
+      inputFieldPassword: new TextFieldComponent({
+        name: 'password',
+        label: 'Password',
+        inputType: 'password',
+      }),
+      loginButton: new ButtonComponent({ label: 'Login' }),
+    })
+
+    main.on('submit', login)
+
+    return new BodyComponent({
+      aside: aside.render(),
+      main,
+      clips,
+      hideAside: true,
+    }).element
   }
 }
 
-new Page().render()
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
+
+render(new LoginPage().element)

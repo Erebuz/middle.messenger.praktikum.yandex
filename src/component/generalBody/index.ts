@@ -1,24 +1,22 @@
 import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
-import TextFieldComponent from '~src/component/components/textField/textField'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
-export default class GeneralBodyComponent extends Component {
-  constructor() {
-    super()
+export interface GeneralMainOptionsInterface {
+  textField: Component
+}
 
-    this.template = new TemplateBuilder(template)
-
-    this.template.setKey(
-      'textField',
-      new TextFieldComponent({
-        name: 'message',
-        label: 'Message',
-        visualType: 'block',
-      }).render()
-    )
+export default class GeneralMainComponent extends Component {
+  constructor(options: GeneralMainOptionsInterface) {
+    super(options)
   }
 
-  protected _templateCreaters = {}
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
+
+    body.setKey('textField', this.props.textField)
+
+    return body.render()
+  }
 }

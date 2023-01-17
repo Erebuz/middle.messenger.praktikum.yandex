@@ -3,62 +3,64 @@ import './index.scss'
 import logoutImg from '~src/assets/logout.svg'
 
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 
 export default class UserSettingsComponent extends Component {
-  constructor() {
-    super()
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
 
-    this.template = new TemplateBuilder(template)
-
-    this.template.setKey('logoutImg', logoutImg)
+    body.setKey('logoutImg', logoutImg)
 
     const mail = new TextFieldComponent({
       name: 'email',
       label: 'Mail',
       visualType: 'block',
-    }).render()
-
+    })
     const username = new TextFieldComponent({
       name: 'login',
       label: 'Username',
       visualType: 'block',
-    }).render()
+    })
 
     const firstname = new TextFieldComponent({
       name: 'first_name',
       label: 'Firstname',
       visualType: 'block',
-    }).render()
+      showError: true,
+      errorText: 'sadasd'
+    })
 
     const lastname = new TextFieldComponent({
       name: 'second_name',
       label: 'Lastname',
       visualType: 'block',
-    }).render()
+    })
 
     const display_name = new TextFieldComponent({
       name: 'display_name',
       label: 'Display name',
       visualType: 'block',
-    }).render()
-
+    })
     const phone = new TextFieldComponent({
       name: 'phone',
       label: 'Phone',
       visualType: 'block',
-    }).render()
+    })
 
-    this.template.setKey(
-      'dataFields',
-      mail + username + firstname + lastname + display_name + phone
-    )
+    body.setKey('dataFields', [
+      mail,
+      username,
+      firstname,
+      lastname,
+      display_name,
+      phone,
+    ])
 
-    this.template.setKey(
+    body.setKey(
       'dataSaveBtn',
-      new ButtonComponent({ label: 'Save', buttonType: 'submit' }).render()
+      new ButtonComponent({ label: 'Save', buttonType: 'submit' })
     )
 
     const old_password = new TextFieldComponent({
@@ -66,30 +68,33 @@ export default class UserSettingsComponent extends Component {
       label: 'Current password',
       inputType: 'password',
       visualType: 'block',
-    }).render()
+    })
 
     const new_password = new TextFieldComponent({
       name: 'newPassword',
       label: 'New password',
       inputType: 'password',
       visualType: 'block',
-    }).render()
+    })
 
     const confirm_new_password = new TextFieldComponent({
       name: 'confirmNewPassword',
       label: 'Confirm new password',
       inputType: 'password',
       visualType: 'block',
-    }).render()
+    })
 
-    this.template.setKey(
-      'passwordFields',
-      old_password + new_password + confirm_new_password
-    )
+    body.setKey('passwordFields', [
+      old_password,
+      new_password,
+      confirm_new_password,
+    ])
 
-    this.template.setKey(
+    body.setKey(
       'passwordSaveBtn',
-      new ButtonComponent({ label: 'Save', buttonType: 'submit' }).render()
+      new ButtonComponent({ label: 'Save', buttonType: 'submit' })
     )
+
+    return body.render()
   }
 }

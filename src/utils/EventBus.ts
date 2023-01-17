@@ -1,9 +1,13 @@
 export default class EventBus {
-  listeners: { [key: string]: [(...args: any) => void] } = {}
+  listeners: { [key: string]: ((...args: any) => void)[] } = {}
 
   constructor() {}
 
   on(event: string, callback: (...args: any) => void) {
+    if (!Object.keys(this.listeners).includes(event)) {
+      this.listeners[event] = []
+    }
+
     this.listeners[event].push(callback)
   }
 

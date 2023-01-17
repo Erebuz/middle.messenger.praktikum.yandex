@@ -1,29 +1,33 @@
 import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
 import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import RegistrationComponent from '~src/component/registration'
+import ClipComponent from '~src/component/components/clips'
 
-export default class Page extends Component {
-  constructor() {
-    super()
+export default class RegistrationPage extends Component {
+  protected render(): Element {
+    const aside = new TemplateBuilder('<p>Registration rules</p>')
 
-    this.childs.bodyComponent = new BodyComponent()
+    const main = new RegistrationComponent()
 
-    const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
-    const main = this.childs.bodyComponent.childs.main as TemplateBuilder
+    const clips = new ClipComponent({ hideBackClip: false })
 
-    aside.setKey('asideBody', '<p>Registration rules</p>')
-    main.setKey('mainBody', new RegistrationComponent().render())
+    const body = new BodyComponent({
+      aside: aside.render(),
+      main,
+      clips,
+      hideAside: true,
+    })
 
-    this.template = this.childs.bodyComponent
-  }
-
-  public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+    return body.element
   }
 }
 
-new Page().render()
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
+
+render(new RegistrationPage().element)
