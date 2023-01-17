@@ -6,8 +6,8 @@ import LoginComponent from '~src/component/login'
 
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
-import { login } from "~src/controller/login";
-import { TemplateBuilder } from "~src/utils/templateBuilder/templateBuilder";
+import { login } from '~src/controller/login'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 export default class LoginPage extends Component {
   constructor() {
@@ -23,6 +23,7 @@ export default class LoginPage extends Component {
       name: 'username',
       label: 'Username',
       inputType: 'text',
+      required: true
     })
 
     const main = new LoginComponent({

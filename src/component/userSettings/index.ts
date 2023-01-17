@@ -29,7 +29,7 @@ export default class UserSettingsComponent extends Component {
       label: 'Firstname',
       visualType: 'block',
       showError: true,
-      errorText: 'sadasd'
+      errorText: 'sadasd',
     })
 
     const lastname = new TextFieldComponent({
