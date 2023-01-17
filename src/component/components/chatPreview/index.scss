@@ -21,6 +21,9 @@
     height: 80px;
     background: $color-background-thirdly;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__name {

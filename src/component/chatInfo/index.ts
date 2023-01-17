@@ -1,0 +1,24 @@
+import template from './index.tmpl'
+import './index.scss'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+
+export interface ChatInfoOptionsInterface {
+  img: string
+  name: string
+}
+
+export default class ChatInfoComponent extends Component {
+  constructor(options: ChatInfoOptionsInterface) {
+    super(options)
+  }
+
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
+
+    body.setKey('img', this.props.img)
+    body.setKey('name', this.props.name)
+
+    return body.render()
+  }
+}
