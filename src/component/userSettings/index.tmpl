@@ -5,21 +5,9 @@
     <img class="user-settings__logout" src="{{ logoutImg }}" width="40px" height="40px" alt="Logout" />
   </div>
 
-  <form>
-    <div>
-    {{ dataFields }}
-    </div>
+  {{ formData }}
 
-    <div class="user-settings__button">{{ dataSaveBtn }}</div>
-  </form>
+  {{ formPassword }}
 
-  <form>
-    <div>
-    {{ passwordFields }}
-    </div>
-
-    <div class="user-settings__button">{{ passwordSaveBtn }}</div>
-  </form>
-
-  <div class="user-settings__flag"></div>
+  {{ flag }}
 </div>

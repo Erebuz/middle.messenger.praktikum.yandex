@@ -27,8 +27,6 @@ export default class TextFieldComponent extends Component {
       required: this.props.required,
     })
 
-    input.on('focus', () => validation(this))
-
     input.on('blur', () => validation(this))
 
     this.props.input = input
@@ -43,7 +41,7 @@ export default class TextFieldComponent extends Component {
       template.setKey('fieldClass', 'text-field_block')
     }
 
-    template.setKey('errorText', this.props.errorText || 'Error')
+    template.setKey('errorText', this.props.errorText || 'Invalid input')
 
     if (this.props.showError) {
       template.setKey('errorClass', 'text-field__error_show')

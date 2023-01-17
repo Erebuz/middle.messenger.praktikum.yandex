@@ -1,20 +1,28 @@
 @import 'src/assets/variables';
 
 .user-settings {
-  box-sizing: border-box;
+  position: absolute;
+  top: -885px;
+  left: calc(50%);
 
+  box-sizing: border-box;
   width: 600px;
   height: min-content;
   padding: 20px;
 
   background: $color-background-primary;
   border: 1px solid $color-border;
-  border-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transition-duration: 1s;
+  z-index: 1000;
 
   display: flex;
   flex-direction: column;
 
-  position: relative;
+  &.show {
+    top: -4px;
+  }
 
   &__portrait-wrapper {
     position: relative;
@@ -46,12 +54,13 @@
   &__flag {
     content: '';
     width: 80px;
-    height: 30px;
+    height: 0;
     position: absolute;
     left: 20px;
-    bottom: -30px;
+    bottom: -10px;
 
     background: $color-settings-flag;
+    cursor: pointer;
 
     &:before {
       content: '';
@@ -60,9 +69,9 @@
       bottom: -40px;
       left: 0;
 
-      border: 30px solid transparent;
-      border-left: 30px solid $color-settings-flag;
-      border-top: 30px solid $color-settings-flag;
+      border: 25px solid transparent;
+      border-left: 25px solid $color-settings-flag;
+      border-top: 25px solid $color-settings-flag;
     }
 
     &:after {
@@ -72,9 +81,9 @@
       bottom: -40px;
       right: 0;
 
-      border: 20px solid transparent;
-      border-top: 20px solid $color-settings-flag;
-      border-right: 20px solid $color-settings-flag;
+      border: 25px solid transparent;
+      border-top: 25px solid $color-settings-flag;
+      border-right: 25px solid $color-settings-flag;
     }
   }
 }

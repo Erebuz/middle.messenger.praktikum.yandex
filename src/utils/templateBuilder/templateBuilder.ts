@@ -28,7 +28,10 @@ export class TemplateBuilder {
     }
   }
 
-  public setKey(key: string, value: string | Element | Element[] | Component | Component[]) {
+  public setKey(
+    key: string,
+    value: string | Element | Element[] | Component | Component[]
+  ) {
     if (!this._keys.includes(key)) {
       throw new TypeError(`"${key}" not exist in [${this._keys}]`)
     }

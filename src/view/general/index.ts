@@ -43,6 +43,7 @@ export default class GeneralPage extends Component {
       aside,
       main,
       clips,
+      showUserSettings: true,
     }).element
   }
 }

@@ -29,7 +29,7 @@
   }
 
   &.text-field_block {
-    height: 50px;
+    height: 60px;
     position: relative;
 
     & > .text-field__wrapper {
@@ -48,7 +48,8 @@
     }
 
     & > .text-field__error {
-      display: none;
+      margin-top: -5px;
+      padding-left: 15px;
     }
   }
 }

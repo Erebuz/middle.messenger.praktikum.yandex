@@ -6,7 +6,7 @@ import LoginComponent from '~src/component/login'
 
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
-import { login } from '~src/controller/login'
+import { login } from '~src/controller/auth'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 export default class LoginPage extends Component {
@@ -23,7 +23,7 @@ export default class LoginPage extends Component {
       name: 'username',
       label: 'Username',
       inputType: 'text',
-      required: true
+      required: true,
     })
 
     const main = new LoginComponent({
@@ -32,6 +32,7 @@ export default class LoginPage extends Component {
         name: 'password',
         label: 'Password',
         inputType: 'password',
+        required: true,
       }),
       loginButton: new ButtonComponent({ label: 'Login' }),
     })
