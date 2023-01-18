@@ -5,6 +5,11 @@ export interface RequestOptionsInterface {
   timeout?: number
 }
 
+type HTTPMethod = (
+  url: string,
+  options: Partial<RequestOptionsInterface>
+) => Promise<unknown>
+
 function queryStringify(data: {
   [key: string]: string | number | Array<string | number> | object
 }) {
@@ -19,19 +24,19 @@ function queryStringify(data: {
 }
 
 export default class HTTPTransport {
-  get = (url: string, options: Partial<RequestOptionsInterface> = {}) => {
+  get: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: 'GET' }, options.timeout)
   }
 
-  post = (url: string, options: Partial<RequestOptionsInterface> = {}) => {
+  post: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: 'POST' }, options.timeout)
   }
 
-  put = (url: string, options: Partial<RequestOptionsInterface> = {}) => {
+  put: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: 'PUT' }, options.timeout)
   }
 
-  delete = (url: string, options: Partial<RequestOptionsInterface> = {}) => {
+  delete: HTTPMethod = (url, options = {}) => {
     return this.request(url, { ...options, method: 'DELETE' }, options.timeout)
   }
 

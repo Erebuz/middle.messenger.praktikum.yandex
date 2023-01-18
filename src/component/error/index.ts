@@ -11,11 +11,7 @@ export interface ErrorOptionsInterface {
   errorStyle?: string
 }
 
-export default class ErrorComponent extends Component {
-  constructor(options: ErrorOptionsInterface) {
-    super(options)
-  }
-
+export default class ErrorComponent extends Component<ErrorOptionsInterface> {
   protected render(): Element {
     const template = new TemplateBuilder(errorTemplate)
 

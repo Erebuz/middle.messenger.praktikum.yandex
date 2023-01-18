@@ -12,10 +12,8 @@ export interface BodyOptionsInterface {
   showUserSettings?: boolean
 }
 
-export default class BodyComponent extends Component {
-  constructor(options: BodyOptionsInterface) {
-    super(options)
-
+export default class BodyComponent extends Component<BodyOptionsInterface> {
+  protected initProps() {
     this.props.userSettings = new UserSettingsComponent()
   }
 

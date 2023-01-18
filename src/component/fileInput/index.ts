@@ -6,10 +6,6 @@ import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import clip from '~src/assets/paperclip.svg'
 
 export default class FileInputComponent extends Component {
-  constructor() {
-    super()
-  }
-
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

@@ -1,6 +1,12 @@
 import EventBus from '~src/utils/EventBus'
 
-export class Component extends EventBus {
+interface PropsType {
+  events?: {
+    [key: string]: object
+  }
+}
+
+export abstract class Component<T = unknown> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,14 +20,17 @@ export class Component extends EventBus {
 
   public flowBus: () => EventBus
 
-  constructor(props: { [key: string]: any } = {}) {
-    super()
-    this.props = this._makeProxyProps(props)
+  constructor(options: PropsType | T = {}) {
+    this.props = this._makeProxyProps(options)
 
     this._registerEvents()
 
     this.flowBus().emit(Component.EVENTS.INIT)
+
+    this.initProps()
   }
+
+  protected initProps() {}
 
   private _registerEvents() {
     const eventBus = new EventBus()
@@ -39,7 +48,7 @@ export class Component extends EventBus {
     this.flowBus().on(Component.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
 
-  private _makeProxyProps(props: { [key: string]: any }) {
+  private _makeProxyProps(props: any) {
     props = new Proxy(props, {
       set: (target, prop: string, value) => {
         const old_value = target[prop]
@@ -71,6 +80,10 @@ export class Component extends EventBus {
   }
 
   private _render() {
+    if (this._element) {
+      this._removeEvents()
+    }
+
     if (this._element?.parentElement) {
       const parent = this._element.parentElement
       const new_element = this.render()
@@ -81,15 +94,31 @@ export class Component extends EventBus {
       this._element = this.render()
     }
 
-    this._addEventsListeners()
+    this._addEvents()
   }
 
-  private _addEventsListeners() {
-    for (const key in this.listeners) {
-      this.listeners[key].forEach((foo) => {
-        this._element.addEventListener(key, foo)
+  private _addEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach((eventName) => {
+      if (Array.isArray(events[eventName])) {
+        events[eventName].forEach((foo: (...args: any) => void) => {
+          this._element.addEventListener(eventName, foo)
+        })
+      } else {
+        this._element.addEventListener(eventName, events[eventName])
+      }
+    })
+  }
+
+  private _removeEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach((eventName) => {
+      events[eventName].forEach((foo: (...args: any) => void) => {
+        this._element.removeEventListener(eventName, foo)
       })
-    }
+    })
   }
 
   protected beforeMount() {}
@@ -111,17 +140,5 @@ export class Component extends EventBus {
 
   public get element() {
     return this._element
-  }
-
-  public on(event: string, callback: (...args: any) => void) {
-    super.on(event, callback)
-
-    this._element.addEventListener(event, callback)
-  }
-
-  public off(event: string, callback: (...args: any) => void) {
-    super.off(event, callback)
-
-    this._element.removeEventListener(event, callback)
   }
 }

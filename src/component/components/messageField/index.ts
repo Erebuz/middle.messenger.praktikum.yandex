@@ -10,11 +10,7 @@ export interface MessageFieldOptionsInterface {
   textField: Component
 }
 
-export default class MessageFieldComponent extends Component {
-  constructor(options: MessageFieldOptionsInterface) {
-    super(options)
-  }
-
+export default class MessageFieldComponent extends Component<MessageFieldOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

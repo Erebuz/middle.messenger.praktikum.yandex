@@ -10,10 +10,6 @@ import { login } from '~src/controller/auth'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 export default class LoginPage extends Component {
-  constructor() {
-    super({})
-  }
-
   protected render(): Element {
     const aside = new TemplateBuilder('<p>Project description</p>')
 
@@ -35,9 +31,10 @@ export default class LoginPage extends Component {
         required: true,
       }),
       loginButton: new ButtonComponent({ label: 'Login' }),
+      events: {
+        submit: login,
+      },
     })
-
-    main.on('submit', login)
 
     return new BodyComponent({
       aside: aside.render(),

@@ -27,18 +27,18 @@ class FlagComponent extends Component {
 }
 
 export default class UserSettingsComponent extends Component {
-  constructor() {
-    super()
-
+  protected initProps() {
     this.props.show = false
-    this.props.flag = new FlagComponent()
-
-    this.props.flag.on('click', () => {
-      if (this.element.classList.contains('show')) {
-        this.element.classList.remove('show')
-      } else {
-        this.element.classList.add('show')
-      }
+    this.props.flag = new FlagComponent({
+      events: {
+        click: () => {
+          if (this.element.classList.contains('show')) {
+            this.element.classList.remove('show')
+          } else {
+            this.element.classList.add('show')
+          }
+        },
+      },
     })
   }
 
@@ -96,9 +96,10 @@ export default class UserSettingsComponent extends Component {
     const formData = new FormComponent({
       fields: [mail, username, firstname, lastname, display_name, phone],
       button: new ButtonComponent({ label: 'Save', buttonType: 'submit' }),
+      events: {
+        submit: updateSettings,
+      },
     })
-
-    formData.on('submit', updateSettings)
 
     body.setKey('formData', formData)
 
@@ -131,9 +132,10 @@ export default class UserSettingsComponent extends Component {
     const formPassword = new FormComponent({
       fields: [old_password, new_password, confirm_new_password],
       button: new ButtonComponent({ label: 'Save', buttonType: 'submit' }),
+      events: {
+        submit: updatePassword,
+      },
     })
-
-    formPassword.on('submit', updatePassword)
 
     body.setKey('formPassword', formPassword)
 

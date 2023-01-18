@@ -2,19 +2,17 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
-import ChatInfoComponent from "~src/component/chatInfo";
+import ChatInfoComponent from '~src/component/chatInfo'
 
 export interface GeneralMainOptionsInterface {
   textField: Component
 }
 
-export default class GeneralMainComponent extends Component {
-  constructor(options: GeneralMainOptionsInterface) {
-    super(options)
-
+export default class GeneralMainComponent extends Component<GeneralMainOptionsInterface> {
+  protected initProps() {
     this.props.chatInfo = new ChatInfoComponent({
       img: 'img',
-      name: 'Ivanov'
+      name: 'Ivanov',
     })
   }
 

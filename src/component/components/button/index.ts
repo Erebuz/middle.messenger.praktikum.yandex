@@ -10,11 +10,7 @@ export interface ButtonOptionsInterface {
   classes?: string
 }
 
-export default class ButtonComponent extends Component {
-  constructor(options: ButtonOptionsInterface) {
-    super(options)
-  }
-
+export default class ButtonComponent extends Component<ButtonOptionsInterface> {
   protected render(): Element {
     const template = new TemplateBuilder(buttonTemplate)
 

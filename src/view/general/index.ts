@@ -11,18 +11,17 @@ import { searchChat, sendMessage } from '~src/controller/chat'
 import FileInputComponent from '~src/component/fileInput'
 
 export default class GeneralPage extends Component {
-  constructor() {
-    super()
-
+  protected initProps() {
     this.props.searchField = new MessageFieldComponent({
       textField: new InputComponent({
         name: 'search',
         placeholder: 'Search',
         required: true,
       }),
+      events: {
+        submit: searchChat,
+      },
     })
-
-    this.props.searchField.on('submit', searchChat)
 
     this.props.messageField = new MessageFieldComponent({
       textField: new InputComponent({
@@ -31,9 +30,10 @@ export default class GeneralPage extends Component {
         required: true,
       }),
       fileInput: new FileInputComponent(),
+      events: {
+        submit: sendMessage,
+      },
     })
-
-    this.props.messageField.on('submit', sendMessage)
   }
 
   protected render(): Element {

@@ -8,11 +8,7 @@ export interface ChatInfoOptionsInterface {
   name: string
 }
 
-export default class ChatInfoComponent extends Component {
-  constructor(options: ChatInfoOptionsInterface) {
-    super(options)
-  }
-
+export default class ChatInfoComponent extends Component<ChatInfoOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

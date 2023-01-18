@@ -7,11 +7,7 @@ export interface FormOptionComponent {
   button: Component
 }
 
-export default class FormComponent extends Component {
-  constructor(options: FormOptionComponent) {
-    super(options)
-  }
-
+export default class FormComponent extends Component<FormOptionComponent> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

@@ -10,9 +10,11 @@ export default class RegistrationPage extends Component {
   protected render(): Element {
     const aside = new TemplateBuilder('<p>Registration rules</p>')
 
-    const main = new RegistrationComponent()
-
-    main.on('submit', registration)
+    const main = new RegistrationComponent({
+      events: {
+        submit: registration,
+      },
+    })
 
     const clips = new ClipComponent({ hideBackClip: false })
 

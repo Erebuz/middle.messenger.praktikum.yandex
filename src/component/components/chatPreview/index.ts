@@ -11,17 +11,13 @@ export interface ChatPreviewOptionsInterface {
   count: string
 }
 
-export default class ChatPreviewComponent extends Component {
-  constructor(options: ChatPreviewOptionsInterface) {
-    super(options)
-  }
-
+export default class ChatPreviewComponent extends Component<ChatPreviewOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
     for (const [key, value] of Object.entries(this.props)) {
       if (key) {
-        body.setKey(key, value)
+        body.setKey(key, value as any)
       }
     }
 

@@ -16,20 +16,17 @@ interface TextFieldOptionsInterface {
   required?: boolean
 }
 
-export default class TextFieldComponent extends Component {
-  constructor(options: TextFieldOptionsInterface) {
-    super(options)
-
-    const input = new InputComponent({
+export default class TextFieldComponent extends Component<TextFieldOptionsInterface> {
+  protected initProps() {
+    this.props.input = new InputComponent({
       name: this.props.name,
       inputType: this.props.inputType,
       pattern: this.props.pattern,
       required: this.props.required,
+      events: {
+        blur: () => validation(this),
+      },
     })
-
-    input.on('blur', () => validation(this))
-
-    this.props.input = input
   }
 
   protected render(): Element {

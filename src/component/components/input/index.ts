@@ -10,10 +10,7 @@ export interface InputOptionsInterface {
   placeholder?: string
 }
 
-export default class InputComponent extends Component {
-  constructor(options: InputOptionsInterface) {
-    super(options)
-  }
+export default class InputComponent extends Component<InputOptionsInterface> {
   protected render(): Element {
     const input = new TemplateBuilder(inputTemplate)
 

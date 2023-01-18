@@ -15,11 +15,7 @@ export interface ClipOptionsInterface {
   hideBackClip: boolean
 }
 
-export default class ClipComponent extends Component {
-  constructor(options: ClipOptionsInterface) {
-    super(options)
-  }
-
+export default class ClipComponent extends Component<ClipOptionsInterface> {
   protected render(): Element {
     const clipGeneral = new TemplateBuilder(clipsTemplate)
     const clipBlock = new TemplateBuilder(clipBlockTemplate)

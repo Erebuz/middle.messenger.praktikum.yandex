@@ -10,11 +10,7 @@ export interface LoginOptionsInterface {
   loginButton: Component
 }
 
-export default class LoginComponent extends Component {
-  constructor(options: LoginOptionsInterface) {
-    super(options)
-  }
-
+export default class LoginComponent extends Component<LoginOptionsInterface> {
   protected render(): Element {
     const template = new TemplateBuilder(loginTemplate)
 
