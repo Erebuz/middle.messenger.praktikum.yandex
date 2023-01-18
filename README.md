@@ -9,6 +9,12 @@
 - ```npm run dev``` для запуска отладочного сервера
 - ```npm run build``` и ```npm run start``` для запуска рабочего сервера. 
 
+
+## **Шаблонизатор и компоненты**
+
+В проекте используется 
+
+
 ## **Ссылки**
 
 [Прототип в Figma](https://www.figma.com/file/1z6rAojiU5CFiOvcyLpcOe/PracticumMessenger?node-id=0%3A1&t=hqXVjZSaYYoFIKFD-1)
