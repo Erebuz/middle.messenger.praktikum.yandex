@@ -6,6 +6,7 @@ import ChatInfoComponent from '~src/component/chatInfo'
 
 export interface GeneralMainOptionsInterface {
   textField: Component
+  chatInfo?: Component
 }
 
 export default class GeneralMainComponent extends Component<GeneralMainOptionsInterface> {
@@ -21,7 +22,9 @@ export default class GeneralMainComponent extends Component<GeneralMainOptionsIn
 
     body.setKey('textField', this.props.textField)
 
-    body.setKey('chatInfo', this.props.chatInfo)
+    if (this.props.chatInfo) {
+      body.setKey('chatInfo', this.props.chatInfo)
+    }
 
     return body.render()
   }

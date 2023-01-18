@@ -2,7 +2,7 @@ import EventBus from '~src/utils/EventBus'
 
 interface PropsType {
   events?: {
-    [key: string]: object
+    [key: string]: (...args: any) => void | Array<(...args: any) => void>
   }
 }
 
@@ -16,12 +16,12 @@ export abstract class Component<T = unknown> {
 
   protected _element: Element
 
-  public props
+  public props: PropsType & T
 
   public flowBus: () => EventBus
 
-  constructor(options: PropsType | T = {}) {
-    this.props = this._makeProxyProps(options)
+  constructor(options?: PropsType & T) {
+    this.props = this._makeProxyProps(options || {})
 
     this._registerEvents()
 
@@ -101,12 +101,14 @@ export abstract class Component<T = unknown> {
     const { events = {} } = this.props
 
     Object.keys(events).forEach((eventName) => {
-      if (Array.isArray(events[eventName])) {
-        events[eventName].forEach((foo: (...args: any) => void) => {
+      const eventsFunc = events[eventName]
+
+      if (Array.isArray(eventsFunc)) {
+        eventsFunc.forEach((foo: (...args: any) => void) => {
           this._element.addEventListener(eventName, foo)
         })
       } else {
-        this._element.addEventListener(eventName, events[eventName])
+        this._element.addEventListener(eventName, eventsFunc)
       }
     })
   }
@@ -115,9 +117,15 @@ export abstract class Component<T = unknown> {
     const { events = {} } = this.props
 
     Object.keys(events).forEach((eventName) => {
-      events[eventName].forEach((foo: (...args: any) => void) => {
-        this._element.removeEventListener(eventName, foo)
-      })
+      const eventsFunc = events[eventName]
+
+      if (Array.isArray(eventsFunc)) {
+        eventsFunc.forEach((foo: (...args: any) => void) => {
+          this._element.removeEventListener(eventName, foo)
+        })
+      } else {
+        this._element.removeEventListener(eventName, eventsFunc)
+      }
     })
   }
 

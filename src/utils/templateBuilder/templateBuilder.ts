@@ -82,7 +82,7 @@ export class TemplateBuilder {
 
   public get element() {
     if (!this._element) {
-      throw new Error('Element not render')
+      throw new Error(`Element not render: ${this}`)
     }
     return this._element
   }

@@ -26,7 +26,12 @@ class FlagComponent extends Component {
   }
 }
 
-export default class UserSettingsComponent extends Component {
+interface UserSettingsOptionsInterface {
+  show: boolean
+  flag: Component
+}
+
+export default class UserSettingsComponent extends Component<UserSettingsOptionsInterface> {
   protected initProps() {
     this.props.show = false
     this.props.flag = new FlagComponent({

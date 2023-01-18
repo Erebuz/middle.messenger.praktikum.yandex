@@ -14,6 +14,7 @@ interface TextFieldOptionsInterface {
   showError?: boolean
   pattern?: string
   required?: boolean
+  input?: Component
 }
 
 export default class TextFieldComponent extends Component<TextFieldOptionsInterface> {
@@ -32,7 +33,9 @@ export default class TextFieldComponent extends Component<TextFieldOptionsInterf
   protected render(): Element {
     const template = new TemplateBuilder(fieldTemplate)
 
-    template.setKey('label', this.props.label)
+    if (this.props.label) {
+      template.setKey('label', this.props.label)
+    }
 
     if (this.props.visualType === 'block') {
       template.setKey('fieldClass', 'text-field_block')
@@ -44,7 +47,9 @@ export default class TextFieldComponent extends Component<TextFieldOptionsInterf
       template.setKey('errorClass', 'text-field__error_show')
     }
 
-    template.setKey('input', this.props.input)
+    if (this.props.input) {
+      template.setKey('input', this.props.input)
+    }
 
     return template.render()
   }

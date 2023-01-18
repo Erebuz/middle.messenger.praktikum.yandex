@@ -1,9 +1,11 @@
 import TextFieldComponent from '~src/component/components/textField/textField'
 
 export function validation(textField: TextFieldComponent) {
-  const inputEl = textField.props.input.element as HTMLInputElement
+  const inputEl = textField.props.input?.element
 
-  textField.props.showError = !inputEl.checkValidity()
+  if (inputEl) {
+    textField.props.showError = !(inputEl as HTMLInputElement).checkValidity()
+  }
 }
 
 // латиница или кириллица, первая буква должна быть заглавной, без пробелов и

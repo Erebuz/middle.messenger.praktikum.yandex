@@ -10,7 +10,12 @@ import InputComponent from '~src/component/components/input'
 import { searchChat, sendMessage } from '~src/controller/chat'
 import FileInputComponent from '~src/component/fileInput'
 
-export default class GeneralPage extends Component {
+interface GeneralPageOptionsInterface {
+  searchField: Component
+  messageField: Component
+}
+
+export default class GeneralPage extends Component<GeneralPageOptionsInterface> {
   protected initProps() {
     this.props.searchField = new MessageFieldComponent({
       textField: new InputComponent({
