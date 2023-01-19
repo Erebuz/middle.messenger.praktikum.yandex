@@ -1,7 +1,6 @@
 import template from './index.tmpl'
 import './index.scss'
 import logoutImg from '~src/assets/logout.svg'
-
 import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'

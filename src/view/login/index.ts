@@ -2,19 +2,19 @@ import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
 import ClipComponent from '~src/component/components/clips'
 import { Component } from '~src/utils/templateBuilder/Component'
-import LoginComponent from '~src/component/login'
+import LoginComponent, { LoginOptionsInterface } from '~src/component/login'
 
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import { login } from '~src/controller/auth'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
-export default class LoginPage extends Component {
-  protected render(): Element {
-    const aside = new TemplateBuilder('<p>Project description</p>')
+export interface LoginPageOptionsInterface {
+  main: Component<LoginOptionsInterface>
+}
 
-    const clips = new ClipComponent({ hideBackClip: false })
-
+export default class LoginPage extends Component<LoginPageOptionsInterface> {
+  protected initProps() {
     const usernameField = new TextFieldComponent({
       name: 'username',
       label: 'Username',
@@ -22,7 +22,7 @@ export default class LoginPage extends Component {
       required: true,
     })
 
-    const main = new LoginComponent({
+    this.props.main = new LoginComponent({
       inputFieldUsername: usernameField,
       inputFieldPassword: new TextFieldComponent({
         name: 'password',
@@ -35,11 +35,19 @@ export default class LoginPage extends Component {
         submit: login,
       },
     })
+  }
+
+  protected render(): Element {
+    const aside = new TemplateBuilder('<p>Project description</p>')
+
+    const clips = new ClipComponent({ hideBackClip: false })
+
+    const main = this.props.main
 
     return new BodyComponent({
       aside: aside.render(),
-      main,
       clips,
+      main,
       hideAside: true,
     }).element
   }

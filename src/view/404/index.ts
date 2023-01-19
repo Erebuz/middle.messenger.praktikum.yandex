@@ -1,6 +1,5 @@
 import '~src/assets/style.scss'
 import img404 from '~src/assets/404.jpg'
-
 import { Component } from '~src/utils/templateBuilder/Component'
 import ErrorComponent from '~src/component/error'
 

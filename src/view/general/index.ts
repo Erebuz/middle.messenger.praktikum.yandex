@@ -5,14 +5,16 @@ import GeneralAsideComponent from '~src/component/generalAside'
 import GeneralMainComponent from '~src/component/generalBody'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
 import ClipComponent from '~src/component/components/clips'
-import MessageFieldComponent from '~src/component/components/messageField'
+import MessageFieldComponent, {
+  MessageFieldOptionsInterface,
+} from '~src/component/components/messageField'
 import InputComponent from '~src/component/components/input'
 import { searchChat, sendMessage } from '~src/controller/chat'
 import FileInputComponent from '~src/component/fileInput'
 
 interface GeneralPageOptionsInterface {
-  searchField: Component
-  messageField: Component
+  searchField: Component<MessageFieldOptionsInterface>
+  messageField: Component<MessageFieldOptionsInterface>
 }
 
 export default class GeneralPage extends Component<GeneralPageOptionsInterface> {
