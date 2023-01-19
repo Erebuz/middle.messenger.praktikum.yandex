@@ -1,6 +1,6 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 import buttonTemplate from './index.tmpl'
 
@@ -8,33 +8,16 @@ export interface ButtonOptionsInterface {
   label?: string
   buttonType?: 'submit' | 'button'
   classes?: string
-  onclick?: string
 }
 
-export default class ButtonComponent extends ComponentClass {
-  constructor(options: ButtonOptionsInterface) {
-    super(['button'])
+export default class ButtonComponent extends Component<ButtonOptionsInterface> {
+  protected render(): Element {
+    const template = new TemplateBuilder(buttonTemplate)
 
-    this.template = this._templateCreaters.button(options)
-  }
+    template.setKey('text', this.props.label || '')
+    template.setKey('classes', this.props.classes || '')
+    template.setKey('buttonType', this.props.buttonType || 'submit')
 
-  protected _templateCreaters = {
-    button: (options: ButtonOptionsInterface) => {
-      const template = new TemplateBuilder(buttonTemplate)
-
-      template.setKey('text', options.label)
-
-      template.setKey('classes', options.classes)
-
-      if (options.onclick) {
-        template.setKey('onclick', 'onclick="' + options.onclick + '"')
-      }
-
-      if (options.buttonType) {
-        template.setKey('buttonType', options.buttonType)
-      }
-
-      return template
-    },
+    return template.render()
   }
 }

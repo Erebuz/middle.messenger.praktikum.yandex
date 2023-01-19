@@ -1,29 +1,54 @@
 import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import ClipComponent from '~src/component/components/clips'
+import { Component } from '~src/utils/templateBuilder/Component'
 import LoginComponent from '~src/component/login'
 
-export default class Page extends ComponentClass {
-  constructor() {
-    super()
+import TextFieldComponent from '~src/component/components/textField/textField'
+import ButtonComponent from '~src/component/components/button'
+import { login } from '~src/controller/auth'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
-    this.childs.bodyComponent = new BodyComponent(false)
+export default class LoginPage extends Component {
+  protected render(): Element {
+    const aside = new TemplateBuilder('<p>Project description</p>')
 
-    const aside = this.childs.bodyComponent.childs.aside as TemplateBuilder
-    const main = this.childs.bodyComponent.childs.main as TemplateBuilder
+    const clips = new ClipComponent({ hideBackClip: false })
 
-    aside.setKey('asideBody', '<p>Project description</p>')
-    main.setKey('mainBody', new LoginComponent().render())
+    const usernameField = new TextFieldComponent({
+      name: 'username',
+      label: 'Username',
+      inputType: 'text',
+      required: true,
+    })
 
-    this.template = this.childs.bodyComponent
-  }
+    const main = new LoginComponent({
+      inputFieldUsername: usernameField,
+      inputFieldPassword: new TextFieldComponent({
+        name: 'password',
+        label: 'Password',
+        inputType: 'password',
+        required: true,
+      }),
+      loginButton: new ButtonComponent({ label: 'Login' }),
+      events: {
+        submit: login,
+      },
+    })
 
-  public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+    return new BodyComponent({
+      aside: aside.render(),
+      main,
+      clips,
+      hideAside: true,
+    }).element
   }
 }
 
-new Page().render()
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
+
+render(new LoginPage().element)

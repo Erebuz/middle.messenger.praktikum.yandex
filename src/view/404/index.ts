@@ -1,26 +1,25 @@
 import '~src/assets/style.scss'
 import img404 from '~src/assets/404.jpg'
 
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import ErrorComponent from '~src/component/error'
 
-export default class Page extends ComponentClass {
-  constructor() {
-    super()
+export default class Error404Page extends Component {
+  protected render(): Element {
+    const template = new ErrorComponent({
+      image: img404,
+      code: '404',
+      text: 'Page not found',
+      errorStyle: 'background-color: #121715',
+    })
 
-    this.template = new ErrorComponent(
-      '404',
-      'Page not found',
-      img404,
-      'background-color: #121715'
-    )
-  }
-
-  public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+    return template.element
   }
 }
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
 
-new Page().render()
+render(new Error404Page().element)

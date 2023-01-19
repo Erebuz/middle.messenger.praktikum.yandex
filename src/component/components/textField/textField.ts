@@ -1,7 +1,9 @@
 import fieldTemplate from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import InputComponent from '~src/component/components/input'
+import { validation } from '~src/controller/validation'
 
 interface TextFieldOptionsInterface {
   name: string
@@ -10,44 +12,45 @@ interface TextFieldOptionsInterface {
   visualType?: 'field' | 'block'
   errorText?: string
   showError?: boolean
+  pattern?: string
+  required?: boolean
+  input?: Component
 }
 
-export default class TextFieldComponent extends ComponentClass {
-  constructor(options: TextFieldOptionsInterface) {
-    super([])
-
-    this.template = this._templateCreaters.input(options)
+export default class TextFieldComponent extends Component<TextFieldOptionsInterface> {
+  protected initProps() {
+    this.props.input = new InputComponent({
+      name: this.props.name,
+      inputType: this.props.inputType,
+      pattern: this.props.pattern,
+      required: this.props.required,
+      events: {
+        blur: () => validation(this),
+      },
+    })
   }
 
-  protected _templateCreaters = {
-    input: (options: TextFieldOptionsInterface) => {
-      const template = new TemplateBuilder(fieldTemplate)
+  protected render(): Element {
+    const template = new TemplateBuilder(fieldTemplate)
 
-      template.setKey('name', options.name)
+    if (this.props.label) {
+      template.setKey('label', this.props.label)
+    }
 
-      if (options.label) {
-        template.setKey('label', options.label)
-      }
+    if (this.props.visualType === 'block') {
+      template.setKey('fieldClass', 'text-field_block')
+    }
 
-      if (options.inputType) {
-        template.setKey('inputType', options.inputType)
-      } else {
-        template.setKey('inputType', 'text')
-      }
+    template.setKey('errorText', this.props.errorText || 'Invalid input')
 
-      if (options.visualType === 'block') {
-        template.setKey('fieldClass', 'text-field_block')
-      }
+    if (this.props.showError) {
+      template.setKey('errorClass', 'text-field__error_show')
+    }
 
-      if (options.errorText) {
-        template.setKey('errorText', options.errorText)
-      }
+    if (this.props.input) {
+      template.setKey('input', this.props.input)
+    }
 
-      if (options.showError) {
-        template.setKey('errorClass', 'text-field__error_show')
-      }
-
-      return template
-    },
+    return template.render()
   }
 }

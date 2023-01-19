@@ -1,5 +1,8 @@
-<label class="text-field {{ fieldClass }}">
-  <span class="text-field__label">{{ label }}</span>
-  <input name="{{ name }}" type="{{ inputType }}" class="text-field__input" placeholder="Enter text" />
+<div class="text-field {{ fieldClass }}">
+  <label class="text-field__wrapper">
+    <span class="text-field__label">{{ label }}</span>
+    {{ input }}
+  </label>
+
   <span class="text-field__error {{ errorClass }}">{{ errorText }}</span>
-</label>
+</div>

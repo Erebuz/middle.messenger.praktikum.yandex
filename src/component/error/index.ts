@@ -1,39 +1,26 @@
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 import errorTemplate from './index.tmpl'
 import './index.scss'
 
-export default class ErrorComponent extends ComponentClass {
-  constructor(code: string, text: string, image: string, errorStyle?: string) {
-    super()
+export interface ErrorOptionsInterface {
+  code: string
+  text: string
+  image: string
+  errorStyle?: string
+}
 
-    this.template = this._templateCreaters.errorCode(
-      code,
-      text,
-      image,
-      errorStyle
-    )
-  }
+export default class ErrorComponent extends Component<ErrorOptionsInterface> {
+  protected render(): Element {
+    const template = new TemplateBuilder(errorTemplate)
 
-  protected _templateCreaters = {
-    errorCode: (
-      errorCode: string,
-      errorText: string,
-      errorImagePath: string,
-      errorStyle: string
-    ) => {
-      const template = new TemplateBuilder(errorTemplate)
+    template.setKey('errorCode', this.props.code)
+    template.setKey('errorText', this.props.text)
+    template.setKey('errorImg', this.props.image)
 
-      template.setKey('errorCode', errorCode)
-      template.setKey('errorText', errorText)
-      template.setKey('errorImg', errorImagePath)
+    template.setKey('errorStyle', this.props.errorStyle || '')
 
-      if (errorStyle) {
-        template.setKey('errorStyle', errorStyle)
-      }
-
-      return template
-    },
+    return template.render()
   }
 }

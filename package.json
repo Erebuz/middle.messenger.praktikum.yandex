@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "parcel src/index.html --open",
     "build": "parcel build src/index.html",
-    "start": "node server.js"
+    "start": "node server.js",
+    "stylelint": "npx stylelint **/*.scss"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -32,6 +33,9 @@
     "parcel": "2.8.2",
     "prettier": "2.8.1",
     "sass": "1.57.1",
+    "stylelint": "14.16.1",
+    "stylelint-config-prettier-scss": "0.0.1",
+    "stylelint-config-standard-scss": "6.1.0",
     "typescript": "4.9.4"
   }
 }

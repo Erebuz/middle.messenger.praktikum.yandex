@@ -1,21 +1,24 @@
 import '~src/assets/style.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 import ErrorComponent from '~src/component/error'
 
 import img500 from '~src/assets/500.jpg'
 
-export default class Page extends ComponentClass {
-  constructor() {
-    super()
+export default class Error404Page extends Component {
+  protected render(): Element {
+    const template = new ErrorComponent({
+      image: img500,
+      code: '500',
+      text: 'Eternal error',
+    })
 
-    this.template = new ErrorComponent('500', 'Internal error', img500)
-  }
-
-  public render() {
-    const root = document.querySelector('#root')
-    root.insertAdjacentHTML('beforeend', this.template.render())
-    return ''
+    return template.element
   }
 }
+function render(el: Element) {
+  const root = document.querySelector('#root')
+  root?.appendChild(el)
+  return root
+}
 
-new Page().render()
+render(new Error404Page().element)

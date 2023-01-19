@@ -1,0 +1,57 @@
+@import 'src/assets/variables';
+
+.chat-info {
+  height: 80px;
+  background: $color-background-secondary;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  &__img {
+    width: 80px;
+    height: 80px;
+    background: $color-background-thirdly;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__name {
+    flex-grow: 1;
+    padding-left: 15px;
+    font-size: 1.4em;
+  }
+
+  &__burger {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    background: $color-background-primary;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__burger-point {
+    position: absolute;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    background: black;
+    border-radius: 50%;
+
+    &:nth-child(1) {
+      top: calc(12px - 3px);
+    }
+
+    &:nth-child(2) {
+      top: calc(25px - 3px);
+    }
+
+    &:nth-child(3) {
+      top: calc(38px - 3px);
+    }
+  }
+}

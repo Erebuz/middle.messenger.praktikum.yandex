@@ -1,26 +1,26 @@
 import template from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 export interface ChatPreviewOptionsInterface {
   img?: string
   name: string
   message: string
   time: string
-  count: number
+  count: string
 }
 
-export default class ChatPreviewComponent extends ComponentClass {
-  constructor(options: ChatPreviewOptionsInterface) {
-    super()
+export default class ChatPreviewComponent extends Component<ChatPreviewOptionsInterface> {
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
 
-    this.template = new TemplateBuilder(template)
-
-    for (const [key, value] of Object.entries(options)) {
+    for (const [key, value] of Object.entries(this.props)) {
       if (key) {
-        this.template.setKey(key, value)
+        body.setKey(key, value as any)
       }
     }
+
+    return body.render()
   }
 }

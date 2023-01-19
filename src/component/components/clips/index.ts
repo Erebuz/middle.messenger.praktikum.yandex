@@ -1,7 +1,6 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 import './index.scss'
-import { range } from '~src/utils/mydash/range'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
+import { Component } from '~src/utils/templateBuilder/Component'
 
 const clipsTemplate = `<div id="clips" class="clips">{{ clipBlock }}</div>`
 
@@ -12,41 +11,28 @@ const clipTemplate = `<div class="clips__clip">
                         <div class="clips__arc_back" style="{{ backClipStyle }}"></div>
                       </div>`
 
-export default class ClipComponent extends ComponentClass {
-  public id_list = (<T extends string[]>(...o: T) => o)('clips')
-  public template = new TemplateBuilder('{{ body }}')
+export interface ClipOptionsInterface {
+  hideBackClip: boolean
+}
 
-  constructor(showBackClip: boolean) {
-    super(['clips'])
+export default class ClipComponent extends Component<ClipOptionsInterface> {
+  protected render(): Element {
+    const clipGeneral = new TemplateBuilder(clipsTemplate)
+    const clipBlock = new TemplateBuilder(clipBlockTemplate)
+    const clip = new TemplateBuilder(clipTemplate)
 
-    this.template.setKey('body', this._templateCreaters.clips(!showBackClip))
-  }
+    if (this.props.hideBackClip) {
+      clip.setKey('backClipStyle', 'display: none')
+    }
 
-  protected _templateCreaters = {
-    clips: (hideBackClip: boolean = false) => {
-      const clipGeneral = new TemplateBuilder(clipsTemplate)
-      const clipBlock = new TemplateBuilder(clipBlockTemplate)
-      const clip = new TemplateBuilder(clipTemplate)
+    const clipString = clip.render_result_string().repeat(3)
 
-      if (hideBackClip) {
-        clip.setKey('backClipStyle', 'display: none')
-      }
+    clipBlock.setKey('clip', clipString)
 
-      let clipString = ''
-      for (const i in range(3)) {
-        clipString += clip.render()
-      }
+    const clipBlockString = clipBlock.render_result_string().repeat(2)
 
-      clipBlock.setKey('clip', clipString)
+    clipGeneral.setKey('clipBlock', clipBlockString)
 
-      let clipBlockString = ''
-      for (const i in range(2)) {
-        clipBlockString += clipBlock.render()
-      }
-
-      clipGeneral.setKey('clipBlock', clipBlockString)
-
-      return clipGeneral
-    },
+    return clipGeneral.render()
   }
 }

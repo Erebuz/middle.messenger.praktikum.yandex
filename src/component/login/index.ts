@@ -1,53 +1,25 @@
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import {
-  registrationFunction,
-  TemplateBuilder,
-} from '~src/utils/templateBuilder'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 import loginTemplate from './index.tmpl'
 import './index.scss'
 
-import TextFieldComponent from '~src/component/components/textField/textField'
-import ButtonComponent from '~src/component/components/button'
+export interface LoginOptionsInterface {
+  inputFieldUsername: Component
+  inputFieldPassword: Component
+  loginButton: Component
+}
 
-export default class LoginComponent extends ComponentClass {
-  constructor() {
-    super()
+export default class LoginComponent extends Component<LoginOptionsInterface> {
+  protected render(): Element {
+    const template = new TemplateBuilder(loginTemplate)
 
-    this.template = new TemplateBuilder(loginTemplate)
+    template.setKey('inputFieldUsername', this.props.inputFieldUsername)
 
-    this.template.setKey(
-      'inputFieldUsername',
-      new TextFieldComponent({
-        name: 'login',
-        label: 'Username',
-        errorText: 'Error text',
-        showError: true,
-      }).render()
-    )
+    template.setKey('inputFieldPassword', this.props.inputFieldPassword)
 
-    this.template.setKey(
-      'inputFieldPassword',
-      new TextFieldComponent({
-        name: 'password',
-        label: 'Password',
-        inputType: 'password',
-      }).render()
-    )
+    template.setKey('loginButton', this.props.loginButton)
 
-    this.template.setKey(
-      'loginButton',
-      new ButtonComponent({ label: 'Login', buttonType: "submit" }).render()
-    )
-
-    this.template.setKey(
-      'submitFoo',
-      registrationFunction('loginBlock', (ev: SubmitEvent) => {
-        console.log(ev)
-        ev.preventDefault()
-      })
-    )
+    return template.render()
   }
-
-  protected _templateCreaters = {}
 }

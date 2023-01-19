@@ -1,0 +1,13 @@
+.input-file {
+  &__label {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__add-img {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,37 +1,21 @@
 import template from './index.tmpl'
 import './index.scss'
-import { ComponentClass } from '~src/utils/templateBuilder/ComponentClass'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
-import TextFieldComponent from '~src/component/components/textField/textField'
-import ChatPreviewComponent from '~src/component/components/chatPreview'
+import { Component } from '~src/utils/templateBuilder/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
-export default class GeneralAsideComponent extends ComponentClass {
-  constructor() {
-    super()
+export interface GeneralAsideOptionsInterface {
+  search: Component
+  chats: Component[]
+}
 
-    this.template = new TemplateBuilder(template)
+export default class GeneralAsideComponent extends Component<GeneralAsideOptionsInterface> {
+  protected render(): Element {
+    const body = new TemplateBuilder(template)
 
-    this.template.setKey(
-      'searchField',
-      new TextFieldComponent({ visualType: 'block', label: 'Search:' }).render()
-    )
+    body.setKey('searchField', this.props.search)
 
-    const firstChat = new ChatPreviewComponent({
-      name: 'First chat',
-      message: 'Message text',
-      time: '14:00',
-      count: 0,
-    }).render()
+    body.setKey('chats', this.props.chats)
 
-    const secondChat = new ChatPreviewComponent({
-      name: 'Second chat',
-      message: 'Message text',
-      time: '12:00',
-      count: 3,
-    }).render()
-
-    this.template.setKey('chats', firstChat + secondChat)
+    return body.render()
   }
-
-  protected _templateCreaters = {}
 }
