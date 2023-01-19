@@ -2,10 +2,10 @@ import fieldTemplate from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
-import InputComponent from '~src/component/components/input'
+import InputComponent, { InputOptionsInterface } from "~src/component/components/input";
 import { validation } from '~src/controller/validation'
 
-interface TextFieldOptionsInterface {
+export interface TextFieldOptionsInterface {
   name: string
   label?: string
   inputType?: 'text' | 'password'
@@ -14,7 +14,7 @@ interface TextFieldOptionsInterface {
   showError?: boolean
   pattern?: string
   required?: boolean
-  input?: Component
+  input?: Component<InputOptionsInterface>
 }
 
 export default class TextFieldComponent extends Component<TextFieldOptionsInterface> {

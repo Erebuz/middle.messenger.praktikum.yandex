@@ -2,15 +2,18 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/templateBuilder/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
-import UserSettingsComponent from '~src/component/userSettings'
+import UserSettingsComponent, { UserSettingsOptionsInterface } from "~src/component/userSettings";
+import { GeneralAsideOptionsInterface } from '~src/component/generalAside'
+import { GeneralBodyOptionsInterface } from '~src/component/generalMain'
+import { ClipOptionsInterface } from "~src/component/components/clips";
 
 export interface BodyOptionsInterface {
-  aside: Component | Element
-  main: Component
-  clips: Component
+  aside: Component<GeneralAsideOptionsInterface> | Element
+  main: Component<GeneralBodyOptionsInterface>
+  clips: Component<ClipOptionsInterface>
   hideAside?: boolean
   showUserSettings?: boolean
-  userSettings?: Component
+  userSettings?: Component<UserSettingsOptionsInterface>
 }
 
 export default class BodyComponent extends Component<BodyOptionsInterface> {

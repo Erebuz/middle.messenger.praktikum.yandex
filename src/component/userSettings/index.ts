@@ -15,7 +15,9 @@ import {
   phoneReg,
 } from '~src/controller/validation'
 
-class FlagComponent extends Component {
+export interface FlagOptionsInterface {}
+
+class FlagComponent extends Component<FlagOptionsInterface> {
   protected render(): Element {
     const template = new TemplateBuilder(
       '<div id="flag" class="user-settings__flag"></div>'
@@ -25,7 +27,7 @@ class FlagComponent extends Component {
   }
 }
 
-interface UserSettingsOptionsInterface {
+export interface UserSettingsOptionsInterface {
   show: boolean
   flag: Component
 }

@@ -13,7 +13,9 @@ import {
   phoneReg,
 } from '~src/controller/validation'
 
-export default class RegistrationComponent extends Component {
+export interface RegistrationOptionsInterface {}
+
+export default class RegistrationComponent extends Component<RegistrationOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

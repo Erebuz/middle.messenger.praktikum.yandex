@@ -23,14 +23,14 @@ export default class LoginPage extends Component<LoginPageOptionsInterface> {
     })
 
     this.props.main = new LoginComponent({
-      inputFieldUsername: usernameField,
-      inputFieldPassword: new TextFieldComponent({
+      inputUsername: usernameField,
+      inputPassword: new TextFieldComponent({
         name: 'password',
         label: 'Password',
         inputType: 'password',
         required: true,
       }),
-      loginButton: new ButtonComponent({ label: 'Login' }),
+      button: new ButtonComponent({ label: 'Login' }),
       events: {
         submit: login,
       },

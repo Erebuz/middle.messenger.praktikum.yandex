@@ -2,7 +2,7 @@ import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
 import { Component } from '~src/utils/templateBuilder/Component'
 import GeneralAsideComponent from '~src/component/generalAside'
-import GeneralMainComponent from '~src/component/generalBody'
+import GeneralBodyComponent from '~src/component/generalMain'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
 import ClipComponent from '~src/component/components/clips'
 import MessageFieldComponent, {
@@ -45,7 +45,7 @@ export default class GeneralPage extends Component<GeneralPageOptionsInterface> 
 
   protected render(): Element {
     const aside = new GeneralAsideComponent({
-      search: this.props.searchField,
+      searchField: this.props.searchField,
       chats: [
         new ChatPreviewComponent({
           name: 'name',
@@ -68,8 +68,8 @@ export default class GeneralPage extends Component<GeneralPageOptionsInterface> 
       ],
     })
 
-    const main = new GeneralMainComponent({
-      textField: this.props.messageField,
+    const main = new GeneralBodyComponent({
+      messageField: this.props.messageField,
     })
 
     const clips = new ClipComponent({ hideBackClip: true })

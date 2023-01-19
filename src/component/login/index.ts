@@ -3,22 +3,24 @@ import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 import loginTemplate from './index.tmpl'
 import './index.scss'
+import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
+import { ButtonOptionsInterface } from '~src/component/components/button'
 
 export interface LoginOptionsInterface {
-  inputFieldUsername: Component
-  inputFieldPassword: Component
-  loginButton: Component
+  inputUsername: Component<TextFieldOptionsInterface>
+  inputPassword: Component<TextFieldOptionsInterface>
+  button: Component<ButtonOptionsInterface>
 }
 
 export default class LoginComponent extends Component<LoginOptionsInterface> {
   protected render(): Element {
     const template = new TemplateBuilder(loginTemplate)
 
-    template.setKey('inputFieldUsername', this.props.inputFieldUsername)
+    template.setKey('inputUsername', this.props.inputUsername)
 
-    template.setKey('inputFieldPassword', this.props.inputFieldPassword)
+    template.setKey('inputPassword', this.props.inputPassword)
 
-    template.setKey('loginButton', this.props.loginButton)
+    template.setKey('button', this.props.button)
 
     return template.render()
   }

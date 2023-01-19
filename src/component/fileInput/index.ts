@@ -5,7 +5,9 @@ import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
 
 import clip from '~src/assets/paperclip.svg'
 
-export default class FileInputComponent extends Component {
+export interface FileInputOptionsInterface {}
+
+export default class FileInputComponent extends Component<FileInputOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
