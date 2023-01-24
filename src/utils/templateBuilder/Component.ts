@@ -80,10 +80,6 @@ export abstract class Component<T = unknown> {
   }
 
   private _render() {
-    if (this._element) {
-      this._removeEvents()
-    }
-
     if (this._element?.parentElement) {
       const parent = this._element.parentElement
       const new_element = this.render()
@@ -109,22 +105,6 @@ export abstract class Component<T = unknown> {
         })
       } else {
         this._element.addEventListener(eventName, eventsFunc)
-      }
-    })
-  }
-
-  private _removeEvents() {
-    const { events = {} } = this.props
-
-    Object.keys(events).forEach((eventName) => {
-      const eventsFunc = events[eventName]
-
-      if (Array.isArray(eventsFunc)) {
-        eventsFunc.forEach((foo: (...args: any) => void) => {
-          this._element.removeEventListener(eventName, foo)
-        })
-      } else {
-        this._element.removeEventListener(eventName, eventsFunc)
       }
     })
   }
