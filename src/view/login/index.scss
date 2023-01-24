@@ -1,0 +1,11 @@
+@import 'src/assets/variables';
+
+.project-description {
+  max-width: 60%;
+  color: $color-text-light;
+
+  &__upd {
+    font-size: 0.8em;
+    margin-top: 40%;
+  }
+}

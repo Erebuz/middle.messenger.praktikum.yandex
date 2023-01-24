@@ -6,10 +6,12 @@ import UserSettingsComponent, { UserSettingsOptionsInterface } from "~src/compon
 import { GeneralAsideOptionsInterface } from '~src/component/generalAside'
 import { GeneralBodyOptionsInterface } from '~src/component/generalMain'
 import { ClipOptionsInterface } from "~src/component/components/clips";
+import { LoginOptionsInterface } from "~src/component/login";
+import { RegistrationOptionsInterface } from "~src/component/registration";
 
 export interface BodyOptionsInterface {
   aside: Component<GeneralAsideOptionsInterface> | Element
-  main: Component<GeneralBodyOptionsInterface>
+  main: Component<GeneralBodyOptionsInterface | LoginOptionsInterface | RegistrationOptionsInterface>
   clips: Component<ClipOptionsInterface>
   hideAside?: boolean
   showUserSettings?: boolean

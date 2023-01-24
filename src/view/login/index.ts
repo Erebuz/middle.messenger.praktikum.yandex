@@ -1,4 +1,5 @@
 import '~src/assets/style.scss'
+import './index.scss'
 import BodyComponent from '~src/component/body'
 import ClipComponent from '~src/component/components/clips'
 import { Component } from '~src/utils/templateBuilder/Component'
@@ -8,6 +9,7 @@ import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import { login } from '~src/controller/auth'
 import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import projectDescription from './projectDesription.tmpl'
 
 export interface LoginPageOptionsInterface {
   main: Component<LoginOptionsInterface>
@@ -38,7 +40,7 @@ export default class LoginPage extends Component<LoginPageOptionsInterface> {
   }
 
   protected render(): Element {
-    const aside = new TemplateBuilder('<p>Project description</p>')
+    const aside = new TemplateBuilder(projectDescription)
 
     const clips = new ClipComponent({ hideBackClip: false })
 
