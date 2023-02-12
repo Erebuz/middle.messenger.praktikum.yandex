@@ -85,3 +85,7 @@ export function updatePassword(ev: SubmitEvent) {
 
   console.log(data)
 }
+
+export function checkAuth() {
+  return http.get('/auth/user')
+}

@@ -9,7 +9,7 @@ const router = new Router('body')
 
 router.use('/', LoginPage)
 router.use('/sign-up', RegistrationPage)
-router.use('/messenger', GeneralPage)
+router.use('/messenger', GeneralPage, true)
 router.use('/404', Error404Page)
 router.use('/500', Error500Page)
 

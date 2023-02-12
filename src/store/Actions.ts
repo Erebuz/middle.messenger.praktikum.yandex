@@ -8,7 +8,6 @@ const store = new AppStore()
 export const api_get_chats = () => {
   http.get('/chats').then((res: HTTPRequest) => {
     store.set('chats', res.data)
-    console.log(store.getState().chats)
   })
 }
 

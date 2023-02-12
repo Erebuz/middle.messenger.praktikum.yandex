@@ -1,5 +1,7 @@
 import { Component } from '~src/utils/Component'
 import { TypeOf } from '~src/utils/mydash/ts'
+import { checkAuth } from '~src/controller/auth'
+import router from '~src/router'
 
 export class Route {
   _pathname: string
@@ -72,12 +74,12 @@ export class Router {
     Router.__instance = this
   }
 
-  use(pathname: string, block: TypeOf<Component>) {
+  use(pathname: string, block: TypeOf<Component>, auth?: boolean) {
     const route = new Route(
       pathname,
       block as typeof Component,
       this._rootQuery,
-      {}
+      { auth }
     )
     this.routes.push(route)
     return this
@@ -92,18 +94,34 @@ export class Router {
   }
 
   _onRoute(pathname: string) {
-    const route = this.getRoute(pathname)
+    let route = this.getRoute(pathname)
 
     if (!route) {
-      throw Error('Route not exist')
+      route = this.getRoute('/404')
     }
 
+    if (!route) {
+      throw new Error('Route not exist')
+    }
+
+    if (route._props.auth) {
+      checkAuth()
+        .then(() => {
+          this._goto(route as Route)
+        })
+        .catch(() => {
+          router.go('/')
+        })
+    } else {
+      this._goto(route)
+    }
+  }
+
+  _goto(route: Route) {
     if (this._currentRoute) {
       this._currentRoute.leave()
     }
-
     this._currentRoute = route
-
     route.render()
   }
 
