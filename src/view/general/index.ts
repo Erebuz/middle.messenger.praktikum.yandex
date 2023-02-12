@@ -1,6 +1,6 @@
 import '~src/assets/style.scss'
 import BodyComponent from '~src/component/body'
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 import GeneralAsideComponent from '~src/component/generalAside'
 import GeneralBodyComponent from '~src/component/generalMain'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
@@ -82,11 +82,3 @@ export default class GeneralPage extends Component<GeneralPageOptionsInterface> 
     }).element
   }
 }
-
-function render(el: Element) {
-  const root = document.querySelector('#root')
-  root?.appendChild(el)
-  return root
-}
-
-render(new GeneralPage().element)

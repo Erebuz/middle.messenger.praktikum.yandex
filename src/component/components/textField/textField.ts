@@ -1,7 +1,7 @@
 import fieldTemplate from './index.tmpl'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import InputComponent, { InputOptionsInterface } from "~src/component/components/input";
 import { validation } from '~src/controller/validation'
 

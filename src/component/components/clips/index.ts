@@ -1,6 +1,6 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 
 const clipsTemplate = `<div id="clips" class="clips">{{ clipBlock }}</div>`
 

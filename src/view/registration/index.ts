@@ -1,8 +1,8 @@
 import '~src/assets/style.scss'
 import './index.scss'
 import BodyComponent from '~src/component/body'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import RegistrationComponent from '~src/component/registration'
 import ClipComponent from '~src/component/components/clips'
 import { registration } from '~src/controller/auth'
@@ -30,11 +30,3 @@ export default class RegistrationPage extends Component {
     return body.element
   }
 }
-
-function render(el: Element) {
-  const root = document.querySelector('#root')
-  root?.appendChild(el)
-  return root
-}
-
-render(new RegistrationPage().element)

@@ -1,4 +1,4 @@
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 
 export class TemplateBuilder {
   private readonly _template: string

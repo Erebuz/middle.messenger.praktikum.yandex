@@ -2,13 +2,13 @@ import '~src/assets/style.scss'
 import './index.scss'
 import BodyComponent from '~src/component/body'
 import ClipComponent from '~src/component/components/clips'
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 import LoginComponent, { LoginOptionsInterface } from '~src/component/login'
 
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import { login } from '~src/controller/auth'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import projectDescription from './projectDesription.tmpl'
 
 export interface LoginPageOptionsInterface {
@@ -54,11 +54,3 @@ export default class LoginPage extends Component<LoginPageOptionsInterface> {
     }).element
   }
 }
-
-function render(el: Element) {
-  const root = document.querySelector('#root')
-  root?.appendChild(el)
-  return root
-}
-
-render(new LoginPage().element)

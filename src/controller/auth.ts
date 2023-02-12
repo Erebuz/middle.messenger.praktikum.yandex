@@ -1,3 +1,5 @@
+import router from '~src/router'
+
 export function login(ev: SubmitEvent) {
   ev.preventDefault()
   const formData = new FormData(ev.target as HTMLFormElement)
@@ -8,6 +10,12 @@ export function login(ev: SubmitEvent) {
   }
 
   console.log(data)
+
+  router.go('/messenger')
+}
+
+export function logout() {
+  router.go('/')
 }
 
 export function registration(ev: SubmitEvent) {
@@ -25,6 +33,8 @@ export function registration(ev: SubmitEvent) {
   }
 
   console.log(data)
+
+  router.go('/messenger')
 }
 
 export function updateSettings(ev: SubmitEvent) {

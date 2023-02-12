@@ -1,7 +1,7 @@
 import template from './index.tmpl'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import { MessageFieldOptionsInterface } from "~src/component/components/messageField";
 import { ChatPreviewOptionsInterface } from "~src/component/components/chatPreview";
 

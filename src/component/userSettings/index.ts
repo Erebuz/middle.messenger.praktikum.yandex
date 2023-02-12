@@ -1,12 +1,12 @@
 import template from './index.tmpl'
 import './index.scss'
 import logoutImg from '~src/assets/logout.svg'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import FormComponent from '~src/component/components/form'
-import { updatePassword, updateSettings } from '~src/controller/auth'
+import { logout, updatePassword, updateSettings } from '~src/controller/auth'
 import {
   emailReg,
   loginReg,
@@ -14,7 +14,7 @@ import {
   passwordReg,
   phoneReg,
 } from '~src/controller/validation'
-
+import ButtonImgComponent from '~src/component/components/buttonImg'
 export interface FlagOptionsInterface {}
 
 class FlagComponent extends Component<FlagOptionsInterface> {
@@ -51,7 +51,16 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
-    body.setKey('logoutImg', logoutImg)
+    body.setKey(
+      'logout',
+      new ButtonImgComponent({
+        img: logoutImg,
+        classes: 'user-settings__logout',
+        events: {
+          click: logout,
+        },
+      })
+    )
 
     const mail = new TextFieldComponent({
       name: 'email',
