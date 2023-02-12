@@ -1,4 +1,4 @@
-import { Router } from '~src/utils/router'
+import { Router } from '~src/utils/Router'
 import LoginPage from '~src/view/login'
 import RegistrationPage from '~src/view/registration'
 import GeneralPage from '~src/view/general'

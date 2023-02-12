@@ -1,6 +1,6 @@
 import EventBus from '~src/utils/EventBus'
 
-interface PropsType {
+export interface PropsType {
   events?: {
     [key: string]: (...args: any) => void | Array<(...args: any) => void>
   }

@@ -1,23 +1,23 @@
-import template from './index.tmpl'
-import './index.scss'
-import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
-import { MessageFieldOptionsInterface } from "~src/component/components/messageField";
-import { ChatPreviewOptionsInterface } from "~src/component/components/chatPreview";
+import GeneralAsideComponent from '~src/component/generalAside/AsideClass'
+import connect from '~src/utils/store/Connect'
+import ChatPreviewComponent from '~src/component/components/chatPreview'
+import State from '~src/store/state'
 
-export interface GeneralAsideOptionsInterface {
-  searchField: Component<MessageFieldOptionsInterface>
-  chats: Component<ChatPreviewOptionsInterface>[]
-}
+export default connect<typeof GeneralAsideComponent>(
+  GeneralAsideComponent,
+  (state: typeof State) => {
+    const chats = []
+    for (const item in state) {
+      chats.push(
+        new ChatPreviewComponent({
+          name: item,
+          message: item,
+          count: '1',
+          time: '12:00',
+        })
+      )
+    }
 
-export default class GeneralAsideComponent extends Component<GeneralAsideOptionsInterface> {
-  protected render(): Element {
-    const body = new TemplateBuilder(template)
-
-    body.setKey('searchField', this.props.searchField)
-
-    body.setKey('chats', this.props.chats)
-
-    return body.render()
+    return { chats }
   }
-}
+)

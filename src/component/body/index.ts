@@ -3,7 +3,7 @@ import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import UserSettingsComponent, { UserSettingsOptionsInterface } from "~src/component/userSettings";
-import { GeneralAsideOptionsInterface } from '~src/component/generalAside'
+import { GeneralAsideOptionsInterface } from '~src/component/generalAside/AsideClass'
 import { GeneralBodyOptionsInterface } from '~src/component/generalMain'
 import { ClipOptionsInterface } from "~src/component/components/clips";
 import { LoginOptionsInterface } from "~src/component/login";
