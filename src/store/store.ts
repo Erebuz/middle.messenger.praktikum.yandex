@@ -1,12 +1,13 @@
 import Store from '~src/utils/store/Store'
-import State from '~src/store/state'
+import State, { StateInterface } from '~src/store/state'
 
-export default class AppStore extends Store {
+export default class AppStore extends Store<StateInterface> {
+  readonly STORE_NAME = 'store'
   protected get_save_state() {
-    return State[Store.STORE_NAME]
+    return State[this.STORE_NAME]
   }
 
   protected set_save_state() {
-    State[Store.STORE_NAME] = this._state
+    State[this.STORE_NAME] = this._state
   }
 }

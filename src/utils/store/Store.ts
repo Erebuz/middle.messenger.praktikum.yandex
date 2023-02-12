@@ -1,47 +1,45 @@
 import EventBus from '~src/utils/EventBus'
 
-export default class Store extends EventBus {
+export default class Store<State = {}> extends EventBus {
   static EVENT_UPDATE = 'event_update'
   private static _instance: Store
-  protected static STORE_NAME = 'store'
+  protected readonly STORE_NAME = 'store'
 
-  protected _state: Record<string, any> = {}
+  protected _state: State = {} as State
 
   constructor() {
     if (Store._instance) {
-      return Store._instance
+      return Store._instance as Store<State>
     }
 
     super()
 
-    const savedState = this.get_save_state()
+    this._state = this.get_save_state()
 
-    this._state = savedState ? savedState : {}
-
-    Store._instance = this
+    Store._instance = this as Store
 
     this.on(Store.EVENT_UPDATE, () => {
       this.set_save_state()
     })
   }
 
-  protected get_save_state() {
-    return {}
+  protected get_save_state(): State {
+    return {} as State
   }
 
   protected set_save_state() {}
 
-  getState() {
-    return this._state
+  getState(): State {
+    return this._state as State
   }
 
   removeState() {
-    this._state = {}
+    this._state = {} as State
     this.emit(Store.EVENT_UPDATE)
   }
 
   set(id: string, value: any) {
-    this._state[id] = value
+    ;(this._state as Record<string, any>)[id] = value
     this.emit(Store.EVENT_UPDATE)
     return this
   }

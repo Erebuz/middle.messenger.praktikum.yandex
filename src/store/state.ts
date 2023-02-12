@@ -1,7 +1,11 @@
-const State: {
+export interface StateInterface {
   chats: string[]
-} = {
-  chats: [],
+}
+
+const State: { store: StateInterface } = {
+  store: {
+    chats: [],
+  },
 }
 
 export default State

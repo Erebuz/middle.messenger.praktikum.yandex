@@ -1,21 +1,31 @@
 import router from '~src/router'
+import HTTPTransport from '~src/utils/HttpTransport'
+
+const http = new HTTPTransport('https://ya-praktikum.tech/api/v2')
 
 export function login(ev: SubmitEvent) {
   ev.preventDefault()
   const formData = new FormData(ev.target as HTMLFormElement)
 
   const data = {
-    username: formData.get('username'),
+    login: formData.get('username'),
     password: formData.get('password'),
   }
 
-  console.log(data)
-
-  router.go('/messenger')
+  http
+    .post('auth/signin', { data })
+    .then(() => {
+      router.go('/messenger')
+    })
+    .catch(() => {
+      console.log('error')
+    })
 }
 
 export function logout() {
-  router.go('/')
+  http.post('/auth/logout').then(() => {
+    router.go('/')
+  })
 }
 
 export function registration(ev: SubmitEvent) {
@@ -32,9 +42,19 @@ export function registration(ev: SubmitEvent) {
     confirm_password: formData.get('confirm_password'),
   }
 
-  console.log(data)
+  if (data.password !== data.confirm_password) {
+    console.log('error')
+    return
+  }
 
-  router.go('/messenger')
+  http
+    .post('auth/signup', { data })
+    .then(() => {
+      router.go('/messenger')
+    })
+    .catch(() => {
+      console.log('error')
+    })
 }
 
 export function updateSettings(ev: SubmitEvent) {

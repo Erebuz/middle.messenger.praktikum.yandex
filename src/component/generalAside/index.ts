@@ -1,13 +1,13 @@
 import GeneralAsideComponent from '~src/component/generalAside/AsideClass'
 import connect from '~src/utils/store/Connect'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
-import State from '~src/store/state'
+import { StateInterface } from '~src/store/state'
 
 export default connect<typeof GeneralAsideComponent>(
   GeneralAsideComponent,
-  (state: typeof State) => {
+  (state: StateInterface) => {
     const chats = []
-    for (const item in state) {
+    for (const item in state.chats) {
       chats.push(
         new ChatPreviewComponent({
           name: item,
