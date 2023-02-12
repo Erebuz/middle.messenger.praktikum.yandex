@@ -1,5 +1,6 @@
 import router from '~src/router'
-import HTTPTransport from '~src/utils/HttpTransport'
+import HTTPTransport, { HTTPRequest } from '~src/utils/HttpTransport'
+import store from '~src/store'
 
 const http = new HTTPTransport('https://ya-praktikum.tech/api/v2')
 
@@ -25,6 +26,7 @@ export function login(ev: SubmitEvent) {
 export function logout() {
   http.post('/auth/logout').then(() => {
     router.go('/')
+    store.removeState()
   })
 }
 
@@ -70,22 +72,45 @@ export function updateSettings(ev: SubmitEvent) {
     phone: formData.get('phone'),
   }
 
-  console.log(data)
+  http
+    .put('user/profile', { data })
+    .then(() => {})
+    .catch(() => {
+      console.log('error')
+    })
 }
 
 export function updatePassword(ev: SubmitEvent) {
   ev.preventDefault()
   const formData = new FormData(ev.target as HTMLFormElement)
 
-  const data = {
+  const data: {
+    oldPassword: FormDataEntryValue | null
+    newPassword: FormDataEntryValue | null
+    confirmNewPassword?: FormDataEntryValue | null
+  } = {
     oldPassword: formData.get('oldPassword'),
     newPassword: formData.get('newPassword'),
     confirmNewPassword: formData.get('confirmNewPassword'),
   }
 
-  console.log(data)
+  if (data.newPassword !== data.confirmNewPassword) {
+    console.log('Error')
+    return
+  }
+
+  delete data['confirmNewPassword']
+
+  http
+    .put('user/password', { data })
+    .then(() => {})
+    .catch(() => {
+      console.log('error')
+    })
 }
 
 export function checkAuth() {
-  return http.get('/auth/user')
+  return http.get('/auth/user').then((res: HTTPRequest) => {
+    store.set('user', res.data)
+  })
 }

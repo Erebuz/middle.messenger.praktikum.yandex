@@ -15,6 +15,7 @@ import {
   phoneReg,
 } from '~src/controller/validation'
 import ButtonImgComponent from '~src/component/components/buttonImg'
+import store from '~src/store'
 export interface FlagOptionsInterface {}
 
 class FlagComponent extends Component<FlagOptionsInterface> {
@@ -63,6 +64,7 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
     )
 
     const mail = new TextFieldComponent({
+      value: store.getState().user.email,
       name: 'email',
       label: 'Mail',
       visualType: 'block',
@@ -71,6 +73,7 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
     })
 
     const username = new TextFieldComponent({
+      value: store.getState().user.login,
       name: 'login',
       label: 'Username',
       visualType: 'block',
@@ -79,6 +82,7 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
     })
 
     const firstname = new TextFieldComponent({
+      value: store.getState().user.first_name,
       name: 'first_name',
       label: 'Firstname',
       visualType: 'block',
@@ -87,6 +91,7 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
     })
 
     const lastname = new TextFieldComponent({
+      value: store.getState().user.second_name,
       name: 'second_name',
       label: 'Lastname',
       visualType: 'block',
@@ -95,12 +100,14 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
     })
 
     const display_name = new TextFieldComponent({
+      value: store.getState().user.display_name,
       name: 'display_name',
       label: 'Display name',
       visualType: 'block',
     })
 
     const phone = new TextFieldComponent({
+      value: store.getState().user.phone,
       name: 'phone',
       label: 'Phone',
       visualType: 'block',

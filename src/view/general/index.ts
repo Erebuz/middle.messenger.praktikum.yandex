@@ -11,7 +11,6 @@ import MessageFieldComponent, {
 import InputComponent from '~src/component/components/input'
 import { searchChat, sendMessage } from '~src/controller/chat'
 import FileInputComponent from '~src/component/fileInput'
-import { api_get_chats } from '~src/store/Actions'
 
 interface GeneralPageOptionsInterface {
   searchField: Component<MessageFieldOptionsInterface>
@@ -20,8 +19,6 @@ interface GeneralPageOptionsInterface {
 
 export default class GeneralPage extends Component<GeneralPageOptionsInterface> {
   protected initProps() {
-    api_get_chats()
-
     this.props.searchField = new MessageFieldComponent({
       textField: new InputComponent({
         name: 'search',

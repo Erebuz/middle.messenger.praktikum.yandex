@@ -5,6 +5,7 @@ import inputTemplate from './index.tmpl'
 export interface InputOptionsInterface {
   name: string
   inputType?: 'text' | 'password'
+  value?: string
   pattern?: string
   required?: boolean
   placeholder?: string
@@ -17,6 +18,10 @@ export default class InputComponent extends Component<InputOptionsInterface> {
     input.setKey('name', this.props.name)
 
     input.setKey('inputType', this.props.inputType || 'text')
+
+    if (this.props.value) {
+      input.setKey('value', `value=${this.props.value}`)
+    }
 
     if (this.props.pattern) {
       input.setKey('pattern', `pattern="${this.props.pattern}"` || '')

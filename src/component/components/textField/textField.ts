@@ -2,11 +2,14 @@ import fieldTemplate from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import InputComponent, { InputOptionsInterface } from "~src/component/components/input";
+import InputComponent, {
+  InputOptionsInterface,
+} from '~src/component/components/input'
 import { validation } from '~src/controller/validation'
 
 export interface TextFieldOptionsInterface {
   name: string
+  value?: string | null
   label?: string
   inputType?: 'text' | 'password'
   visualType?: 'field' | 'block'
@@ -20,6 +23,7 @@ export interface TextFieldOptionsInterface {
 export default class TextFieldComponent extends Component<TextFieldOptionsInterface> {
   protected initProps() {
     this.props.input = new InputComponent({
+      value: this.props.value,
       name: this.props.name,
       inputType: this.props.inputType,
       pattern: this.props.pattern,
