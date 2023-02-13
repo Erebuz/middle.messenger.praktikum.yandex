@@ -12,7 +12,7 @@ export const api_get_chats = () => {
 }
 
 export const api_create_chat = (title: string) => {
-  http.post('/chats', { data: { title: title } })
+  http.post('/chats', { data: { title: title } }).then()
 }
 
 export const get_chats = () => {

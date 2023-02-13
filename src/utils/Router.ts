@@ -1,7 +1,5 @@
 import { Component } from '~src/utils/Component'
 import { TypeOf } from '~src/utils/mydash/ts'
-import { checkAuth } from '~src/controller/auth'
-import router from '~src/router'
 
 export class Route {
   _pathname: string
@@ -96,6 +94,8 @@ export class Router {
   _onRoute(pathname: string) {
     let route = this.getRoute(pathname)
 
+    this.beforeRoute()
+
     if (!route) {
       route = this.getRoute('/404')
     }
@@ -105,16 +105,16 @@ export class Router {
     }
 
     if (route._props.auth) {
-      checkAuth()
-        .then(() => {
-          this._goto(route as Route)
-        })
-        .catch(() => {
-          router.go('/')
-        })
+      this.checkAuth(route)
     } else {
       this._goto(route)
     }
+  }
+
+  beforeRoute() {}
+
+  checkAuth(this: Router, route: Route) {
+    console.log(route)
   }
 
   _goto(route: Route) {

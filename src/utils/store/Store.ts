@@ -33,8 +33,7 @@ export default class Store<State = {}> extends EventBus {
     return this._state as State
   }
 
-  removeState() {
-    this._state = {} as State
+  public removeState() {
     this.emit(Store.EVENT_UPDATE)
   }
 
