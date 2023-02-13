@@ -16,6 +16,7 @@ import {
 } from '~src/controller/validation'
 import ButtonImgComponent from '~src/component/components/buttonImg'
 import store from '~src/store'
+import PortraitComponent from '~src/component/portrait'
 export interface FlagOptionsInterface {}
 
 class FlagComponent extends Component<FlagOptionsInterface> {
@@ -51,6 +52,8 @@ export default class UserSettingsComponent extends Component<UserSettingsOptions
 
   protected render(): Element {
     const body = new TemplateBuilder(template)
+
+    body.setKey('portrait', new PortraitComponent())
 
     body.setKey(
       'logout',

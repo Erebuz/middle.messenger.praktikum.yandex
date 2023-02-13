@@ -38,7 +38,6 @@ export default class HTTPTransport {
       {
         ...options,
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
       },
       options.timeout
     )
@@ -51,7 +50,6 @@ export default class HTTPTransport {
         ...options,
         method: 'POST',
         data: options.data,
-        headers: { 'Content-Type': 'application/json' },
       },
       options.timeout
     )
@@ -64,7 +62,6 @@ export default class HTTPTransport {
         ...options,
         method: 'PUT',
         data: options.data,
-        headers: { 'Content-Type': 'application/json' },
       },
       options.timeout
     )
@@ -83,7 +80,11 @@ export default class HTTPTransport {
     options: RequestOptionsInterface,
     timeout: number = 5000
   ) => {
-    const { headers = {}, method, data } = options
+    const {
+      headers = { 'Content-Type': 'application/json' },
+      method,
+      data,
+    } = options
 
     return new Promise<XMLHttpRequest>(function (resolve, reject) {
       if (!method) {
@@ -96,9 +97,11 @@ export default class HTTPTransport {
 
       xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
 
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key])
-      })
+      if (!(data instanceof FormData)) {
+        Object.keys(headers).forEach((key) => {
+          xhr.setRequestHeader(key, headers[key])
+        })
+      }
 
       xhr.withCredentials = true
 
@@ -114,6 +117,8 @@ export default class HTTPTransport {
 
       if (isGet || !data) {
         xhr.send()
+      } else if (data instanceof FormData) {
+        xhr.send(data)
       } else {
         xhr.send(JSON.stringify(data))
       }

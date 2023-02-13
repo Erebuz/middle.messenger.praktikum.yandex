@@ -2,7 +2,9 @@ import router from '~src/router'
 import HTTPTransport, { HTTPRequest } from '~src/utils/HttpTransport'
 import store from '~src/store'
 
-const http = new HTTPTransport('https://ya-praktikum.tech/api/v2')
+export const baseUrl = 'https://ya-praktikum.tech/api/v2'
+
+const http = new HTTPTransport(baseUrl)
 
 export function login(ev: SubmitEvent) {
   ev.preventDefault()
@@ -107,6 +109,25 @@ export function updatePassword(ev: SubmitEvent) {
     .catch(() => {
       console.log('error')
     })
+}
+
+export function updateAvatar() {
+  const avatar = document.getElementById('avatar') as HTMLInputElement
+  const file = avatar.files?.[0]
+
+  if (file) {
+    const formData = new FormData()
+    formData.set('avatar', file)
+
+    http
+      .put('user/profile/avatar', {
+        data: formData,
+        headers: {},
+      })
+      .then((res: HTTPRequest) => {
+        store.set('user', res.data)
+      })
+  }
 }
 
 export function checkAuth() {
