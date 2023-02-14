@@ -5,7 +5,7 @@ import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import RegistrationComponent from '~src/component/registration'
 import ClipComponent from '~src/component/components/clips'
-import { registration } from '~src/controller/auth'
+import { registration } from '~src/controller/userController'
 import registrationRules from './registrationRules.tmpl'
 
 export default class RegistrationPage extends Component {

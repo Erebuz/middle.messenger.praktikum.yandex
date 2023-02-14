@@ -1,0 +1,8 @@
+@import "src/assets/variables";
+
+.popup {
+  position: absolute;
+  background: $color-background-secondary;
+  border: 1px $color-border solid;
+  border-radius: 10px;
+}

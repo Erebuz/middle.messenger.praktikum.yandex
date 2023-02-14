@@ -9,7 +9,7 @@ import MessageFieldComponent, {
   MessageFieldOptionsInterface,
 } from '~src/component/components/messageField'
 import InputComponent from '~src/component/components/input'
-import { searchChat, sendMessage } from '~src/controller/chat'
+import { searchChat, sendMessage } from '~src/controller/chatController'
 import FileInputComponent from '~src/component/fileInput'
 
 interface GeneralPageOptionsInterface {

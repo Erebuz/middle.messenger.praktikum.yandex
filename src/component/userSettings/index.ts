@@ -6,7 +6,7 @@ import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import FormComponent from '~src/component/components/form'
-import { logout, updatePassword, updateSettings } from '~src/controller/auth'
+import { logout, updatePassword, updateSettings } from '~src/controller/userController'
 import {
   emailReg,
   loginReg,

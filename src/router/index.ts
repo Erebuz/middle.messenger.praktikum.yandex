@@ -4,7 +4,7 @@ import RegistrationPage from '~src/view/registration'
 import GeneralPage from '~src/view/general'
 import Error404Page from '~src/view/404'
 import Error500Page from '~src/view/500'
-import { checkAuth } from '~src/controller/auth'
+import { checkAuth } from '~src/controller/userController'
 import { api_get_chats } from '~src/store/Actions'
 
 const router = new Router('body')

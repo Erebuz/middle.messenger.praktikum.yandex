@@ -1,6 +1,6 @@
 import connect from '~src/utils/store/Connect'
 import { StateInterface } from '~src/store/state'
-import { baseUrl } from '~src/controller/auth'
+import { baseUrl } from '~src/controller/userController'
 import PortraitComponent from '~src/component/portrait/PortraitClass'
 
 export default connect<typeof PortraitComponent>(

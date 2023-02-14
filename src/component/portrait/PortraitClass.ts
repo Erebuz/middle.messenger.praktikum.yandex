@@ -1,7 +1,7 @@
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import template from './index.tmpl'
-import { updateAvatar } from '~src/controller/auth'
+import { updateAvatar } from '~src/controller/userController'
 import './index.scss'
 
 export interface PortraitOptionsInterface {
