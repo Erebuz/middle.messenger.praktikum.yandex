@@ -16,6 +16,7 @@ export interface StateInterface {
     show: boolean
     add: boolean
   }
+  search_users: any[]
 }
 
 export const defaultState: StateInterface = {
@@ -34,6 +35,7 @@ export const defaultState: StateInterface = {
     show: false,
     add: false,
   },
+  search_users: []
 }
 
 const State: { store: StateInterface } = {

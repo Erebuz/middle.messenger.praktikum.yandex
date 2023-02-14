@@ -1,5 +1,5 @@
 import router from '~src/router'
-import HTTPTransport, { HTTPRequest } from '~src/utils/HttpTransport'
+import HTTPTransport, { HTTPResponse } from '~src/utils/HttpTransport'
 import store from '~src/store'
 
 export const baseUrl = 'https://ya-praktikum.tech/api/v2'
@@ -124,14 +124,14 @@ export function updateAvatar() {
         data: formData,
         headers: {},
       })
-      .then((res: HTTPRequest) => {
+      .then((res: HTTPResponse) => {
         store.set('user', res.data)
       })
   }
 }
 
 export function checkAuth() {
-  return http.get('/auth/user').then((res: HTTPRequest) => {
+  return http.get('/auth/user').then((res: HTTPResponse) => {
     store.set('user', res.data)
   })
 }

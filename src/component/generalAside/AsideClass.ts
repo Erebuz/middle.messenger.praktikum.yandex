@@ -2,21 +2,39 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import { MessageFieldOptionsInterface } from '~src/component/components/messageField'
+import MessageFieldComponent, {
+  MessageFieldOptionsInterface,
+} from '~src/component/components/messageField'
 import { ChatPreviewOptionsInterface } from '~src/component/components/chatPreview'
+import InputComponent from '~src/component/components/input'
+import { searchChat } from '~src/controller/chatController'
 
 export interface GeneralAsideOptionsInterface {
-  searchField: Component<MessageFieldOptionsInterface>
-  chats: Component<ChatPreviewOptionsInterface>[]
+  searchField?: Component<MessageFieldOptionsInterface>
+  preview?: Component<ChatPreviewOptionsInterface>[]
 }
 
 export default class GeneralAsideComponent extends Component<GeneralAsideOptionsInterface> {
+  protected initProps() {
+    this.props.searchField = new MessageFieldComponent({
+      textField: new InputComponent({
+        name: 'search',
+        placeholder: 'Search',
+        required: true,
+      }),
+      events: {
+        submit: searchChat,
+      },
+    })
+  }
+
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
-    body.setKey('searchField', this.props.searchField)
+    if (this.props.searchField)
+      body.setKey('searchField', this.props.searchField)
 
-    body.setKey('chats', this.props.chats)
+    if (this.props.preview) body.setKey('preview', this.props.preview)
 
     return body.render()
   }

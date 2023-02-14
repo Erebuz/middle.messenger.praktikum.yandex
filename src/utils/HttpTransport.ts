@@ -5,7 +5,7 @@ export interface RequestOptionsInterface {
   timeout?: number
 }
 
-export type HTTPRequest<T = any> = XMLHttpRequest & { data?: T }
+export type HTTPResponse<T = any> = XMLHttpRequest & { data?: T }
 
 type HTTPMethod = (
   url: string,
@@ -123,7 +123,7 @@ export default class HTTPTransport {
         xhr.send(JSON.stringify(data))
       }
     })
-      .then((res: HTTPRequest) => {
+      .then((res: HTTPResponse) => {
         if (res.response) {
           try {
             res.data = JSON.parse(res.response)
@@ -140,7 +140,7 @@ export default class HTTPTransport {
           }
         })
       })
-      .catch((res: HTTPRequest) => {
+      .catch((res: HTTPResponse) => {
         if (res.response) {
           res.data = JSON.parse(res.response)
         }
