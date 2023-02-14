@@ -27,7 +27,7 @@ export default class BurgerComponent extends Component<BurgerOptionsInterface> {
 
     this.props.popup = new PopupComponent({
       body: this.props.body,
-      bottom: '-60px',
+      top: '70px',
       right: '-20px',
       show: false,
     })

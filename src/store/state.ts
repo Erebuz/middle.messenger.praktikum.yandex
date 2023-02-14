@@ -12,9 +12,13 @@ export interface StateInterface {
     email: string
     phone: string
   }
+  modal_dialog: {
+    show: boolean
+    add: boolean
+  }
 }
 
-export const defaultState = {
+export const defaultState: StateInterface = {
   chats: [],
   user: {
     id: 0,
@@ -25,6 +29,10 @@ export const defaultState = {
     avatar: null,
     email: '',
     phone: '',
+  },
+  modal_dialog: {
+    show: false,
+    add: false,
   },
 }
 

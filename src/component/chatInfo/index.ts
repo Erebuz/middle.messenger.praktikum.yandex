@@ -2,7 +2,7 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import BurgerComponent from '~src/component/components/burger'
+import BurgerComponent from '~src/component/burger'
 import AddUserComponent from '~src/component/addUser'
 
 export interface ChatInfoOptionsInterface {

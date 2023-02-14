@@ -18,3 +18,11 @@ export const api_create_chat = (title: string) => {
 export const get_chats = () => {
   return store
 }
+
+export const show_add_user_dialog = () => {
+  store.set('modal_dialog', { show: true, add: true })
+}
+
+export const show_remove_user_dialog = () => {
+  store.set('modal_dialog', { show: true, add: false })
+}

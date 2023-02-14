@@ -2,16 +2,23 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import UserSettingsComponent, { UserSettingsOptionsInterface } from "~src/component/userSettings";
+import UserSettingsComponent, {
+  UserSettingsOptionsInterface,
+} from '~src/component/userSettings'
 import { GeneralAsideOptionsInterface } from '~src/component/generalAside/AsideClass'
 import { GeneralBodyOptionsInterface } from '~src/component/generalMain'
-import { ClipOptionsInterface } from "~src/component/components/clips";
-import { LoginOptionsInterface } from "~src/component/login";
-import { RegistrationOptionsInterface } from "~src/component/registration";
+import { ClipOptionsInterface } from '~src/component/components/clips'
+import { LoginOptionsInterface } from '~src/component/login'
+import { RegistrationOptionsInterface } from '~src/component/registration'
+import ModalDialogComponent from '~src/component/modalDialog'
 
 export interface BodyOptionsInterface {
   aside: Component<GeneralAsideOptionsInterface> | Element
-  main: Component<GeneralBodyOptionsInterface | LoginOptionsInterface | RegistrationOptionsInterface>
+  main: Component<
+    | GeneralBodyOptionsInterface
+    | LoginOptionsInterface
+    | RegistrationOptionsInterface
+  >
   clips: Component<ClipOptionsInterface>
   hideAside?: boolean
   showUserSettings?: boolean
@@ -37,6 +44,8 @@ export default class BodyComponent extends Component<BodyOptionsInterface> {
     if (this.props.hideAside) {
       body.setKey('asideClass', 'left-page__close')
     }
+
+    body.setKey('modalDialog', new ModalDialogComponent({}))
 
     return body.render()
   }

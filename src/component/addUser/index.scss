@@ -1,0 +1,12 @@
+.add-user {
+  width: 200px;
+
+  &__button {
+    border: none !important;
+    background: none !important;
+
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 20px !important;
+  }
+}
