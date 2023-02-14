@@ -4,10 +4,11 @@ import './index.scss'
 import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
+import store from '~src/store'
 
 export interface ModalDialogOptionsInterface {
   show?: boolean
-  add: boolean
+  add?: boolean
 }
 
 export default class ModalDialogComponent extends Component<ModalDialogOptionsInterface> {
@@ -58,7 +59,7 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
         label: 'Cancel',
         events: {
           click: () => {
-            this.props.show = false
+            store.set('modal_dialog', { show: false })
           },
         },
       })

@@ -45,7 +45,7 @@ export default class BodyComponent extends Component<BodyOptionsInterface> {
       body.setKey('asideClass', 'left-page__close')
     }
 
-    body.setKey('modalDialog', new ModalDialogComponent({}))
+    body.setKey('modalDialog', new ModalDialogComponent())
 
     return body.render()
   }

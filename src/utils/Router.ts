@@ -72,14 +72,21 @@ export class Router {
     Router.__instance = this
   }
 
-  use(pathname: string, block: TypeOf<Component>, auth?: boolean) {
-    const route = new Route(
-      pathname,
-      block as typeof Component,
+  use(route: {
+    pathname: string
+    component: TypeOf<Component>
+    auth?: boolean
+    beforeRoute?: () => any
+  }) {
+    const route_to = new Route(
+      route.pathname,
+      route.component as typeof Component,
       this._rootQuery,
-      { auth }
+      { auth: route.auth, beforeRoute: route.beforeRoute }
     )
-    this.routes.push(route)
+
+    this.routes.push(route_to)
+
     return this
   }
 
@@ -109,6 +116,8 @@ export class Router {
     } else {
       this._goto(route)
     }
+
+    if (route._props.beforeRoute) route._props.beforeRoute()
   }
 
   beforeRoute() {}

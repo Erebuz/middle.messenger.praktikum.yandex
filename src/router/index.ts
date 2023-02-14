@@ -19,14 +19,19 @@ router.checkAuth = function (this: Router, route: Route) {
     })
 }
 
-router.beforeRoute = () => {
+function load_data() {
   api_get_chats()
 }
 
-router.use('/', LoginPage)
-router.use('/sign-up', RegistrationPage)
-router.use('/messenger', GeneralPage, true)
-router.use('/404', Error404Page)
-router.use('/500', Error500Page)
+router.use({ pathname: '/', component: LoginPage })
+router.use({ pathname: '/sign-up', component: RegistrationPage })
+router.use({
+  pathname: '/messenger',
+  component: GeneralPage,
+  auth: true,
+  beforeRoute: load_data,
+})
+router.use({ pathname: '/404', component: Error404Page })
+router.use({ pathname: '/500', component: Error500Page })
 
 export default router
