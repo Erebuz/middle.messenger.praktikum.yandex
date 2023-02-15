@@ -6,7 +6,10 @@ import { TemplateBuilder } from '~src/utils/templateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import FormComponent from '~src/component/components/form'
-import { logout, updatePassword, updateSettings } from '~src/controller/userController'
+import {
+  updatePassword,
+  updateSettings,
+} from '~src/controller/userController'
 import {
   emailReg,
   loginReg,
@@ -17,6 +20,7 @@ import {
 import ButtonImgComponent from '~src/component/components/buttonImg'
 import store from '~src/store'
 import PortraitComponent from '~src/component/portrait'
+import { logout } from "~src/controller/authController";
 export interface FlagOptionsInterface {}
 
 class FlagComponent extends Component<FlagOptionsInterface> {

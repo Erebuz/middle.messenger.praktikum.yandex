@@ -4,13 +4,13 @@ import RegistrationPage from '~src/view/registration'
 import GeneralPage from '~src/view/general'
 import Error404Page from '~src/view/404'
 import Error500Page from '~src/view/500'
-import { checkAuth } from '~src/controller/userController'
-import { api_get_chats } from '~src/store/Actions'
+import { getUser, logout } from '~src/controller/authController'
+import { getChats } from '~src/controller/chatController'
 
 const router = new Router('body')
 
 router.checkAuth = function (this: Router, route: Route) {
-  checkAuth()
+  getUser()
     .then(() => {
       this._goto(route as Route)
     })
@@ -20,10 +20,10 @@ router.checkAuth = function (this: Router, route: Route) {
 }
 
 function load_data() {
-  api_get_chats()
+  getChats()
 }
 
-router.use({ pathname: '/', component: LoginPage })
+router.use({ pathname: '/', component: LoginPage, beforeRoute: logout })
 router.use({ pathname: '/sign-up', component: RegistrationPage })
 router.use({
   pathname: '/messenger',

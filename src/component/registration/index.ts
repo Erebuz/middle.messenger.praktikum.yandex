@@ -96,10 +96,7 @@ export default class RegistrationComponent extends Component<RegistrationOptions
       })
     )
 
-    body.setKey(
-      'loginLink',
-      new RouterLink({ text: 'Login', link: '/' })
-    )
+    body.setKey('loginLink', new RouterLink({ text: 'Login', link: '/' }))
 
     return body.render()
   }

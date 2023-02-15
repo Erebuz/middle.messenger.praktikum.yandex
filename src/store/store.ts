@@ -1,5 +1,7 @@
 import Store from '~src/utils/store/Store'
 import State, { defaultState, StateInterface } from '~src/store/state'
+
+import store from '~src/store/index'
 import { cloneDeep } from '~src/utils/mydash/cloneDeep'
 
 export default class AppStore extends Store<StateInterface> {
@@ -13,7 +15,7 @@ export default class AppStore extends Store<StateInterface> {
   }
 
   removeState() {
-    State[this.STORE_NAME] = cloneDeep(defaultState)
+    store._state = cloneDeep(defaultState)
     super.removeState()
   }
 }

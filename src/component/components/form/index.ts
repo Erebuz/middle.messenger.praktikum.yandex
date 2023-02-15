@@ -1,8 +1,8 @@
 import template from './index.tmpl'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
-import { TextFieldOptionsInterface } from "~src/component/components/textField/textField";
-import { ButtonOptionsInterface } from "~src/component/components/button";
+import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
+import { ButtonOptionsInterface } from '~src/component/components/button'
 
 export interface FormOptionComponent {
   fields: Component<TextFieldOptionsInterface>[]

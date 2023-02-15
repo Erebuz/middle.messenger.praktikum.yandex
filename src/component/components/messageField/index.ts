@@ -4,8 +4,8 @@ import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 
 import sendMessageSvg from '~src/assets/send_message.svg'
-import { TextFieldOptionsInterface } from "~src/component/components/textField/textField";
-import { FileInputOptionsInterface } from "~src/component/fileInput";
+import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
+import { FileInputOptionsInterface } from '~src/component/fileInput'
 
 export interface MessageFieldOptionsInterface {
   fileInput?: Component<FileInputOptionsInterface>

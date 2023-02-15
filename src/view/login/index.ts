@@ -7,9 +7,10 @@ import LoginComponent, { LoginOptionsInterface } from '~src/component/login'
 
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
-import { login } from '~src/controller/userController'
+
 import { TemplateBuilder } from '~src/utils/templateBuilder'
 import projectDescription from './projectDesription.tmpl'
+import { login } from '~src/controller/authController'
 
 export interface LoginPageOptionsInterface {
   main: Component<LoginOptionsInterface>

@@ -35,7 +35,7 @@ export const defaultState: StateInterface = {
     show: false,
     add: false,
   },
-  search_users: []
+  search_users: [],
 }
 
 const State: { store: StateInterface } = {
