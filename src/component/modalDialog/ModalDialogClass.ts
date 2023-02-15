@@ -5,6 +5,10 @@ import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import store from '~src/store'
+import {
+  addUserToChatByLogin,
+  removeUserToChatByLogin,
+} from '~src/controller/chatController'
 
 export interface ModalDialogOptionsInterface {
   show?: boolean
@@ -24,8 +28,6 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
         if (user == '') {
           form.checkValidity()
         }
-
-        console.log(user)
       },
     }
   }
@@ -49,6 +51,11 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
       new ButtonComponent({
         buttonType: 'submit',
         label: this.props.add ? 'Add' : 'Remove',
+        events: {
+          click: this.props.add
+            ? addUserToChatByLogin
+            : removeUserToChatByLogin,
+        },
       })
     )
 

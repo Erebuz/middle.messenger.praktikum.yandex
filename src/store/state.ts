@@ -1,7 +1,8 @@
 import { cloneDeep } from '~src/utils/mydash/cloneDeep'
+import { ChatPreviewInterface } from '~src/interfaces/chat'
 
 export interface StateInterface {
-  chats: string[]
+  chats: ChatPreviewInterface[]
   user: {
     id: number
     first_name: string
@@ -17,6 +18,7 @@ export interface StateInterface {
     add: boolean
   }
   search_users: any[]
+  current_chat: ChatPreviewInterface | null
 }
 
 export const defaultState: StateInterface = {
@@ -36,9 +38,10 @@ export const defaultState: StateInterface = {
     add: false,
   },
   search_users: [],
+  current_chat: null,
 }
 
-const State: { store: StateInterface } = {
+export const State: { store: StateInterface } = {
   store: cloneDeep(defaultState),
 }
 

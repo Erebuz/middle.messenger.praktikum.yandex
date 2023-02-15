@@ -5,6 +5,6 @@ import { StateInterface } from '~src/store/state'
 export default connect<typeof ModalDialogComponent>(
   ModalDialogComponent,
   (state: StateInterface) => {
-    return { show: state.modal_dialog.show }
+    return { ...state.modal_dialog }
   }
 )

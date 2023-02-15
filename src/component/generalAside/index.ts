@@ -3,6 +3,7 @@ import connect from '~src/utils/store/Connect'
 import ChatPreviewComponent from '~src/component/components/chatPreview'
 import { StateInterface } from '~src/store/state'
 import UserPreviewComponent from '~src/component/components/userPreview'
+import CancelSearchComponent from '~src/component/cancelSearch'
 
 export default connect<typeof GeneralAsideComponent>(
   GeneralAsideComponent,
@@ -17,14 +18,17 @@ export default connect<typeof GeneralAsideComponent>(
           })
         )
       }
+      result.push(new CancelSearchComponent())
     } else {
-      for (const item in state.chats) {
+      for (const item of state.chats) {
         result.push(
           new ChatPreviewComponent({
-            name: item,
-            message: item,
-            count: '1',
-            time: '12:00',
+            id: item.id,
+            avatar: item.avatar,
+            title: item.title,
+            last_message: item.last_message,
+            unread_count: item.unread_count,
+            created_by: item.created_by,
           })
         )
       }

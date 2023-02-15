@@ -2,6 +2,7 @@ import AuthApi from '~src/api/authApi'
 import router from '~src/router'
 import store from '~src/store'
 import { HTTPResponse } from '~src/utils/HttpTransport'
+import AppWS from "~src/socket";
 
 const authApi = new AuthApi()
 
@@ -28,6 +29,7 @@ export function logout() {
   authApi.logout().then(() => {
     router.go('/')
     store.removeState()
+    new AppWS().disconnect()
   })
 }
 

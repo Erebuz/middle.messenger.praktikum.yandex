@@ -6,7 +6,7 @@ import UserSettingsComponent, {
   UserSettingsOptionsInterface,
 } from '~src/component/userSettings'
 import { GeneralAsideOptionsInterface } from '~src/component/generalAside/AsideClass'
-import { GeneralBodyOptionsInterface } from '~src/component/generalMain'
+import { GeneralBodyOptionsInterface } from '~src/component/generalMain/GeneralBodyClass'
 import { ClipOptionsInterface } from '~src/component/components/clips'
 import { LoginOptionsInterface } from '~src/component/login'
 import { RegistrationOptionsInterface } from '~src/component/registration'

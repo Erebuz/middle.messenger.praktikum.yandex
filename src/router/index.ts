@@ -23,7 +23,9 @@ function load_data() {
   getChats()
 }
 
-router.use({ pathname: '/', component: LoginPage, beforeRoute: logout })
+router.use({ pathname: '/', component: LoginPage
+  , beforeRoute: logout
+})
 router.use({ pathname: '/sign-up', component: RegistrationPage })
 router.use({
   pathname: '/messenger',

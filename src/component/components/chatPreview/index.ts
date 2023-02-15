@@ -2,22 +2,26 @@ import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { ChatPreviewInterface } from '~src/interfaces/chat'
+import { set_current_chat } from '~src/store/Actions'
+import AppWS from '~src/socket'
 
-export interface ChatPreviewOptionsInterface {
-  img?: string
-  name: string
-  message: string
-  time: string
-  count: string
-}
+export default class ChatPreviewComponent extends Component<ChatPreviewInterface> {
+  protected initProps() {
+    this.props.events = {
+      click: () => {
+        set_current_chat(this.props)
+        new AppWS().connect(this.props.id)
+      },
+    }
+  }
 
-export default class ChatPreviewComponent extends Component<ChatPreviewOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
     for (const [key, value] of Object.entries(this.props)) {
-      if (key) {
-        body.setKey(key, value as any)
+      if (key && key !== 'id' && key !== 'events') {
+        body.setKey(key, value !== null ? String(value) : '')
       }
     }
 
