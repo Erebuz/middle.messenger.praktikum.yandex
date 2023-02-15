@@ -6,11 +6,11 @@ import UserSettingsComponent, {
   UserSettingsOptionsInterface,
 } from '~src/component/userSettings'
 import { GeneralAsideOptionsInterface } from '~src/component/generalAside/AsideClass'
-import { GeneralBodyOptionsInterface } from '~src/component/generalMain/GeneralBodyClass'
 import { ClipOptionsInterface } from '~src/component/components/clips'
 import { LoginOptionsInterface } from '~src/component/login'
 import { RegistrationOptionsInterface } from '~src/component/registration'
 import ModalDialogComponent from '~src/component/modalDialog'
+import { GeneralBodyOptionsInterface } from '~src/component/generalBody/GeneralBodyClass'
 
 export interface BodyOptionsInterface {
   aside: Component<GeneralAsideOptionsInterface> | Element
