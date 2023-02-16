@@ -1,6 +1,6 @@
 import template from './index.tmpl'
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
 import { ButtonOptionsInterface } from '~src/component/components/button'
 

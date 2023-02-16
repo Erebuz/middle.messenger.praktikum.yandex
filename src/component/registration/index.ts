@@ -2,7 +2,7 @@ import { Component } from '~src/utils/Component'
 
 import template from './index.tmpl'
 import './index.scss'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import {

@@ -1,5 +1,5 @@
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import ButtonComponent from '~src/component/components/button'
 import './index.scss'
 

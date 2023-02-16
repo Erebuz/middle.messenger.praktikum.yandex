@@ -1,7 +1,7 @@
 import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
 import { set_current_chat } from '~src/store/Actions'
 import AppWS from '~src/socket'

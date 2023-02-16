@@ -1,17 +1,17 @@
 import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import MessageFieldComponent, {
   MessageFieldOptionsInterface,
 } from '~src/component/components/messageField'
-import { ChatPreviewOptionsInterface } from '~src/component/components/chatPreview'
 import InputComponent from '~src/component/components/input'
 import { searchChat } from '~src/controller/chatController'
+import { ChatPreviewInterface } from '~src/interfaces/chat'
 
 export interface GeneralAsideOptionsInterface {
   searchField?: Component<MessageFieldOptionsInterface>
-  preview?: Component<ChatPreviewOptionsInterface>[]
+  preview?: Component<ChatPreviewInterface>[]
 }
 
 export default class GeneralAsideComponent extends Component<GeneralAsideOptionsInterface> {

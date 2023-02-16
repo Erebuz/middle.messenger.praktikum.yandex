@@ -1,11 +1,11 @@
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import inputTemplate from './index.tmpl'
 
 export interface InputOptionsInterface {
   name: string
   inputType?: 'text' | 'password'
-  value?: string
+  value?: string | null
   pattern?: string
   required?: boolean
   placeholder?: string

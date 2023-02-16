@@ -1,7 +1,7 @@
 import template from './index.tmpl'
 import './index.scss'
 import { Component } from '~src/utils/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 
 import sendMessageSvg from '~src/assets/send_message.svg'
 import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'

@@ -1,4 +1,4 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import './index.scss'
 import { Component } from '~src/utils/Component'
 
