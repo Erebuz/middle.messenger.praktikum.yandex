@@ -19,10 +19,16 @@ export default class ChatPreviewComponent extends Component<ChatPreviewInterface
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
-    for (const [key, value] of Object.entries(this.props)) {
-      if (key && key !== 'id' && key !== 'events') {
-        body.setKey(key, value !== null ? String(value) : '')
-      }
+    if (this.props.avatar) body.setKey('avatar', this.props.avatar)
+
+    if (this.props.title) body.setKey('title', this.props.title)
+
+    if (this.props.unread_count)
+      body.setKey('unread_count', `${this.props.unread_count}`)
+
+    if (this.props.last_message) {
+      body.setKey('avatar', this.props.last_message.content)
+      body.setKey('avatar', this.props.last_message.time)
     }
 
     return body.render()

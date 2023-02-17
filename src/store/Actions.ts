@@ -24,6 +24,7 @@ export const hide_modal_dialog = () => {
 
 export const set_current_chat = (chat: ChatPreviewInterface) => {
   store.set('current_chat', chat)
+  get_current_chat_users()
 }
 
 export const clear_search_user = () => {
