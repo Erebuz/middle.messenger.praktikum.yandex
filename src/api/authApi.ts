@@ -15,7 +15,7 @@ export default class AuthApi extends BaseAPI {
   }
 
   registration(data: Omit<UserRegistrationInterface, 'display_name'>) {
-    return this._create('', { data })
+    return this._create('signup', { data })
   }
 
   get_user() {
