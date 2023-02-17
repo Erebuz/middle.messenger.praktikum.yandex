@@ -8,6 +8,8 @@ import MessageFieldComponent, {
 import InputComponent from '~src/component/components/input'
 import { searchChat } from '~src/controller/chatController'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
+import ButtonComponent from '~src/component/components/button'
+import { show_create_chat_dialog } from '~src/store/Actions'
 
 export interface GeneralAsideOptionsInterface {
   searchField?: Component<MessageFieldOptionsInterface>
@@ -20,7 +22,6 @@ export default class GeneralAsideComponent extends Component<GeneralAsideOptions
       textField: new InputComponent({
         name: 'search',
         placeholder: 'Search',
-        required: true,
       }),
       events: {
         submit: searchChat,
@@ -33,6 +34,17 @@ export default class GeneralAsideComponent extends Component<GeneralAsideOptions
 
     if (this.props.searchField)
       body.setKey('searchField', this.props.searchField)
+
+    body.setKey(
+      'createButton',
+      new ButtonComponent({
+        label: 'Create chat',
+        classes: 'general-aside__create-chat',
+        events: {
+          click: show_create_chat_dialog,
+        },
+      })
+    )
 
     if (this.props.preview) body.setKey('preview', this.props.preview)
 

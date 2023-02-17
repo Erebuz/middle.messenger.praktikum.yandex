@@ -14,6 +14,10 @@ export default class ChatApi extends BaseAPI {
     return this._create('', { data: { title } })
   }
 
+  get_users(chat_id: number) {
+    return this._get(chat_id + '/users')
+  }
+
   add_users(ids: number[], chat_id: number) {
     return this._update('users', {
       data: {
@@ -44,5 +48,13 @@ export default class ChatApi extends BaseAPI {
     return this._set(`token/${chat_id}`).then(
       (res: HTTPResponse<{ token: string }>) => res.data?.token
     )
+  }
+
+  search_chats(name: string) {
+    return this._get('', {
+      data: {
+        title: name,
+      },
+    })
   }
 }

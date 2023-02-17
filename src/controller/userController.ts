@@ -69,7 +69,7 @@ export function updateAvatar() {
 }
 
 export function searchUser(login: string) {
-  userApi
+  return userApi
     .search_user(login)
     .then((res: HTTPResponse<any[]>) => store.set('search_users', res.data))
 }

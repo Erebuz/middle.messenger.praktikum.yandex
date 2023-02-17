@@ -2,31 +2,50 @@ import { Component } from '~src/utils/Component'
 import tmpl from './index.tmpl'
 import './index.scss'
 import { TemplateBuilder } from '~src/utils/TemplateBuilder'
-import TextFieldComponent from '~src/component/components/textField/textField'
+import TextFieldComponent, {
+  TextFieldOptionsInterface,
+} from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
-import store from '~src/store'
-import {
-  addUserToChatByLogin,
-  removeUserToChatByLogin,
-} from '~src/controller/chatController'
+import State from '~src/store/state'
+import UserPreviewComponent from '~src/component/components/userPreview'
+import { UserInterface } from '~src/interfaces/user'
+import { searchUser } from '~src/controller/userController'
+import { hide_modal_dialog } from '~src/store/Actions'
+import { createChat } from '~src/controller/chatController'
 
 export interface ModalDialogOptionsInterface {
   show?: boolean
-  add?: boolean
+  type?: 'add' | 'remove' | 'create'
+  current_users?: UserInterface[]
+  search_field?: Component<TextFieldOptionsInterface>
 }
 
 export default class ModalDialogComponent extends Component<ModalDialogOptionsInterface> {
   protected initProps() {
+    this.props.current_users = State.store.current_chat_users
+
+    this.props.search_field = new TextFieldComponent({
+      name: 'data',
+      label: 'Chat name',
+      required: true,
+    })
+
     this.props.events = {
       submit: (ev: SubmitEvent) => {
         ev.preventDefault()
         const form = ev.target as HTMLFormElement
         const formData = new FormData(form)
 
-        const user = formData.get('user')
+        const data = formData.get('data') as string
 
-        if (user == '') {
+        if (data) {
           form.checkValidity()
+        }
+
+        if (this.props.type === 'add') {
+          searchUser(data)
+        } else {
+          createChat(data).then(() => hide_modal_dialog())
         }
       },
     }
@@ -35,29 +54,68 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
   protected render(): Element {
     const body = new TemplateBuilder(tmpl)
 
-    body.setKey('title', this.props.add ? 'Add user' : 'Remove user')
+    if (!this.props.type) return body.render()
 
-    body.setKey(
-      'textField',
-      new TextFieldComponent({
-        name: 'user',
-        label: 'Username',
-        required: true,
-      })
-    )
+    const title =
+      this.props.type !== 'create'
+        ? this.props.type[0].toUpperCase() + this.props.type.slice(1) + ' user'
+        : 'Create chat'
+    body.setKey('title', title)
 
-    body.setKey(
-      'addButton',
-      new ButtonComponent({
-        buttonType: 'submit',
-        label: this.props.add ? 'Add' : 'Remove',
-        events: {
-          click: this.props.add
-            ? addUserToChatByLogin
-            : removeUserToChatByLogin,
-        },
-      })
-    )
+    if (this.props.type === 'add') {
+      body.setKey('search', this.props.search_field as Component)
+
+      body.setKey(
+        'searchButton',
+        new ButtonComponent({
+          label: 'Search',
+          buttonType: 'submit',
+          classes: 'modal-dialog__search-button',
+        })
+      )
+    }
+
+    if (this.props.type == 'remove' || this.props.type === 'add') {
+      const users = []
+      for (const user of this.props.current_users ?? []) {
+        if (user.id === State.store.user.id) continue
+
+        if (
+          this.props.type === 'add' &&
+          State.store.current_chat_users.find(
+            (cur_user) => cur_user.id === user.id
+          )
+        )
+          continue
+
+        users.push(new UserPreviewComponent({ user, type: this.props.type }))
+      }
+
+      if (users.length > 0) {
+        body.setKey('body', users)
+      } else {
+        body.setKey('body', '<p>No users in chat</p>')
+      }
+    }
+
+    if (this.props.type == 'create') {
+      body.setKey(
+        'body',
+        new TextFieldComponent({
+          name: 'data',
+          label: 'Chat name',
+          required: true,
+        })
+      )
+
+      body.setKey(
+        'addButton',
+        new ButtonComponent({
+          buttonType: 'submit',
+          label: 'Create',
+        })
+      )
+    }
 
     body.setKey(
       'cancelButton',
@@ -65,9 +123,7 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
         buttonType: 'button',
         label: 'Cancel',
         events: {
-          click: () => {
-            store.set('modal_dialog', { show: false })
-          },
+          click: hide_modal_dialog,
         },
       })
     )
