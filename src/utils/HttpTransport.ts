@@ -1,3 +1,6 @@
+import { escapeDict } from '~src/utils/mydash/escape'
+import { cloneDeep } from '~src/utils/mydash/cloneDeep'
+
 export interface RequestOptionsInterface {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   data?: any
@@ -120,7 +123,9 @@ export default class HTTPTransport {
       } else if (data instanceof FormData) {
         xhr.send(data)
       } else {
-        xhr.send(JSON.stringify(data))
+        const tempData = cloneDeep(data)
+        escapeDict(tempData)
+        xhr.send(JSON.stringify(tempData))
       }
     })
       .then((res: HTTPResponse) => {
