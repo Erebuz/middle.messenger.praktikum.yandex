@@ -5,6 +5,7 @@ import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
 import { set_current_chat } from '~src/store/Actions'
 import AppWS from '~src/socket'
+import { BASE_URL } from '~src/api/baseApi'
 
 export default class ChatPreviewComponent extends Component<ChatPreviewInterface> {
   protected initProps() {
@@ -19,7 +20,10 @@ export default class ChatPreviewComponent extends Component<ChatPreviewInterface
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
-    if (this.props.avatar) body.setKey('avatar', this.props.avatar)
+    if (this.props.avatar) {
+      const src = BASE_URL + '/resources' + this.props.avatar
+      body.setKey('avatar', `<img src="${src}" alt="Img">`)
+    }
 
     if (this.props.title) body.setKey('title', this.props.title)
 

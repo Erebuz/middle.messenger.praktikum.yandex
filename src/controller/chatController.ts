@@ -5,7 +5,7 @@ import State from '~src/store/state'
 import UserApi from '~src/api/userApi'
 import { UserInterface } from '~src/interfaces/user'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
-import { hide_modal_dialog } from '~src/store/Actions'
+import { hide_modal_dialog, set_current_chat } from '~src/store/Actions'
 
 const chatApi = new ChatApi()
 const userApi = new UserApi()
@@ -62,7 +62,7 @@ export function sendMessage(ev: SubmitEvent) {
   console.log(data)
 }
 
-export function get_current_chat_users() {
+export function getCurrentChatUsers() {
   const chat_id = State.store.current_chat!.id
   return chatApi
     .get_users(chat_id)
@@ -93,7 +93,7 @@ export function removeUserByCurrentChat(user_id: number) {
   const chat_id = State.store.current_chat!.id
 
   chatApi.remove_users([user_id], chat_id).then(() => {
-    get_current_chat_users()
+    getCurrentChatUsers()
   })
 }
 
@@ -121,4 +121,22 @@ export function deleteChat() {
     store.set('current_chat', null)
     getChats()
   })
+}
+
+export function setChatAvatar() {
+  const input = document.getElementById('chat_avatar') as HTMLInputElement
+  const file = input.files?.[0]
+
+  if (file) {
+    const formData = new FormData()
+    const chatId = State.store.current_chat?.id
+    formData.set('avatar', file)
+    formData.set('chatId', `${chatId}`)
+
+    chatApi.update_chat_avatar(formData).then(() => {
+      store.set('current_chat', null)
+      hide_modal_dialog()
+      getChats()
+    })
+  }
 }

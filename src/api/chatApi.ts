@@ -57,4 +57,10 @@ export default class ChatApi extends BaseAPI {
       },
     })
   }
+
+  update_chat_avatar(formData: FormData) {
+    return this._update('avatar', {
+      data: formData,
+    })
+  }
 }

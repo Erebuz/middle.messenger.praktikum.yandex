@@ -7,6 +7,7 @@ import ButtonComponent from '~src/component/components/button'
 import addImg from '~src/assets/account-plus.svg'
 import removeImg from '~src/assets/account-minus.svg'
 import {
+  show_set_chat_avatar,
   show_add_user_dialog,
   show_remove_user_dialog,
 } from '~src/store/Actions'
@@ -33,6 +34,15 @@ export default class ChatActionsComponent extends Component<{}> {
       },
     })
     body.setKey('removeButton', remove_btn)
+
+    const add_img = new ButtonComponent({
+      label: `<img width="20px" src="${removeImg}" alt="icon">Set chat image`,
+      classes: 'add-user__button',
+      events: {
+        click: show_set_chat_avatar,
+      },
+    })
+    body.setKey('addImgButton', add_img)
 
     const leave_btn = new ButtonComponent({
       label: `<img width="20px" src="${removeImg}" alt="icon">Leave chat`,

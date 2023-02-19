@@ -11,11 +11,12 @@ import UserPreviewComponent from '~src/component/components/userPreview'
 import { UserInterface } from '~src/interfaces/user'
 import { searchUser } from '~src/controller/userController'
 import { hide_modal_dialog } from '~src/store/Actions'
-import { createChat } from '~src/controller/chatController'
+import { createChat, setChatAvatar } from '~src/controller/chatController'
+import ChatAvatarInputComponent from '~src/component/chatAvatarInput'
 
 export interface ModalDialogOptionsInterface {
   show?: boolean
-  type?: 'add' | 'remove' | 'create'
+  type?: 'add' | 'remove' | 'create' | 'add_avatar'
   current_users?: UserInterface[]
   search_field?: Component<TextFieldOptionsInterface>
 }
@@ -43,7 +44,9 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
         }
 
         if (this.props.type === 'add') {
-          searchUser(data)
+          searchUser(data).catch()
+        } else if (this.props.type === 'add_avatar') {
+          setChatAvatar()
         } else {
           createChat(data).then(() => hide_modal_dialog())
         }
@@ -71,6 +74,19 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
           label: 'Search',
           buttonType: 'submit',
           classes: 'modal-dialog__search-button',
+        })
+      )
+    }
+
+    if (this.props.type === 'add_avatar') {
+      body.setKey('search', new ChatAvatarInputComponent())
+
+      body.setKey(
+        'addButton',
+        new ButtonComponent({
+          label: 'Upload',
+          buttonType: 'submit',
+          classes: 'button',
         })
       )
     }

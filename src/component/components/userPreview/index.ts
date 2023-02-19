@@ -4,7 +4,7 @@ import './index.scss'
 import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import {
   addUserToCurrentChat,
-  get_current_chat_users,
+  getCurrentChatUsers,
   removeUserByCurrentChat,
 } from '~src/controller/chatController'
 import { UserInterface } from '~src/interfaces/user'
@@ -27,7 +27,7 @@ export default class UserPreviewComponent extends Component<UserPreviewOptionsIn
           addUserToCurrentChat(this.props.user.id).then(() => {
             hide_modal_dialog()
             clear_search_user()
-            get_current_chat_users()
+            getCurrentChatUsers()
           })
         }
       },

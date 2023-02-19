@@ -16,7 +16,7 @@ export interface StateInterface {
   }
   modal_dialog: {
     show: boolean
-    type: 'add' | 'remove' | 'create'
+    type: 'add' | 'remove' | 'create' | 'add_avatar'
   }
   search_chats: any[]
   search_users: UserInterface[]
