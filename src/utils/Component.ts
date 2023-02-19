@@ -80,6 +80,10 @@ export class Component<T = unknown> {
   }
 
   private _render() {
+    if (this._element) {
+      this._removeEvents()
+    }
+
     if (this._element?.parentElement) {
       const parent = this._element.parentElement
       const new_element = this.render()
@@ -91,6 +95,22 @@ export class Component<T = unknown> {
     }
 
     this._addEvents()
+  }
+
+  private _removeEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach((eventName) => {
+      const eventsFunc = events[eventName]
+
+      if (Array.isArray(eventsFunc)) {
+        eventsFunc.forEach((foo: (...args: any) => void) => {
+          this._element.removeEventListener(eventName, foo)
+        })
+      } else {
+        this._element.removeEventListener(eventName, eventsFunc)
+      }
+    })
   }
 
   private _addEvents() {

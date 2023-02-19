@@ -22,6 +22,10 @@ export interface StateInterface {
   search_users: UserInterface[]
   current_chat: ChatPreviewInterface | null
   current_chat_users: UserInterface[]
+  show_user_settings: {
+    new: boolean
+    show: boolean
+  }
 }
 
 export const defaultState: StateInterface = {
@@ -44,6 +48,10 @@ export const defaultState: StateInterface = {
   search_users: [],
   current_chat: null,
   current_chat_users: [],
+  show_user_settings: {
+    new: true,
+    show: false,
+  },
 }
 
 export const State: { store: StateInterface } = {

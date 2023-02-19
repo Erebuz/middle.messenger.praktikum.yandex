@@ -76,7 +76,7 @@ export class Router {
     pathname: string
     component: TypeOf<Component>
     auth?: boolean
-    beforeRoute?: () => any
+    beforeRoute?: (oldRoute: string, newRoute: string) => void
   }) {
     const route_to = new Route(
       route.pathname,
@@ -111,13 +111,16 @@ export class Router {
       throw new Error('Route not exist')
     }
 
+    const oldRoute = this._currentRoute?._pathname
+    const newRoute = route._pathname
+
     if (route._props.auth) {
       this.checkAuth(route)
     } else {
       this._goto(route)
     }
 
-    if (route._props.beforeRoute) route._props.beforeRoute()
+    if (route._props.beforeRoute) route._props.beforeRoute(oldRoute, newRoute)
   }
 
   beforeRoute() {}
