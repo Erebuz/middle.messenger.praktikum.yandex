@@ -5,15 +5,18 @@ import State from '~src/store/state'
 import UserApi from '~src/api/userApi'
 import { UserInterface } from '~src/interfaces/user'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
-import { hide_modal_dialog, set_current_chat } from '~src/store/Actions'
+import { hide_modal_dialog } from '~src/store/Actions'
 
 const chatApi = new ChatApi()
 const userApi = new UserApi()
 
 export function getChats() {
-  chatApi.get_chats().then((res: HTTPResponse) => {
-    store.set('chats', res.data)
-  })
+  chatApi
+    .get_chats()
+    .then((res: HTTPResponse) => {
+      store.set('chats', res.data)
+    })
+    .catch()
 }
 
 export function searchChat(ev: SubmitEvent) {
@@ -28,6 +31,7 @@ export function searchChat(ev: SubmitEvent) {
       .then((res: HTTPResponse<ChatPreviewInterface>) => {
         store.set('search_chats', res.data)
       })
+      .catch()
   } else {
     store.set('search_chats', [])
   }
@@ -41,14 +45,17 @@ export function createChat(title: string) {
 }
 
 export function createChatWithUser(title: string, user_id: number) {
-  chatApi.create_chat(title).then((res: HTTPResponse<{ id: number }>) => {
-    store.set('search_users', [])
-    getChats()
+  chatApi
+    .create_chat(title)
+    .then((res: HTTPResponse<{ id: number }>) => {
+      store.set('search_users', [])
+      getChats()
 
-    if (res.data?.id) {
-      addUserToChatById(res.data?.id, user_id)
-    }
-  })
+      if (res.data?.id) {
+        addUserToChatById(res.data?.id, user_id).catch()
+      }
+    })
+    .catch()
 }
 
 export function sendMessage(ev: SubmitEvent) {
@@ -77,12 +84,15 @@ export function addUserToCurrentChat(id: number) {
 }
 
 export function addUserToChatByLogin(login: string) {
-  userApi.search_user(login).then((res: HTTPResponse<UserInterface[]>) => {
-    if (res.data?.length === 1) {
-      addUserToCurrentChat(res.data[0].id)
-      hide_modal_dialog()
-    }
-  })
+  userApi
+    .search_user(login)
+    .then((res: HTTPResponse<UserInterface[]>) => {
+      if (res.data?.length === 1) {
+        addUserToCurrentChat(res.data[0].id).catch()
+        hide_modal_dialog()
+      }
+    })
+    .catch()
 }
 
 export function addUserToChatById(chat_id: number, user_id: number) {
@@ -92,35 +102,47 @@ export function addUserToChatById(chat_id: number, user_id: number) {
 export function removeUserByCurrentChat(user_id: number) {
   const chat_id = State.store.current_chat!.id
 
-  chatApi.remove_users([user_id], chat_id).then(() => {
-    getCurrentChatUsers()
-  })
+  chatApi
+    .remove_users([user_id], chat_id)
+    .then(() => {
+      getCurrentChatUsers()
+    })
+    .catch()
 }
 
 export function removeUsers(ids: number[], chat_id: number) {
-  chatApi.remove_users(ids, chat_id).then(() => {
-    store.set('current_chat', null)
-    getChats()
-  })
+  chatApi
+    .remove_users(ids, chat_id)
+    .then(() => {
+      store.set('current_chat', null)
+      getChats()
+    })
+    .catch()
 }
 
 export function leaveChat() {
   const id = State.store.user.id
   const chat_id = State.store.current_chat!.id
 
-  chatApi.remove_users([id], chat_id).then(() => {
-    store.set('current_chat', null)
-    getChats()
-  })
+  chatApi
+    .remove_users([id], chat_id)
+    .then(() => {
+      store.set('current_chat', null)
+      getChats()
+    })
+    .catch()
 }
 
 export function deleteChat() {
   const chat_id = State.store.current_chat!.id
 
-  chatApi.delete_chat(chat_id).then(() => {
-    store.set('current_chat', null)
-    getChats()
-  })
+  chatApi
+    .delete_chat(chat_id)
+    .then(() => {
+      store.set('current_chat', null)
+      getChats()
+    })
+    .catch()
 }
 
 export function setChatAvatar() {
@@ -133,10 +155,13 @@ export function setChatAvatar() {
     formData.set('avatar', file)
     formData.set('chatId', `${chatId}`)
 
-    chatApi.update_chat_avatar(formData).then(() => {
-      store.set('current_chat', null)
-      hide_modal_dialog()
-      getChats()
-    })
+    chatApi
+      .update_chat_avatar(formData)
+      .then(() => {
+        store.set('current_chat', null)
+        hide_modal_dialog()
+        getChats()
+      })
+      .catch()
   }
 }

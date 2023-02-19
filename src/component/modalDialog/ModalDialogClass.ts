@@ -48,7 +48,9 @@ export default class ModalDialogComponent extends Component<ModalDialogOptionsIn
         } else if (this.props.type === 'add_avatar') {
           setChatAvatar()
         } else {
-          createChat(data).then(() => hide_modal_dialog())
+          createChat(data)
+            .then(() => hide_modal_dialog())
+            .catch()
         }
       },
     }

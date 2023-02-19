@@ -1,4 +1,4 @@
-function isObject(obj: any) {
+function isObject(obj: unknown) {
   return typeof obj === 'object' && !Array.isArray(obj) && obj !== null
 }
 
@@ -12,12 +12,12 @@ function isEqual(a: object, b: object): boolean {
       if (!Array.isArray(b[key as keyof object])) return false
 
       if (
-        (a[key as keyof object] as any[]).length !==
-        (b[key as keyof object] as any[]).length
+        (a[key as keyof object] as unknown[]).length !==
+        (b[key as keyof object] as unknown[]).length
       )
         return false
 
-      for (const i in a[key as keyof object] as any[]) {
+      for (const i in a[key as keyof object] as unknown[]) {
         if (a[key as keyof object][i] !== b[key as keyof object][i])
           return false
       }

@@ -37,8 +37,8 @@ export default class Store<State = {}> extends EventBus {
     this.emit(Store.EVENT_UPDATE)
   }
 
-  set(id: string, value: any) {
-    ;(this._state as Record<string, any>)[id] = value
+  set(id: string, value: unknown) {
+    ;(this._state as Record<string, unknown>)[id] = value
     this.emit(Store.EVENT_UPDATE)
     return this
   }

@@ -2,7 +2,7 @@ import AuthApi from '~src/api/authApi'
 import router from '~src/router'
 import store from '~src/store'
 import { HTTPResponse } from '~src/utils/HttpTransport'
-import AppWS from "~src/socket";
+import AppWS from '~src/socket'
 
 const authApi = new AuthApi()
 
@@ -26,17 +26,23 @@ export function login(ev: SubmitEvent) {
 }
 
 export function logout() {
-  authApi.logout().then(() => {
-    router.go('/')
-    store.removeState()
-    new AppWS().disconnect()
-  })
+  authApi
+    .logout()
+    .then(() => {
+      router.go('/')
+      store.removeState()
+      new AppWS().disconnect()
+    })
+    .catch()
 }
 
 export function getUser() {
-  return authApi.get_user().then((res: HTTPResponse) => {
-    store.set('user', res.data)
-  })
+  return authApi
+    .get_user()
+    .then((res: HTTPResponse) => {
+      store.set('user', res.data)
+    })
+    .catch()
 }
 
 export function registration(ev: SubmitEvent) {

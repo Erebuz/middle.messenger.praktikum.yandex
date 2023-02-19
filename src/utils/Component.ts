@@ -2,7 +2,7 @@ import EventBus from '~src/utils/EventBus'
 
 export interface PropsType {
   events?: {
-    [key: string]: (...args: any) => void | Array<(...args: any) => void>
+    [key: string]: (...args: unknown[]) => void | Array<(...args: unknown[]) => void>
   }
 }
 
@@ -120,7 +120,7 @@ export class Component<T = unknown> {
       const eventsFunc = events[eventName]
 
       if (Array.isArray(eventsFunc)) {
-        eventsFunc.forEach((foo: (...args: any) => void) => {
+        eventsFunc.forEach((foo: (...args: unknown[]) => void) => {
           this._element.addEventListener(eventName, foo)
         })
       } else {

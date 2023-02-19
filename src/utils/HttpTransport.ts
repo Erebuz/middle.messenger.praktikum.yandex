@@ -8,7 +8,7 @@ export interface RequestOptionsInterface {
   timeout?: number
 }
 
-export type HTTPResponse<T = any> = XMLHttpRequest & { data?: T }
+export type HTTPResponse<T = unknown> = XMLHttpRequest & { data?: T }
 
 type HTTPMethod = (
   url: string,

@@ -5,7 +5,6 @@ router.start()
 
 new AppWS()
 
-
 // window.appStore = Store
 //
 // declare global {

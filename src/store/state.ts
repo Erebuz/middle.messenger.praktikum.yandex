@@ -18,7 +18,7 @@ export interface StateInterface {
     show: boolean
     type: 'add' | 'remove' | 'create' | 'add_avatar'
   }
-  search_chats: any[]
+  search_chats: ChatPreviewInterface[]
   search_users: UserInterface[]
   current_chat: ChatPreviewInterface | null
   current_chat_users: UserInterface[]

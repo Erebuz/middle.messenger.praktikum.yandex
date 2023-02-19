@@ -24,11 +24,13 @@ export default class UserPreviewComponent extends Component<UserPreviewOptionsIn
           removeUserByCurrentChat(this.props.user.id)
         }
         if (this.props.type === 'add') {
-          addUserToCurrentChat(this.props.user.id).then(() => {
-            hide_modal_dialog()
-            clear_search_user()
-            getCurrentChatUsers()
-          })
+          addUserToCurrentChat(this.props.user.id)
+            .then(() => {
+              hide_modal_dialog()
+              clear_search_user()
+              getCurrentChatUsers().catch()
+            })
+            .catch()
         }
       },
     }

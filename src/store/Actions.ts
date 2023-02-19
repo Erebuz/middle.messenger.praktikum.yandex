@@ -9,15 +9,16 @@ export const show_add_user_dialog = () => {
 }
 
 export const show_remove_user_dialog = () => {
-  getCurrentChatUsers().then(() => {
-    store.set('modal_dialog', { show: true, type: 'remove' })
-  })
+  getCurrentChatUsers()
+    .then(() => {
+      store.set('modal_dialog', { show: true, type: 'remove' })
+    })
+    .catch()
 }
 
 export const show_create_chat_dialog = () => {
   store.set('modal_dialog', { show: true, type: 'create' })
 }
-
 
 export const show_set_chat_avatar = () => {
   store.set('modal_dialog', { show: true, type: 'add_avatar' })
@@ -35,4 +36,3 @@ export const set_current_chat = (chat: ChatPreviewInterface) => {
 export const clear_search_user = () => {
   store.set('search_users', [])
 }
-

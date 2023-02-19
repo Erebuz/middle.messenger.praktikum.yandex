@@ -7,7 +7,7 @@ const chatApi = new ChatApi()
 
 export default class AppWS extends WS {
   chatId: number
-  intervalId: any
+  intervalId: NodeJS.Timer
 
   constructor() {
     super('wss://ya-praktikum.tech/ws/chats')
@@ -30,7 +30,7 @@ export default class AppWS extends WS {
         userId,
         chatId,
         token,
-        (ev: { type: string } & { [key: string]: any }) => {
+        (ev: { type: string } & { [key: string]: unknown }) => {
           try {
             wsActions[ev.type](ev)
           } catch (e) {

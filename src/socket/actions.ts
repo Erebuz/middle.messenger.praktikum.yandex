@@ -1,4 +1,4 @@
-const wsActions: { [key: string]: (...args: any[]) => void } = {
+const wsActions: { [key: string]: (...args: unknown[]) => void } = {
   pong: () => console.log('Pong'),
 }
 

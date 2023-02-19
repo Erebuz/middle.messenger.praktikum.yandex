@@ -1,6 +1,7 @@
 import { HTTPResponse } from '~src/utils/HttpTransport'
 import store from '~src/store'
 import UserApi from '~src/api/userApi'
+import { UserInterface } from '~src/interfaces/user'
 
 const userApi = new UserApi()
 
@@ -62,14 +63,19 @@ export function updateAvatar() {
     const formData = new FormData()
     formData.set('avatar', file)
 
-    userApi.update_avatar(formData).then((res: HTTPResponse) => {
-      store.set('user', res.data)
-    })
+    userApi
+      .update_avatar(formData)
+      .then((res: HTTPResponse) => {
+        store.set('user', res.data)
+      })
+      .catch()
   }
 }
 
 export function searchUser(login: string) {
   return userApi
     .search_user(login)
-    .then((res: HTTPResponse<any[]>) => store.set('search_users', res.data))
+    .then((res: HTTPResponse<UserInterface[]>) =>
+      store.set('search_users', res.data)
+    )
 }

@@ -4,7 +4,7 @@ import { TypeOf } from '~src/utils/mydash/ts'
 
 export default function connect<T>(
   Class: TypeOf<Component>,
-  mapStateToProps: (...args: any) => any
+  mapStateToProps: (...args: unknown[]) => any
 ) {
   return class extends Class {
     constructor(props = {}) {

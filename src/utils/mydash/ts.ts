@@ -1,1 +1,1 @@
-export type TypeOf<T> = { new (...args: any[]): T }
+export type TypeOf<T> = { new (...args: unknown[]): T }

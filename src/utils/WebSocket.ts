@@ -22,12 +22,17 @@ export class WS {
     userId: number,
     chatId: number,
     token: string,
-    onMessage: (...args: any[]) => any
+    onMessage: (...args: unknown[]) => unknown
   ) {
     this.socket = new WebSocket(`${this.baseUrl}/${userId}/${chatId}/${token}`)
 
     this.socket.addEventListener('message', (ev) => {
-      onMessage(JSON.parse(ev.data))
+      try {
+        onMessage(JSON.parse(ev.data))
+      } catch (e) {
+        console.error(e)
+        onMessage(ev.data)
+      }
     })
 
     this.socket?.addEventListener('open', () => {
@@ -50,7 +55,7 @@ export class WS {
     this.socket = null
   }
 
-  send(message: any) {
+  send(message: unknown) {
     this.socket?.send(JSON.stringify(message))
   }
 }
