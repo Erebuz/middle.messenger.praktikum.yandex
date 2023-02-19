@@ -12,10 +12,6 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "staticFiles": {
-    "staticPath": "src/static",
-    "watcherGlob": "**"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -32,6 +28,7 @@
     "eslint-plugin-promise": "6.1.1",
     "express": "4.18.2",
     "parcel": "2.8.2",
+    "parcel-reporter-static-files-copy": "^1.5.0",
     "prettier": "2.8.1",
     "sass": "1.57.1",
     "stylelint": "14.16.1",
