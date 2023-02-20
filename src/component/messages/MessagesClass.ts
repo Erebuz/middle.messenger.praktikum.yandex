@@ -1,7 +1,7 @@
 import { Component } from '~src/utils/Component'
 import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import { MessageInterface } from '~src/interfaces/chat'
-import MessageComponent from '~src/component/message'
+import MessageComponent from '~src/component/components/message'
 
 export interface MessagesOptionsInterface {
   messages: MessageInterface[]

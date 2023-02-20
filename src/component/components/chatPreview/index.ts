@@ -34,8 +34,26 @@ export default class ChatPreviewComponent extends Component<ChatPreviewInterface
       body.setKey('unread_count', `${this.props.unread_count}`)
 
     if (this.props.last_message) {
-      body.setKey('avatar', this.props.last_message.content)
-      body.setKey('avatar', this.props.last_message.time)
+      body.setKey('last_text', this.props.last_message.content)
+
+      const date = new Date(this.props.last_message.time)
+      const cur_date = new Date()
+
+      const is_this_day =
+        date.getFullYear() === cur_date.getFullYear() &&
+        date.getMonth() === cur_date.getMonth() &&
+        date.getDate() === cur_date.getDate()
+
+      if (is_this_day) {
+        const hour =
+          date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+        const minute =
+          date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+
+        body.setKey('last_time', `${hour}:${minute}`)
+      } else {
+        body.setKey('last_time', 'dads')
+      }
     }
 
     return body.render()

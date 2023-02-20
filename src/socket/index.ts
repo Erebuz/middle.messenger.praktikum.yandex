@@ -38,6 +38,9 @@ export default class AppWS extends WS {
               wsActions.default(ev)
             }
           } catch (e) {
+            if (ev.type){
+              console.error(`WebSocket action ${ev.type} not exist`)
+            }
             console.error(e)
           }
         }

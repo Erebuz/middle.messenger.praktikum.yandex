@@ -5,6 +5,7 @@ import { MessageInterface } from '~src/interfaces/chat'
 const wsActions: { [key: string]: (...args: unknown[]) => void } = {
   pong: () => console.log('Pong'),
   message: (mes: MessageInterface) => add_message_to_current(mes),
+  'user connected': () => console.log('User connected'),
   default: (mes: MessageInterface[]) => {
     store.set('current_messages', mes.reverse())
   },
