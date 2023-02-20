@@ -32,9 +32,13 @@ export default class AppWS extends WS {
         token,
         (ev: { type: string } & { [key: string]: unknown }) => {
           try {
-            wsActions[ev.type](ev)
+            if (ev.type && Object.keys(wsActions).includes(ev.type)) {
+              wsActions[ev.type](ev)
+            } else {
+              wsActions.default(ev)
+            }
           } catch (e) {
-            console.error(`Not find WS action "${ev.type}'`)
+            console.error(e)
           }
         }
       )

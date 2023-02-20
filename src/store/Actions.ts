@@ -1,6 +1,7 @@
 import AppStore from './store'
-import { ChatPreviewInterface } from '~src/interfaces/chat'
+import { ChatPreviewInterface, MessageInterface } from '~src/interfaces/chat'
 import { getCurrentChatUsers } from '~src/controller/chatController'
+import state from '~src/store/state'
 
 const store = new AppStore()
 
@@ -30,9 +31,13 @@ export const hide_modal_dialog = () => {
 
 export const set_current_chat = (chat: ChatPreviewInterface) => {
   store.set('current_chat', chat)
-  getCurrentChatUsers()
+  getCurrentChatUsers().catch()
 }
 
 export const clear_search_user = () => {
   store.set('search_users', [])
+}
+
+export const add_message_to_current = (mes: MessageInterface) => {
+  store.set('current_messages', [...state.store.current_messages, mes])
 }

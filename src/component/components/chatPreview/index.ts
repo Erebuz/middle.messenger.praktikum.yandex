@@ -6,13 +6,16 @@ import { ChatPreviewInterface } from '~src/interfaces/chat'
 import { set_current_chat } from '~src/store/Actions'
 import AppWS from '~src/socket'
 import { BASE_URL } from '~src/api/baseApi'
+import { get_old_messages } from '~src/controller/chatController'
 
 export default class ChatPreviewComponent extends Component<ChatPreviewInterface> {
   protected initProps() {
     this.props.events = {
       click: () => {
         set_current_chat(this.props)
-        new AppWS().connect(this.props.id)
+        new AppWS().connect(this.props.id).then(() => {
+          setTimeout(() => get_old_messages(), 100)
+        })
       },
     }
   }

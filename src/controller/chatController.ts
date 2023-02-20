@@ -6,6 +6,7 @@ import UserApi from '~src/api/userApi'
 import { UserInterface } from '~src/interfaces/user'
 import { ChatPreviewInterface } from '~src/interfaces/chat'
 import { hide_modal_dialog } from '~src/store/Actions'
+import { appWS } from '~src'
 
 const chatApi = new ChatApi()
 const userApi = new UserApi()
@@ -59,14 +60,12 @@ export function createChatWithUser(title: string, user_id: number) {
 }
 
 export function sendMessage(ev: SubmitEvent) {
-  ev.preventDefault()
   const formData = new FormData(ev.target as HTMLFormElement)
 
-  const data = {
-    message: formData.get('message'),
-  }
+  const message = formData.get('message')
 
-  console.log(data)
+  appWS.send({ content: message, type: 'message' })
+
 }
 
 export function getCurrentChatUsers() {
@@ -164,4 +163,8 @@ export function setChatAvatar() {
       })
       .catch()
   }
+}
+
+export function get_old_messages() {
+  appWS.send({ content: 0, type: 'get old' })
 }

@@ -9,6 +9,7 @@ export interface InputOptionsInterface {
   pattern?: string
   required?: boolean
   placeholder?: string
+  id?: string
 }
 
 export default class InputComponent extends Component<InputOptionsInterface> {
@@ -29,6 +30,10 @@ export default class InputComponent extends Component<InputOptionsInterface> {
 
     if (this.props.required) {
       input.setKey('required', 'required')
+    }
+
+    if (this.props.id) {
+      input.setKey('id', `id="${this.props.id}"`)
     }
 
     input.setKey('placeholder', this.props.placeholder || 'Enter text')

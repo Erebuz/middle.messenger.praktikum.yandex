@@ -12,3 +12,14 @@ export interface ChatPreviewInterface {
     content: string
   }
 }
+
+export interface MessageInterface {
+  id: number
+  user_id: number
+  chat_id: number
+  type: 'message'
+  time: string
+  content: string
+  is_read: boolean
+  file: string | null
+}

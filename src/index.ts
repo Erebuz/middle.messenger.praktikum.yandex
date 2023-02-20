@@ -3,7 +3,7 @@ import AppWS from '~src/socket'
 
 router.start()
 
-new AppWS()
+export const appWS = new AppWS()
 
 // window.appStore = Store
 //

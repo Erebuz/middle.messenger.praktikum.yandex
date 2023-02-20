@@ -6,6 +6,6 @@ import './index.scss'
 export default connect<typeof MessagesComponent>(
   MessagesComponent,
   (state: StateInterface) => {
-    return { ...state }
+    return { messages: state.current_messages }
   }
 )

@@ -56,6 +56,10 @@ export class WS {
   }
 
   send(message: unknown) {
-    this.socket?.send(JSON.stringify(message))
+    try {
+      this.socket?.send(JSON.stringify(message))
+    } catch (e) {
+      console.error(e)
+    }
   }
 }

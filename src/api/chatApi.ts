@@ -63,4 +63,8 @@ export default class ChatApi extends BaseAPI {
       data: formData,
     })
   }
+
+  get_new_mes_count(chatId: number) {
+    return this._get(`new/${chatId}`)
+  }
 }

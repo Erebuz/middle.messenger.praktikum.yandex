@@ -1,5 +1,5 @@
 import { cloneDeep } from '~src/utils/mydash/cloneDeep'
-import { ChatPreviewInterface } from '~src/interfaces/chat'
+import { ChatPreviewInterface, MessageInterface } from '~src/interfaces/chat'
 import { UserInterface } from '~src/interfaces/user'
 
 export interface StateInterface {
@@ -26,6 +26,7 @@ export interface StateInterface {
     new: boolean
     show: boolean
   }
+  current_messages: MessageInterface[]
 }
 
 export const defaultState: StateInterface = {
@@ -52,6 +53,7 @@ export const defaultState: StateInterface = {
     new: true,
     show: false,
   },
+  current_messages: []
 }
 
 export const State: { store: StateInterface } = {

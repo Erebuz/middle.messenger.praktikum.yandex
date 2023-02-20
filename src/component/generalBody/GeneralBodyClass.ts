@@ -27,12 +27,20 @@ export default class GeneralBodyComponent extends Component<GeneralBodyOptionsIn
     this.props.messageField = new MessageFieldComponent({
       textField: new InputComponent({
         name: 'message',
+        id: 'message_input',
         placeholder: 'Message',
         required: true,
       }),
       fileInput: new FileInputComponent(),
       events: {
-        submit: sendMessage,
+        submit: (ev: SubmitEvent) => {
+          ev.preventDefault()
+          sendMessage(ev)
+          const input = document.getElementById(
+            'message_input'
+          ) as HTMLInputElement
+          input.value = ''
+        },
       },
     })
   }
