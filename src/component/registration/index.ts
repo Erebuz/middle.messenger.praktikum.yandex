@@ -1,8 +1,8 @@
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 
 import template from './index.tmpl'
 import './index.scss'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import TextFieldComponent from '~src/component/components/textField/textField'
 import ButtonComponent from '~src/component/components/button'
 import {
@@ -12,8 +12,11 @@ import {
   passwordReg,
   phoneReg,
 } from '~src/controller/validation'
+import RouterLink from '~src/component/components/routerLink'
 
-export default class RegistrationComponent extends Component {
+export interface RegistrationOptionsInterface {}
+
+export default class RegistrationComponent extends Component<RegistrationOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 
@@ -92,6 +95,8 @@ export default class RegistrationComponent extends Component {
         buttonType: 'submit',
       })
     )
+
+    body.setKey('loginLink', new RouterLink({ text: 'Login', link: '/' }))
 
     return body.render()
   }

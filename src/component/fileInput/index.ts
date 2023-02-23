@@ -1,11 +1,13 @@
 import template from './index.tmpl'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 
 import clip from '~src/assets/paperclip.svg'
 
-export default class FileInputComponent extends Component {
+export interface FileInputOptionsInterface {}
+
+export default class FileInputComponent extends Component<FileInputOptionsInterface> {
   protected render(): Element {
     const body = new TemplateBuilder(template)
 

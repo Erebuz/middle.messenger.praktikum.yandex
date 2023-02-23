@@ -1,13 +1,13 @@
 import EventBus from '~src/utils/EventBus'
 
-interface PropsType {
+export interface PropsType {
   events?: {
-    [key: string]: (...args: any) => void | Array<(...args: any) => void>
+    [key: string]: (...args: unknown[]) => void | Array<(...args: unknown[]) => void>
   }
 }
 
-export abstract class Component<T = unknown> {
-  static EVENTS = {
+export class Component<T = unknown> {
+  private static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
@@ -25,9 +25,9 @@ export abstract class Component<T = unknown> {
 
     this._registerEvents()
 
-    this.flowBus().emit(Component.EVENTS.INIT)
-
     this.initProps()
+
+    this.flowBus().emit(Component.EVENTS.INIT)
   }
 
   protected initProps() {}
@@ -97,22 +97,6 @@ export abstract class Component<T = unknown> {
     this._addEvents()
   }
 
-  private _addEvents() {
-    const { events = {} } = this.props
-
-    Object.keys(events).forEach((eventName) => {
-      const eventsFunc = events[eventName]
-
-      if (Array.isArray(eventsFunc)) {
-        eventsFunc.forEach((foo: (...args: any) => void) => {
-          this._element.addEventListener(eventName, foo)
-        })
-      } else {
-        this._element.addEventListener(eventName, eventsFunc)
-      }
-    })
-  }
-
   private _removeEvents() {
     const { events = {} } = this.props
 
@@ -125,6 +109,22 @@ export abstract class Component<T = unknown> {
         })
       } else {
         this._element.removeEventListener(eventName, eventsFunc)
+      }
+    })
+  }
+
+  private _addEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach((eventName) => {
+      const eventsFunc = events[eventName]
+
+      if (Array.isArray(eventsFunc)) {
+        eventsFunc.forEach((foo: (...args: unknown[]) => void) => {
+          this._element.addEventListener(eventName, foo)
+        })
+      } else {
+        this._element.addEventListener(eventName, eventsFunc)
       }
     })
   }
@@ -148,5 +148,11 @@ export abstract class Component<T = unknown> {
 
   public get element() {
     return this._element
+  }
+
+  public remove() {
+    if (this._element.parentElement) {
+      this._element.parentElement.innerHTML = ''
+    }
   }
 }

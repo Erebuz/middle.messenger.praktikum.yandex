@@ -1,5 +1,14 @@
-import './view/login/index.html'
-import './view/registration/index.html'
-import './view/general/index.html'
-import './view/404/index.html'
-import './view/500/index.html'
+import router from '~src/router'
+import AppWS from '~src/socket'
+
+router.start()
+
+export const appWS = new AppWS()
+
+// window.appStore = Store
+//
+// declare global {
+//   interface Window {
+//     appStore: typeof Store
+//   }
+// }

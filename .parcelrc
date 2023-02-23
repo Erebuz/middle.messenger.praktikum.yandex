@@ -3,4 +3,5 @@
    "transformers": {
      "*.tmpl": ["@parcel/transformer-inline-string"]
    },
+   "reporters":  ["...", "parcel-reporter-static-files-copy"]
 }

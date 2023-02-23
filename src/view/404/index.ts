@@ -1,7 +1,6 @@
 import '~src/assets/style.scss'
 import img404 from '~src/assets/404.jpg'
-
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 import ErrorComponent from '~src/component/error'
 
 export default class Error404Page extends Component {
@@ -16,10 +15,3 @@ export default class Error404Page extends Component {
     return template.element
   }
 }
-function render(el: Element) {
-  const root = document.querySelector('#root')
-  root?.appendChild(el)
-  return root
-}
-
-render(new Error404Page().element)

@@ -1,0 +1,50 @@
+@import 'src/assets/variables';
+
+.modal-dialog {
+  width: 500px;
+  background: $color-background-secondary;
+  border-radius: 10px;
+  padding: 20px;
+
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 40%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
+  &__search-button {
+    width: 100% !important;
+  }
+
+  &__body {
+    max-height: 60vh;
+    overflow-y: auto;
+    margin: 20px 0;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  &__show {
+    display: flex;
+  }
+
+  &__hide {
+    display: none;
+  }
+}

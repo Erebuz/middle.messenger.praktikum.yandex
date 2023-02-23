@@ -1,31 +1,11 @@
-import template from './index.tmpl'
-import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
-import ChatInfoComponent from '~src/component/chatInfo'
+import connect from '~src/utils/store/Connect'
+import GeneralBodyComponent from '~src/component/generalBody/GeneralBodyClass'
+import { StateInterface } from '~src/store/state'
 
-export interface GeneralMainOptionsInterface {
-  textField: Component
-  chatInfo?: Component
-}
-
-export default class GeneralMainComponent extends Component<GeneralMainOptionsInterface> {
-  protected initProps() {
-    this.props.chatInfo = new ChatInfoComponent({
-      img: 'img',
-      name: 'Ivanov',
-    })
+export default connect<typeof GeneralBodyComponent>(
+  GeneralBodyComponent,
+  (state: StateInterface) => {
+    const show = state.current_chat !== null
+    return { show }
   }
-
-  protected render(): Element {
-    const body = new TemplateBuilder(template)
-
-    body.setKey('textField', this.props.textField)
-
-    if (this.props.chatInfo) {
-      body.setKey('chatInfo', this.props.chatInfo)
-    }
-
-    return body.render()
-  }
-}
+)

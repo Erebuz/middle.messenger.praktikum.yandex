@@ -1,8 +1,10 @@
-<div class="user-settings">
+<div class="user-settings {{ classes }}">
   <div class="user-settings__portrait-wrapper">
-    <div class="user-settings__portrait"></div>
+    <div class="user-settings__portrait">
+      {{ portrait }}
+    </div>
 
-    <img class="user-settings__logout" src="{{ logoutImg }}" width="40px" height="40px" alt="Logout" />
+    {{ logout }}
   </div>
 
   {{ formData }}

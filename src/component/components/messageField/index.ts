@@ -1,13 +1,15 @@
 import template from './index.tmpl'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 
 import sendMessageSvg from '~src/assets/send_message.svg'
+import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
+import { FileInputOptionsInterface } from '~src/component/fileInput'
 
 export interface MessageFieldOptionsInterface {
-  fileInput?: Component
-  textField: Component
+  fileInput?: Component<FileInputOptionsInterface>
+  textField: Component<TextFieldOptionsInterface>
 }
 
 export default class MessageFieldComponent extends Component<MessageFieldOptionsInterface> {

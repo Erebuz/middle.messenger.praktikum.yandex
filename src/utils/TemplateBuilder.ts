@@ -1,4 +1,4 @@
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 
 export class TemplateBuilder {
   private readonly _template: string
@@ -60,9 +60,9 @@ export class TemplateBuilder {
       const key_data = this._keysData[key]
 
       if (key_data instanceof Element) {
-        el.parentElement!.replaceChild(key_data as Element, el)
+        el.parentElement!.replaceChild(key_data, el)
       } else if (key_data instanceof Component) {
-        el.parentElement!.replaceChild(key_data.element as Element, el)
+        el.parentElement!.replaceChild(key_data.element, el)
       } else if (Array.isArray(key_data)) {
         const parent = el.parentElement as Element
         parent.removeChild(el)
@@ -78,13 +78,6 @@ export class TemplateBuilder {
     }
 
     return result
-  }
-
-  public get element() {
-    if (!this._element) {
-      throw new Error(`Element not render: ${this}`)
-    }
-    return this._element
   }
 
   public render_result_string() {

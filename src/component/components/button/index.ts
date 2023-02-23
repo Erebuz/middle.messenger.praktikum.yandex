@@ -1,6 +1,6 @@
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
+import { Component } from '~src/utils/Component'
 
 import buttonTemplate from './index.tmpl'
 

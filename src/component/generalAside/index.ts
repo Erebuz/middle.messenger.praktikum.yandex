@@ -1,21 +1,41 @@
-import template from './index.tmpl'
-import './index.scss'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import GeneralAsideComponent from '~src/component/generalAside/AsideClass'
+import connect from '~src/utils/store/Connect'
+import ChatPreviewComponent from '~src/component/components/chatPreview'
+import { StateInterface } from '~src/store/state'
 
-export interface GeneralAsideOptionsInterface {
-  search: Component
-  chats: Component[]
-}
+export default connect<typeof GeneralAsideComponent>(
+  GeneralAsideComponent,
+  (state: StateInterface) => {
+    const result = []
 
-export default class GeneralAsideComponent extends Component<GeneralAsideOptionsInterface> {
-  protected render(): Element {
-    const body = new TemplateBuilder(template)
+    if (state.search_chats.length > 0) {
+      for (const item of state.search_chats) {
+        result.push(
+          new ChatPreviewComponent({
+            id: item.id,
+            avatar: item.avatar,
+            title: item.title,
+            last_message: item.last_message,
+            unread_count: item.unread_count,
+            created_by: item.created_by,
+          })
+        )
+      }
+    } else {
+      for (const item of state.chats) {
+        result.push(
+          new ChatPreviewComponent({
+            id: item.id,
+            avatar: item.avatar,
+            title: item.title,
+            last_message: item.last_message,
+            unread_count: item.unread_count,
+            created_by: item.created_by,
+          })
+        )
+      }
+    }
 
-    body.setKey('searchField', this.props.search)
-
-    body.setKey('chats', this.props.chats)
-
-    return body.render()
+    return { preview: result }
   }
-}
+)

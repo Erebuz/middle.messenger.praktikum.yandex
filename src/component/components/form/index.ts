@@ -1,10 +1,12 @@
 import template from './index.tmpl'
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
+import { TextFieldOptionsInterface } from '~src/component/components/textField/textField'
+import { ButtonOptionsInterface } from '~src/component/components/button'
 
 export interface FormOptionComponent {
-  fields: Component[]
-  button: Component
+  fields: Component<TextFieldOptionsInterface>[]
+  button: Component<ButtonOptionsInterface>
 }
 
 export default class FormComponent extends Component<FormOptionComponent> {

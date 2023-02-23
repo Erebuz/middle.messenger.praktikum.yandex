@@ -1,5 +1,5 @@
-import { Component } from '~src/utils/templateBuilder/Component'
-import { TemplateBuilder } from '~src/utils/templateBuilder/templateBuilder'
+import { Component } from '~src/utils/Component'
+import { TemplateBuilder } from '~src/utils/TemplateBuilder'
 
 import errorTemplate from './index.tmpl'
 import './index.scss'

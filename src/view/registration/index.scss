@@ -1,0 +1,14 @@
+@import 'src/assets/variables';
+
+.registration-rules {
+  max-width: 60%;
+  color: $color-text-light;
+
+  & ul {
+    margin-left: -40px;
+
+    & li {
+      margin-bottom: 40px;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.message {
+  margin: 5px 0;
+  background: #a0a0a0;
+  align-self: flex-start;
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  &__self {
+    align-self: flex-end;
+    background: #878da0;
+  }
+}
