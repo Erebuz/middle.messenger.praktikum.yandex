@@ -5,5 +5,5 @@ dist
 
 package-lock.json
 
-**/*.js
+src/**/*.js
 **/*.map
