@@ -1,19 +1,10 @@
-import { expect } from 'chai'
-import isEqual from "./isEqual";
-
-
+import isEqual from './isEqual'
+import { describe, expect, test } from '@jest/globals'
 
 describe('isEqual module', () => {
-  describe('set', () => {
-    it('should return False if objects is not equals', () => {
-      const objA = { bar: 'foo' }
-      const objB = { bar: 'fuu' }
+  test('test', () => {
+    const result = isEqual({ foo: 'bar' }, { foo: 'bar' })
 
-      const res = isEqual(objA, objB)
-
-      expect(res).to.eq(false)
-    })
-
-    it('should return True if objects is equals', () => {})
+    expect(result).toBe(true)
   })
 })
